@@ -6,7 +6,11 @@ class TabBarContainer extends StatelessWidget {
   TabBarContainer(this._icon, this._text);
   @override
   Widget build(BuildContext context) {
-    return Container(height: 55, child: Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: <Widget>[_icon, Text(_text)],));
+    return Container(
+        height: 55,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[_icon, Text(_text)],
+        ));
   }
-
 }

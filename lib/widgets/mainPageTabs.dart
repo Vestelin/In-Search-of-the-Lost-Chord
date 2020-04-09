@@ -7,58 +7,49 @@ class MainPageTabs extends StatelessWidget {
   Widget build(BuildContext context) {
     return DefaultTabController(
       child: Scaffold(
-        appBar: AppBar(
-          title: Center(child: Text("In Search of the Lost Chord")),
-        ),
-        bottomNavigationBar: TabBar(
-          labelPadding: EdgeInsets.all(0),
-          tabs: [
-            TabBarContainer(const Icon(Icons.play_circle_outline), "Releases"),
-            TabBarContainer(const Icon(Icons.mic), "Performers"),
-            TabBarContainer(const Icon(Icons.library_music), "Genres"),
-            /* Container(
-              height: 40,
-              child: Column(
-                children: [
-                  Icon(Icons.play_circle_outline),
-                  Text("Releases"),
-                ],
-              ),
-            ),
-            Container(
-              height: 40,
-              child: Column(
-                children: [
-                  Icon(Icons.play_circle_outline),
-                  Text("Releases"),
-                ],
-              ),
-            ),
-            Container(
-              height: 40,
-              child: Column(
-                children: [
-                  Icon(Icons.play_circle_outline),
-                  Text("Releases"),
-                ],
-              ),
-            ), */
-            /* Tab(
-              icon: Icon(Icons.play_circle_outline, size: 20,),
-              //text: "Releases",
-            ),
-            Tab(
-              icon: Icon(Icons.mic, size: 20), */
-            //text: "Performers",
-            //),
-            /*  Tab(
-              icon: Icon(Icons.library_music, size: 20),
-              //child: Text("sda")
-            ) */
-          ],
-        ),
-      ),
+          appBar: AppBar(
+            title:
+                const Center(child: const Text("In Search of the Lost Chord")),
+          ),
+          bottomNavigationBar: TabBar(
+            labelPadding: EdgeInsets.all(0),
+            tabs: [
+              TabBarContainer(
+                  const Icon(Icons.play_circle_outline), "Releases"),
+              TabBarContainer(const Icon(Icons.mic), "Performers"),
+              TabBarContainer(const Icon(Icons.library_music), "Genres"),
+            ],
+          ),
+          body: TabBarView(children: [
+            Icon(Icons.accessible),
+            Testwidget(),
+            Icon(Icons.account_balance_wallet)
+          ])),
       length: possibleMainTabViews.values.length,
     );
+  }
+}
+
+int f = 0;
+
+class Testwidget extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return TestWidgetState();
+  }
+}
+
+class TestWidgetState extends State<Testwidget> {
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return AnimatedList(itemBuilder: (context, index, animation) => null);
+  }
+
+  @override
+  void initState() {
+    f++;
+    super.initState();
   }
 }
