@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:in_search_of_the_lost_chord/models/misc/possibleMainTabViews.dart';
+import 'package:in_search_of_the_lost_chord/models/ratingAnimatedListCore.dart';
 import 'package:in_search_of_the_lost_chord/widgets/lesser/tabBarContainer.dart';
 
 class MainPageTabs extends StatelessWidget {
@@ -30,7 +31,6 @@ class MainPageTabs extends StatelessWidget {
   }
 }
 
-int f = 0;
 
 class Testwidget extends StatefulWidget {
   @override
@@ -41,15 +41,24 @@ class Testwidget extends StatefulWidget {
 }
 
 class TestWidgetState extends State<Testwidget> {
+  GlobalKey<AnimatedListState> key = GlobalKey<AnimatedListState>();
+  RatingAnimatedListCore<String> core;
+  dynamic d = ["Kocham", "Cię", "Wilczku"];
+  int f = 0;
+    
+  
+  TestWidgetState() { 
+    core = RatingAnimatedListCore<String>((s) => ListTile(title: Text(s), onTap: () {core.addItem(d[f]); f = f == 2 ? 0 : ++f;},), key,
+        ["Mleeem"], false);
+  }
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return AnimatedList(itemBuilder: (context, index, animation) => null);
+    return AnimatedList(key: key, itemBuilder: (context, index, animation) => core.buildItem(index, animation), initialItemCount: 1,);
   }
 
   @override
   void initState() {
-    f++;
     super.initState();
   }
 }
