@@ -1,9 +1,50 @@
 import 'package:flutter/material.dart';
+import 'package:in_search_of_the_lost_chord/models/mainPageManager.dart';
 import 'package:in_search_of_the_lost_chord/models/misc/possibleMainTabViews.dart';
 import 'package:in_search_of_the_lost_chord/models/ratingAnimatedListCore.dart';
 import 'package:in_search_of_the_lost_chord/widgets/lesser/tabBarContainer.dart';
 
-class MainPageTabs extends StatelessWidget {
+class MainPageTabs extends StatefulWidget {
+  MainPageManager manager = MainPageManager();
+
+  @override
+  State<StatefulWidget> createState() {
+    return _MainPageTabsState();
+  }
+
+  
+}
+
+class _MainPageTabsState extends State<MainPageTabs> {
+ void onNavigationTap(int index) => setState(() => widget.manager.selected = index);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Center(child: const Text("In Search of the Lost Chord")),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.library_music),
+            title: Text("Releases"),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.search),
+            title: Text("Search"),
+          )
+        ],
+        currentIndex: widget.manager.selected,
+        onTap: onNavigationTap,
+      ),
+      body: widget.manager.getProperBody(),
+    );
+  }
+  
+}
+
+/* class MainPageTabs extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -29,8 +70,7 @@ class MainPageTabs extends StatelessWidget {
       length: possibleMainTabViews.values.length,
     );
   }
-}
-
+} */
 
 class Testwidget extends StatefulWidget {
   @override
@@ -45,16 +85,29 @@ class TestWidgetState extends State<Testwidget> {
   RatingAnimatedListCore<String> core;
   dynamic d = ["Kocham", "Cię", "Wilczku"];
   int f = 0;
-    
-  
-  TestWidgetState() { 
-    core = RatingAnimatedListCore<String>((s) => ListTile(title: Text(s), onTap: () {core.addItem(d[f]); f = f == 2 ? 0 : ++f;},), key,
-        ["Mleeem"], false);
+
+  TestWidgetState() {
+    core = RatingAnimatedListCore<String>(
+        (s) => ListTile(
+              title: Text(s),
+              onTap: () {
+                core.addItem(d[f]);
+                f = f == 2 ? 0 : ++f;
+              },
+            ),
+        key,
+        ["Mleeem"],
+        false);
   }
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return AnimatedList(key: key, itemBuilder: (context, index, animation) => core.buildItem(index, animation), initialItemCount: 1,);
+    return AnimatedList(
+      key: key,
+      itemBuilder: (context, index, animation) =>
+          core.buildItem(index, animation),
+      initialItemCount: 1,
+    );
   }
 
   @override

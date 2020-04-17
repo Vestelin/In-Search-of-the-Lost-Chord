@@ -1,5 +1,4 @@
 enum possibleMainTabViews {
   Releases,
-  Performers,
-  Genres
+  Search
 }
