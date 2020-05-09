@@ -4,6 +4,8 @@ import 'package:in_search_of_the_lost_chord/models/misc/possibleMainTabViews.dar
 import 'package:in_search_of_the_lost_chord/models/ratingAnimatedListCore.dart';
 import 'package:in_search_of_the_lost_chord/widgets/lesser/tabBarContainer.dart';
 
+import 'lesser/addAlbumWindow.dart';
+
 class MainPageTabs extends StatefulWidget {
   MainPageManager manager = MainPageManager();
 
@@ -91,8 +93,9 @@ class TestWidgetState extends State<Testwidget> {
         (s) => ListTile(
               title: Text(s),
               onTap: () {
-                core.addItem(d[f]);
-                f = f == 2 ? 0 : ++f;
+                /* core.addItem(d[f]);
+                f = f == 2 ? 0 : ++f; */
+                showDialog(context: context, builder: (context) => Dialog(child: AddAlbumWindow()));
               },
             ),
         key,
