@@ -4,3 +4,7 @@ enum Modifier {
   bestGuitar,
   bestDrums
 }
+
+enum TrackModifier {
+  toReconsider,
+}

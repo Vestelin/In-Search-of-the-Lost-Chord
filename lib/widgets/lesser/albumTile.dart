@@ -1,17 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:in_search_of_the_lost_chord/models/release.dart';
 
-class AlbumTile extends StatefulWidget {
-  AlbumTile(Release album);
+class ReleaseTile extends StatefulWidget {
+  final Release release;
+  ReleaseTile(this.release);
   @override
   State<StatefulWidget> createState() {
-    return null;
+    return _ReleaseTileState();
   }
 }
 
-class _AlbumTileState extends State<AlbumTile> {
+class _ReleaseTileState extends State<ReleaseTile> {
   @override
   Widget build(BuildContext context) {
-    return ListTile();
+    return Container(
+      decoration: BoxDecoration(border: Border.all()),
+      child: Ink(
+        color: Colors.grey[800],
+        child: ListTile(
+          title: Text(widget.release.name),
+          trailing: Text(widget.release.tracks.length.toString()),
+          onTap: () => null,
+        ),
+      ),
+    );
   }
 }

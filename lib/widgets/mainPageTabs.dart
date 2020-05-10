@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:in_search_of_the_lost_chord/dataManagement/database.dart';
 import 'package:in_search_of_the_lost_chord/models/mainPageManager.dart';
 import 'package:in_search_of_the_lost_chord/models/misc/possibleMainTabViews.dart';
 import 'package:in_search_of_the_lost_chord/models/ratingAnimatedListCore.dart';
+import 'package:in_search_of_the_lost_chord/models/release.dart';
+import 'package:in_search_of_the_lost_chord/widgets/lesser/albumTile.dart';
+import 'package:in_search_of_the_lost_chord/widgets/lesser/albumTile.dart';
 import 'package:in_search_of_the_lost_chord/widgets/lesser/tabBarContainer.dart';
 
 import 'lesser/addAlbumWindow.dart';
+import 'lesser/albumTile.dart';
+import 'lesser/albumTile.dart';
 
 class MainPageTabs extends StatefulWidget {
-  MainPageManager manager = MainPageManager();
+  final MainPageManager manager = MainPageManager();
 
   @override
   State<StatefulWidget> createState() {
@@ -83,33 +89,35 @@ class Testwidget extends StatefulWidget {
 }
 
 class TestWidgetState extends State<Testwidget> {
-  GlobalKey<AnimatedListState> key = GlobalKey<AnimatedListState>();
-  RatingAnimatedListCore<String> core;
-  dynamic d = ["Kocham", "Cię", "Wilczku"];
+  static GlobalKey<AnimatedListState> albumsKey = GlobalKey<AnimatedListState>();
+  RatingAnimatedListCore<Release> core;
+  dynamic d = ["XXX", "YYY", "ZZZ"];
   int f = 0;
 
   TestWidgetState() {
-    core = RatingAnimatedListCore<String>(
-        (s) => ListTile(
+    core = RatingAnimatedListCore<Release>(
+        (s) => ReleaseTile(s), albumsKey, Database.releases, true);
+        
+         /* ListTile(
               title: Text(s),
               onTap: () {
                 /* core.addItem(d[f]);
-                f = f == 2 ? 0 : ++f; */
-                showDialog(context: context, builder: (context) => Dialog(child: AddAlbumWindow()));
+                f = f == 2 ? 0 : ++f; */ 
+                showDialog(context: context, builder: (context) => Dialog(child:SingleChildScrollView(child:AddAlbumWindow())));
               },
             ),
         key,
         ["Mleeem"],
-        false);
+        false); */
   }
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return AnimatedList(
-      key: key,
+      key: albumsKey,
       itemBuilder: (context, index, animation) =>
           core.buildItem(index, animation),
-      initialItemCount: 1,
+      initialItemCount: Database.releases.length,
     );
   }
 

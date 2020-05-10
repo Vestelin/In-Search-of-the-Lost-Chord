@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class AddAlbumWindow extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
+
     return _AddAlbumWindowState();
   }
 }
@@ -36,7 +36,9 @@ class _AddAlbumWindowState extends State<AddAlbumWindow> {
                   controller: nameController,
                   textInputAction: TextInputAction.next,
                   textAlign: TextAlign.center,
-                  decoration: InputDecoration(labelText: "Name"),
+                  style: TextStyle(fontSize: 18,),
+        
+                  decoration: InputDecoration(labelText: "Name", labelStyle: TextStyle(fontSize: 16)),
                   
                 ),
               ),
@@ -48,7 +50,8 @@ class _AddAlbumWindowState extends State<AddAlbumWindow> {
                   keyboardType: TextInputType.number,
                   textInputAction: TextInputAction.done,
                   textAlign: TextAlign.center,
-                  decoration: InputDecoration(labelText: "Number of tracks"),
+                  style: TextStyle(fontSize: 18),
+                  decoration: InputDecoration(labelText: "Number of tracks", labelStyle: TextStyle(fontSize: 16)),
                 ),
               ),
               ButtonBar(children: [
