@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:in_search_of_the_lost_chord/models/release.dart';
 
 class RatingAnimatedListCore<T> {
   List<T> presentedList;
   Widget Function(T) getProperRatingWidget;
   bool _insertNewItemAsFirstElement;
-  GlobalKey<AnimatedListState> _key;
+  GlobalKey<AnimatedListState> _listKey;
 
-  RatingAnimatedListCore(this.getProperRatingWidget, this._key,
+  RatingAnimatedListCore(this.getProperRatingWidget, this._listKey,
       this.presentedList, this._insertNewItemAsFirstElement)
       : assert(getProperRatingWidget != null),
-        assert(_key != null);
+        assert(_listKey != null);
 
-  AnimatedListState get listState => _key.currentState;
+  AnimatedListState get listState => _listKey.currentState;
 
   void _addItemToBothLists(T ratingItem, {int index: 0}) {
     presentedList.insert(index, ratingItem);
@@ -26,18 +27,27 @@ class RatingAnimatedListCore<T> {
     }
   }
 
+  void remove(T ratingItem) {}
+
   Widget buildItem(int index, Animation animation) {
     var properRatingWidget = getProperRatingWidget(presentedList[index]);
     return SlideTransition(
-      position: Tween<Offset>(begin: Offset(1, 0), end: Offset.zero).animate(animation),
+      position: Tween<Offset>(begin: Offset(1, 0), end: Offset.zero)
+          .animate(animation),
       child: properRatingWidget,
     );
   }
 
-  void removeItem(int index, Animation animation) {
-    AnimatedListRemovedItemBuilder builder =
-        (context, animation) => buildItem(index, animation);
-    listState.removeItem(presentedList.indexOf(presentedList[index]), builder);
-    presentedList.remove(presentedList[index]);
+  void removeItem(T item) {
+    int index = presentedList.indexOf(item);
+    AnimatedListRemovedItemBuilder bbuilder = (context, animation) {
+      var properRatingWidget = getProperRatingWidget(presentedList[index]);
+      return SlideTransition(
+          position: Tween<Offset>(begin: Offset(0, 0), end: Offset(1, 0))
+              .animate(animation),
+          child: properRatingWidget);
+    };
+    listState.removeItem(index, bbuilder);
+    presentedList.removeAt(index);
   }
 }

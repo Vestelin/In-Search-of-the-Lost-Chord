@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:in_search_of_the_lost_chord/models/release.dart';
+import 'package:in_search_of_the_lost_chord/widgets/mainPageTabs.dart';
 
 class AddAlbumWindow extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-
     return _AddAlbumWindowState();
   }
 }
@@ -28,7 +29,7 @@ class _AddAlbumWindowState extends State<AddAlbumWindow> {
                   "Add album",
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
-              ),  
+              ),
               Padding(
                 padding: const EdgeInsets.all(4.0),
                 child: TextField(
@@ -36,10 +37,11 @@ class _AddAlbumWindowState extends State<AddAlbumWindow> {
                   controller: nameController,
                   textInputAction: TextInputAction.next,
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 18,),
-        
-                  decoration: InputDecoration(labelText: "Name", labelStyle: TextStyle(fontSize: 16)),
-                  
+                  style: TextStyle(
+                    fontSize: 18,
+                  ),
+                  decoration: InputDecoration(
+                      labelText: "Name", labelStyle: TextStyle(fontSize: 16)),
                 ),
               ),
               Padding(
@@ -51,7 +53,9 @@ class _AddAlbumWindowState extends State<AddAlbumWindow> {
                   textInputAction: TextInputAction.done,
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 18),
-                  decoration: InputDecoration(labelText: "Number of tracks", labelStyle: TextStyle(fontSize: 16)),
+                  decoration: InputDecoration(
+                      labelText: "Number of tracks",
+                      labelStyle: TextStyle(fontSize: 16)),
                 ),
               ),
               ButtonBar(children: [
@@ -67,7 +71,10 @@ class _AddAlbumWindowState extends State<AddAlbumWindow> {
                 ),
                 FlatButton(
                   child: Text("Create"),
-                  onPressed: null,
+                  onPressed: () {
+                    TestWidgetState.core.addItem(Release.test());
+                    Navigator.pop(context);
+                  },
                 )
               ])
             ]),

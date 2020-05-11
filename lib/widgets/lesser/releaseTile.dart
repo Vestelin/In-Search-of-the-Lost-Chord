@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:in_search_of_the_lost_chord/models/release.dart';
+import 'package:in_search_of_the_lost_chord/widgets/mainPageTabs.dart';
 
 class ReleaseTile extends StatefulWidget {
   final Release release;
-  ReleaseTile(this.release);
+  ReleaseTile(this.release, Key key) : super(key: key);
   @override
   State<StatefulWidget> createState() {
     return _ReleaseTileState();
@@ -20,7 +21,7 @@ class _ReleaseTileState extends State<ReleaseTile> {
         child: ListTile(
           title: Text(widget.release.name),
           trailing: Text(widget.release.tracks.length.toString()),
-          onTap: () => null,
+          onTap: () => TestWidgetState.core.removeItem(widget.release),
         ),
       ),
     );

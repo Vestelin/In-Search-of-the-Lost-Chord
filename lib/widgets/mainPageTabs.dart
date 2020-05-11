@@ -28,6 +28,12 @@ class _MainPageTabsState extends State<MainPageTabs> {
     return Scaffold(
       appBar: AppBar(
         title: const Center(child: const Text("In Search of the Lost Chord")),
+        actions: <Widget>[SizedBox(
+          width: 60,
+          child: FlatButton(onPressed: () => {
+            showDialog(context: context, builder: (context) => Dialog(child: AddAlbumWindow(),))
+          }, child: Icon(Icons.add)),
+        )],
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
@@ -86,14 +92,14 @@ class Testwidget extends StatefulWidget {
 }
 
 class TestWidgetState extends State<Testwidget> {
-  static GlobalKey<AnimatedListState> albumsKey = GlobalKey<AnimatedListState>();
-  RatingAnimatedListCore<Release> core;
+  GlobalKey<AnimatedListState> albumsKey = GlobalKey<AnimatedListState>();
+  static RatingAnimatedListCore<Release> core;
   dynamic d = ["XXX", "YYY", "ZZZ"];
   int f = 0;
 
   TestWidgetState() {
     core = RatingAnimatedListCore<Release>(
-        (s) => ReleaseTile(s), albumsKey, Database.releases, true);
+        (s) => ReleaseTile(s, UniqueKey()), albumsKey, Database.releases, true);
         
          /* ListTile(
               title: Text(s),
