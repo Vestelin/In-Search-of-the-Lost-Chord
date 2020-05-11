@@ -4,13 +4,10 @@ import 'package:in_search_of_the_lost_chord/models/mainPageManager.dart';
 import 'package:in_search_of_the_lost_chord/models/misc/possibleMainTabViews.dart';
 import 'package:in_search_of_the_lost_chord/models/ratingAnimatedListCore.dart';
 import 'package:in_search_of_the_lost_chord/models/release.dart';
-import 'package:in_search_of_the_lost_chord/widgets/lesser/albumTile.dart';
-import 'package:in_search_of_the_lost_chord/widgets/lesser/albumTile.dart';
 import 'package:in_search_of_the_lost_chord/widgets/lesser/tabBarContainer.dart';
 
 import 'lesser/addAlbumWindow.dart';
-import 'lesser/albumTile.dart';
-import 'lesser/albumTile.dart';
+import 'lesser/releaseTile.dart';
 
 class MainPageTabs extends StatefulWidget {
   final MainPageManager manager = MainPageManager();
