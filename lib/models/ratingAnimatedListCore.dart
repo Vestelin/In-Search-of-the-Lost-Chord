@@ -47,7 +47,9 @@ class RatingAnimatedListCore<T> {
               .animate(animation),
           child: properRatingWidget);
     };
-    listState.removeItem(index, bbuilder);
+    listState.removeItem(index, bbuilder, duration: Duration());
     presentedList.removeAt(index);
+
+
   }
 }

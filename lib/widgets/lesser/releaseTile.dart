@@ -21,7 +21,9 @@ class _ReleaseTileState extends State<ReleaseTile> {
         child: ListTile(
           title: Text(widget.release.name),
           trailing: Text(widget.release.tracks.length.toString()),
-          onTap: () => TestWidgetState.core.removeItem(widget.release),
+          onTap: () {
+              TestWidgetState.core.removeItem(widget.release);
+          },
         ),
       ),
     );
