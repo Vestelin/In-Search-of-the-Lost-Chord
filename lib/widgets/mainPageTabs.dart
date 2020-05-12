@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:in_search_of_the_lost_chord/dataManagement/database.dart';
 import 'package:in_search_of_the_lost_chord/models/mainPageManager.dart';
-import 'package:in_search_of_the_lost_chord/models/misc/possibleMainTabViews.dart';
 import 'package:in_search_of_the_lost_chord/models/ratingAnimatedListCore.dart';
 import 'package:in_search_of_the_lost_chord/models/release.dart';
-import 'package:in_search_of_the_lost_chord/widgets/lesser/tabBarContainer.dart';
 
 import 'lesser/addAlbumWindow.dart';
 import 'lesser/releaseTile.dart';
@@ -16,24 +14,31 @@ class MainPageTabs extends StatefulWidget {
   State<StatefulWidget> createState() {
     return _MainPageTabsState();
   }
-
-  
 }
 
 class _MainPageTabsState extends State<MainPageTabs> {
- void onNavigationTap(int index) => setState(() => widget.manager.selected = index);
+  void onNavigationTap(int index) =>
+      setState(() => widget.manager.selected = index);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Center(child: const Text("In Search of the Lost Chord")),
-        actions: <Widget>[SizedBox(
-          width: 60,
-          child: FlatButton(onPressed: () => {
-            showDialog(context: context, builder: (context) => Dialog(child: AddAlbumWindow(),))
-          }, child: Icon(Icons.add)),
-        )],
+        actions: <Widget>[
+          SizedBox(
+            width: 60,
+            child: FlatButton(
+                onPressed: () {
+                  showDialog(
+                      context: context,
+                      builder: (context) => Dialog(
+                            child: AddAlbumWindow(),
+                          ));
+                },
+                child: Icon(Icons.add)),
+          )
+        ],
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
@@ -52,14 +57,11 @@ class _MainPageTabsState extends State<MainPageTabs> {
       body: widget.manager.getProperBody(),
     );
   }
-  
 }
-
 
 class Testwidget extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
     return TestWidgetState();
   }
 }
@@ -73,7 +75,6 @@ class TestWidgetState extends State<Testwidget> {
   TestWidgetState() {
     core = RatingAnimatedListCore<Release>(
         (s) => ReleaseTile(s, UniqueKey()), albumsKey, Database.releases, true);
-        
   }
   @override
   Widget build(BuildContext context) {

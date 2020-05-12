@@ -10,7 +10,7 @@ class Release {
   bool isConcept;
   Duration duration;
 
-  Release(this.name, {int numberOfTracks:1}) {
+  Release(this.name, {int numberOfTracks:0}) {
     tracks = List<Track>()
     ..length = numberOfTracks;
   }

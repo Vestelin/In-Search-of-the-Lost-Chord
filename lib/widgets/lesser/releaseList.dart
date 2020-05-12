@@ -3,16 +3,16 @@ import 'package:in_search_of_the_lost_chord/models/misc/cores.dart';
 import 'package:in_search_of_the_lost_chord/models/ratingAnimatedListCore.dart';
 import 'package:in_search_of_the_lost_chord/models/release.dart';
 
-class ShowReleaseList extends StatefulWidget {
+class ReleaseList extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return _ShowReleaseListState();
+    return _ReleaseListState();
   }
 }
 
-class _ShowReleaseListState extends State<ShowReleaseList> {
+class _ReleaseListState extends State<ReleaseList> {
   RatingAnimatedListCore<Release> core;
-  _ShowReleaseListState() {
+  _ReleaseListState() {
     core = Cores.releaseListCore;
   }
   @override
