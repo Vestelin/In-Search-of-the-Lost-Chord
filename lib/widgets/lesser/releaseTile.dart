@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:in_search_of_the_lost_chord/models/misc/cores.dart';
 import 'package:in_search_of_the_lost_chord/models/release.dart';
 import 'package:in_search_of_the_lost_chord/widgets/mainPageTabs.dart';
 
@@ -22,7 +23,7 @@ class _ReleaseTileState extends State<ReleaseTile> {
           title: Text(widget.release.name),
           trailing: Text(widget.release.tracks.length.toString()),
           onTap: () {
-              TestWidgetState.core.removeItem(widget.release);
+              Cores.releaseListCore.removeItem(widget.release);
           },
         ),
       ),

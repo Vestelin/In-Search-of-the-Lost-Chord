@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:in_search_of_the_lost_chord/widgets/mainPageTabs.dart';
 
-void main() => runApp(MyApp());
+import 'models/misc/cores.dart';
+
+void main() {
+  Cores.initializeCores();
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.

@@ -55,33 +55,6 @@ class _MainPageTabsState extends State<MainPageTabs> {
   
 }
 
-/* class MainPageTabs extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return DefaultTabController(
-      child: Scaffold(
-          appBar: AppBar(
-            title:
-                const Center(child: const Text("In Search of the Lost Chord")),
-          ),
-          bottomNavigationBar: TabBar(
-            labelPadding: EdgeInsets.all(0),
-            tabs: [
-              TabBarContainer(
-                  const Icon(Icons.play_circle_outline), "Releases"),
-              TabBarContainer(const Icon(Icons.mic), "Performers"),
-              TabBarContainer(const Icon(Icons.library_music), "Genres"),
-            ],
-          ),
-          body: TabBarView(children: [
-            Icon(Icons.accessible),
-            Testwidget(),
-            Icon(Icons.account_balance_wallet)
-          ])),
-      length: possibleMainTabViews.values.length,
-    );
-  }
-} */
 
 class Testwidget extends StatefulWidget {
   @override
@@ -101,21 +74,9 @@ class TestWidgetState extends State<Testwidget> {
     core = RatingAnimatedListCore<Release>(
         (s) => ReleaseTile(s, UniqueKey()), albumsKey, Database.releases, true);
         
-         /* ListTile(
-              title: Text(s),
-              onTap: () {
-                /* core.addItem(d[f]);
-                f = f == 2 ? 0 : ++f; */ 
-                showDialog(context: context, builder: (context) => Dialog(child:SingleChildScrollView(child:AddAlbumWindow())));
-              },
-            ),
-        key,
-        ["Mleeem"],
-        false); */
   }
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return AnimatedList(
       key: albumsKey,
       itemBuilder: (context, index, animation) =>

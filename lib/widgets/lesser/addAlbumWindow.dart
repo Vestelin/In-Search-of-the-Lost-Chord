@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:in_search_of_the_lost_chord/models/misc/cores.dart';
 import 'package:in_search_of_the_lost_chord/models/release.dart';
 import 'package:in_search_of_the_lost_chord/widgets/mainPageTabs.dart';
 
@@ -72,7 +73,7 @@ class _AddAlbumWindowState extends State<AddAlbumWindow> {
                 FlatButton(
                   child: Text("Create"),
                   onPressed: () {
-                    TestWidgetState.core.addItem(Release.test());
+                    Cores.releaseListCore.addItem(Release.test());
                     Navigator.pop(context);
                   },
                 )

@@ -13,6 +13,7 @@ class RatingAnimatedListCore<T> {
         assert(_listKey != null);
 
   AnimatedListState get listState => _listKey.currentState;
+  GlobalKey get listKey => _listKey;
 
   void _addItemToBothLists(T ratingItem, {int index: 0}) {
     presentedList.insert(index, ratingItem);
