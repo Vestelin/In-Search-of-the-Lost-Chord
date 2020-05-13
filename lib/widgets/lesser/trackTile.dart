@@ -17,7 +17,7 @@ class _TrackTileState extends State<TrackTile> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(border: Border.all()),
+      decoration: BoxDecoration(border: Border.all(width: 0.3)),
       child: Ink(
         color: Colors.grey[800],
         child: ListTile(

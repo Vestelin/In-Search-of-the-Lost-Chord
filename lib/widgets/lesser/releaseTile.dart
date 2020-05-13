@@ -21,7 +21,7 @@ class _ReleaseTileState extends State<ReleaseTile> {
       child: Ink(
         color: Colors.grey[800],
         child: ListTile(
-          title: Text(widget.release.name),
+          title: Text(widget.release.name, softWrap: true, overflow: TextOverflow.ellipsis, style: TextStyle(fontSize: 18) ),
           trailing: Text(widget.release.tracks.length.toString()),
           onTap: () {
               //Cores.releaseListCore.removeItem(widget.release);
