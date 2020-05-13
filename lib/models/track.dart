@@ -7,7 +7,7 @@ class Track {
   RatingGrades rating;
   List<TrackModifier> modifiers;
 
-  Track(this.name, this.rating, {List<TrackModifier> modifiess}) {
-    this.modifiers = modifiess == null ? List<TrackModifier>() : modifiess;
+  Track(this.name, this.rating, {List<TrackModifier> modifiers}) {
+    this.modifiers = modifiers ?? List<TrackModifier>();
   }
 }

@@ -1,19 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:in_search_of_the_lost_chord/models/misc/modifier.dart';
+import 'package:in_search_of_the_lost_chord/models/misc/ratingGrades.dart';
+import 'package:in_search_of_the_lost_chord/models/utils/ratingUtils.dart';
 
 class ToReconsider extends StatefulWidget {
   final List<TrackModifier> modifiers;
-  ToReconsider(this.modifiers);
+  final RatingGrades rating;
+  ToReconsider(this.modifiers, this.rating);
 
   @override
   State<StatefulWidget> createState() {
-    return _ToReconsiderState(modifiers);
+    return _ToReconsiderState(modifiers, rating);
   }
 }
 
 class _ToReconsiderState extends State<ToReconsider> {
   bool selected;
-  _ToReconsiderState(List<TrackModifier> modifiers) {
+  RatingGrades rating;
+  _ToReconsiderState(List<TrackModifier> modifiers, this.rating) {
     selected = modifiers.contains(TrackModifier.toReconsider);
   }
   @override
@@ -23,8 +27,9 @@ class _ToReconsiderState extends State<ToReconsider> {
         selected = !selected;
       }),
       child: Container(
-        child: Icon(Icons.help, color: selected ? Colors.blue : Colors.grey),
-      ),
+          child: Container(
+              child: Icon(Icons.help,
+                  color: selected ? RatingUtils.getColorByRating(rating) : Colors.grey[700]))),
     );
   }
 }

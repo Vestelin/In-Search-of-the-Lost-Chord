@@ -17,7 +17,7 @@ class Release {
 
   Release.test() {
     name = "test";
-    tracks = [Track("Track1", RatingGrades.masterpiece), Track("Track2", RatingGrades.notRated)];
+    tracks = [Track("One of These Days", RatingGrades.masterpiece), Track("a Pillow of Winds", RatingGrades.excellent), Track("Fearless", RatingGrades.fair), Track("San Tropez", RatingGrades.moreThanGood), Track("Seamus", RatingGrades.veryGood), Track("Echoes", RatingGrades.masterpiece)];
   }
 
   get ratingWithComma => StringUtils.insertCharAtIndex("rating", ',');

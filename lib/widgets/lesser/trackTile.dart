@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:in_search_of_the_lost_chord/models/track.dart';
+import 'package:in_search_of_the_lost_chord/models/utils/ratingUtils.dart';
 
 import 'modifiers/toReconsider.dart';
 
@@ -20,9 +21,10 @@ class _TrackTileState extends State<TrackTile> {
       child: Ink(
         color: Colors.grey[800],
         child: ListTile(
-          title: Text(widget.track.name),
-          trailing: Text(widget.track.rating.toString()),
-          subtitle: Row(children: <Widget>[ToReconsider(widget.track.modifiers)],),
+          contentPadding: EdgeInsets.symmetric(horizontal: 20),
+          title: Text(widget.track.name, softWrap: true, overflow: TextOverflow.ellipsis, style: TextStyle(fontSize: 18)),
+          subtitle: RatingUtils.convertRatingToTextColour(widget.track.rating),
+          trailing: ToReconsider(widget.track.modifiers, widget.track.rating),
           onTap: () {
               
           },
