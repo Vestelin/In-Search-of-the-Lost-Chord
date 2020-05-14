@@ -24,6 +24,12 @@ class _ToReconsiderState extends State<ToReconsider> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => setState(() {
+        if(selected) {
+          widget.modifiers.remove(TrackModifier.toReconsider);
+        }
+        if(!selected) {
+          widget.modifiers.add(TrackModifier.toReconsider);
+        }
         selected = !selected;
       }),
       child: Container(
