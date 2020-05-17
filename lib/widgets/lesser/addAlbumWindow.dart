@@ -60,17 +60,17 @@ class _AddAlbumWindowState extends State<AddAlbumWindow> {
               ),
               ButtonBar(children: [
                 FlatButton(
-                  child: Text(
+                  child: const  Text(
                     "Cancel",
                   ),
                   onPressed: () => Navigator.pop(context),
                 ),
                 FlatButton(
-                  child: Text("Create and Go"),
+                  child: const Text("Create and Go"),
                   onPressed: null,
                 ),
                 FlatButton(
-                  child: Text("Create"),
+                  child: const Text("Create"),
                   onPressed: () {
                     Cores.releaseListCore.addItem(Release.test());
                     Navigator.pop(context);
