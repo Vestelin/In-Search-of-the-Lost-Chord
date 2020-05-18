@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:in_search_of_the_lost_chord/models/iNamed.dart';
 
-class RatingAnimatedListCore<T> {
+class RatingAnimatedListCore<T extends INamed> {
   List<T> presentedList;
   Widget Function(T) getProperRatingWidget;
   bool _insertNewItemAsFirstElement;
@@ -18,6 +19,7 @@ class RatingAnimatedListCore<T> {
     presentedList.insert(index, ratingItem);
     listState.insertItem(index);
   }
+
 
   void addItem(T ratingItem) {
     if (_insertNewItemAsFirstElement) {

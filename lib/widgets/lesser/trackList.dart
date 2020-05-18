@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:in_search_of_the_lost_chord/models/misc/cores.dart';
 import 'package:in_search_of_the_lost_chord/models/ratingAnimatedListCore.dart';
 import 'package:in_search_of_the_lost_chord/models/track.dart';
 import 'package:in_search_of_the_lost_chord/widgets/lesser/trackTile.dart';
@@ -16,6 +17,7 @@ class _TrackListState extends State<TrackList> {
   _TrackListState(this.tracks) {
     core = RatingAnimatedListCore((item) => TrackTile(item),
         GlobalKey<AnimatedListState>(), tracks, false);
+    Cores.currentTrackCore = core;
   }
   @override
   Widget build(BuildContext context) {

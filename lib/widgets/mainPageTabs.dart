@@ -31,10 +31,11 @@ class _MainPageTabsState extends State<MainPageTabs> {
             child: FlatButton(
                 onPressed: () {
                   showDialog(
-                      context: context,
-                      builder: (context) => Dialog(
-                            child: AddAlbumWindow(),
-                          ));
+                    context: context,
+                    builder: (context) => Dialog(
+                      child: AddAlbumWindow(),
+                    ),
+                  );
                 },
                 child: Icon(Icons.add)),
           )

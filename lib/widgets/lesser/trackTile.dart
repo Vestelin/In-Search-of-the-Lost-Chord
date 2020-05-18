@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:in_search_of_the_lost_chord/models/misc/cores.dart';
 import 'package:in_search_of_the_lost_chord/models/track.dart';
 import 'package:in_search_of_the_lost_chord/models/utils/ratingUtils.dart';
+import 'package:in_search_of_the_lost_chord/widgets/lesser/SetNameByDialog.dart';
 
 import 'modifiers/toReconsider.dart';
 
@@ -27,6 +29,9 @@ class _TrackTileState extends State<TrackTile> {
           trailing: ToReconsider(widget.track.modifiers, widget.track.rating),
           onTap: () {
               
+          },
+          onLongPress: () {
+            showDialog(context:context, builder: (context) => ChangeNameDialog(widget.track, Cores.currentTrackCore));
           },
         ),
       ),
