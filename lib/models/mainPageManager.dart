@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:in_search_of_the_lost_chord/models/searchManager.dart';
+import 'package:in_search_of_the_lost_chord/widgets/inherited/searchProvider.dart';
 import 'package:in_search_of_the_lost_chord/widgets/lesser/releaseList.dart';
+import 'package:in_search_of_the_lost_chord/widgets/lesser/search.dart';
 
 class MainPageManager {
   int selected;
@@ -14,7 +17,7 @@ class MainPageManager {
       case 0:
         return ReleaseList();
       case 1:
-        return Icon(Icons.camera);
+        return SearchProvider(SearchManager(), child: Search());
       default:
         return Center(
           child: Text(

@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:in_search_of_the_lost_chord/dataManagement/database.dart';
 import 'package:in_search_of_the_lost_chord/models/mainPageManager.dart';
-import 'package:in_search_of_the_lost_chord/models/ratingAnimatedListCore.dart';
-import 'package:in_search_of_the_lost_chord/models/release.dart';
-
 import 'lesser/addAlbumWindow.dart';
-import 'lesser/releaseTile.dart';
 
 class MainPageTabs extends StatefulWidget {
   final MainPageManager manager = MainPageManager();
@@ -37,19 +32,19 @@ class _MainPageTabsState extends State<MainPageTabs> {
                     ),
                   );
                 },
-                child: Icon(Icons.add)),
+                child: const Icon(Icons.add)),
           )
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.library_music),
-            title: Text("Releases"),
+            icon: const Icon(Icons.library_music),
+            title: const Text("Releases"),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            title: Text("Search"),
+            icon: const Icon(Icons.search),
+            title: const Text("Search"),
           )
         ],
         currentIndex: widget.manager.selected,
@@ -60,35 +55,9 @@ class _MainPageTabsState extends State<MainPageTabs> {
   }
 }
 
-class Testwidget extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() {
-    return TestWidgetState();
-  }
-}
 
-class TestWidgetState extends State<Testwidget> {
-  GlobalKey<AnimatedListState> albumsKey = GlobalKey<AnimatedListState>();
-  static RatingAnimatedListCore<Release> core;
-  dynamic d = ["XXX", "YYY", "ZZZ"];
-  int f = 0;
+  
 
-  TestWidgetState() {
-    core = RatingAnimatedListCore<Release>(
-        (s) => ReleaseTile(s, UniqueKey()), albumsKey, Database.releases, true);
-  }
-  @override
-  Widget build(BuildContext context) {
-    return AnimatedList(
-      key: albumsKey,
-      itemBuilder: (context, index, animation) =>
-          core.buildItem(index, animation),
-      initialItemCount: Database.releases.length,
-    );
-  }
 
-  @override
-  void initState() {
-    super.initState();
-  }
-}
+
+
