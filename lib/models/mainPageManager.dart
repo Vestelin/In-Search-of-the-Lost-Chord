@@ -19,8 +19,8 @@ class MainPageManager {
       case 1:
         return SearchProvider(SearchManager(), child: Search());
       default:
-        return Center(
-          child: Text(
+        return const Center(
+          child: const Text(
               "Something unexpected happened, somehow you've managed to change to non existent tab"),
         );
     }

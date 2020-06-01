@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:in_search_of_the_lost_chord/models/misc/cores.dart';
 import 'package:in_search_of_the_lost_chord/models/release.dart';
+import 'package:in_search_of_the_lost_chord/widgets/tracksView.dart';
 
 class AddAlbumWindow extends StatefulWidget {
   @override
@@ -25,9 +26,9 @@ class _AddAlbumWindowState extends State<AddAlbumWindow> {
             child: Column(children: [
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text(
+                child: const Text(
                   "Add album",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ),
               Padding(
@@ -37,11 +38,11 @@ class _AddAlbumWindowState extends State<AddAlbumWindow> {
                   controller: nameController,
                   textInputAction: TextInputAction.next,
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 18,
                   ),
-                  decoration: InputDecoration(
-                      labelText: "Name", labelStyle: TextStyle(fontSize: 16)),
+                  decoration: const InputDecoration(
+                      labelText: "Name", labelStyle: const TextStyle(fontSize: 16)),
                 ),
               ),
               Padding(
@@ -52,10 +53,10 @@ class _AddAlbumWindowState extends State<AddAlbumWindow> {
                   keyboardType: TextInputType.number,
                   textInputAction: TextInputAction.done,
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 18),
-                  decoration: InputDecoration(
+                  style: const TextStyle(fontSize: 18),
+                  decoration: const InputDecoration(
                       labelText: "Number of tracks",
-                      labelStyle: TextStyle(fontSize: 16)),
+                      labelStyle: const TextStyle(fontSize: 16)),
                 ),
               ),
               ButtonBar(children: [
@@ -67,7 +68,12 @@ class _AddAlbumWindowState extends State<AddAlbumWindow> {
                 ),
                 FlatButton(
                   child: const Text("Create and Go"),
-                  onPressed: null,
+                  onPressed: () {
+                    var releaseToAdd = Release.test();
+                    Cores.releaseListCore.addItem(releaseToAdd);
+                    Navigator.pop(context);
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => TracksView(releaseToAdd)));
+                  }
                 ),
                 FlatButton(
                   child: const Text("Create"),

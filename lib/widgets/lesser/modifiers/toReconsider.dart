@@ -33,9 +33,8 @@ class _ToReconsiderState extends State<ToReconsider> {
         selected = !selected;
       }),
       child: Container(
-          child: Container(
-              child: Icon(Icons.help,
-                  color: selected ? RatingUtils.getColorByRating(rating) : Colors.grey[700]))),
+          child: Icon(Icons.help,
+              color: selected ? RatingUtils.getColorByRating(rating) : Colors.grey[700])),
     );
   }
 }
