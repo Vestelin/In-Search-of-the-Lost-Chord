@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:in_search_of_the_lost_chord/bloc/blocProvider.dart';
+import 'package:in_search_of_the_lost_chord/bloc/searchBloc.dart';
 import 'package:in_search_of_the_lost_chord/models/searchManager.dart';
 import 'package:in_search_of_the_lost_chord/widgets/inherited/searchProvider.dart';
 import 'package:in_search_of_the_lost_chord/widgets/lesser/releaseList.dart';
@@ -17,7 +19,7 @@ class MainPageManager {
       case 0:
         return ReleaseList();
       case 1:
-        return SearchProvider(SearchManager(), child: Search());
+        return BlocProvider<SearchBloc>(child: Search(), bloc: SearchBloc());
       default:
         return const Center(
           child: const Text(

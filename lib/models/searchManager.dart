@@ -6,9 +6,10 @@ class SearchManager {
 
   Future<List<Release>> findReleaseFuture;
   SearchManager() {
-    searchedWord = "zie";
+    searchedWord = "";
     findReleasesAsFuture = Future(findReleases);
   }
+
 
   Future<List<Release>> findReleasesAsFuture;
 
@@ -24,7 +25,7 @@ class SearchManager {
     return result;
   }
 
-  Future<List<Release>> findRelease() async { 
+  Future<List<Release>> findRelease(String title) async { 
     return await findReleasesAsFuture;
   } 
 
