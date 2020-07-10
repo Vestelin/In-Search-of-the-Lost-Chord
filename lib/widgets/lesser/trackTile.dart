@@ -23,15 +23,19 @@ class _TrackTileState extends State<TrackTile> {
       child: Ink(
         color: Colors.grey[800],
         child: ListTile(
-          contentPadding: EdgeInsets.symmetric(horizontal: 20),
-          title: Text(widget.track.name, softWrap: true, overflow: TextOverflow.ellipsis, style: TextStyle(fontSize: 18)),
+          contentPadding: const EdgeInsets.symmetric(horizontal: 20),
+          title: Text(widget.track.name,
+              softWrap: true,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(fontSize: 18)),
           subtitle: RatingUtils.convertRatingToTextColour(widget.track.rating),
           trailing: ToReconsider(widget.track.modifiers, widget.track.rating),
-          onTap: () {
-              
-          },
+          onTap: () {},
           onLongPress: () {
-            showDialog(context:context, builder: (context) => ChangeNameDialog(widget.track, Cores.currentTrackCore));
+            showDialog(
+                context: context,
+                builder: (context) =>
+                    ChangeNameDialog(widget.track, Cores.currentTrackCore));
           },
         ),
       ),

@@ -14,6 +14,7 @@ class Search extends StatefulWidget {
 class _SearchState extends State<Search> {
   Widget getListViewOfFoundReleases(List<Release> foundReleases) {
     return ListView.builder(
+        physics: NeverScrollableScrollPhysics(),
         itemCount: foundReleases.length,
         itemBuilder: (context, index) =>
             ReleaseTile.noKey(foundReleases[index]));
@@ -27,37 +28,38 @@ class _SearchState extends State<Search> {
     return Container(height: 200, child: Center(child: Text(text)));
   }
 
-  TextEditingController searchFieldController = TextEditingController();
-
-
   @override
   Widget build(BuildContext context) {
     final bloc = BlocProvider.of<SearchBloc>(context);
     return SingleChildScrollView(
+      physics: NeverScrollableScrollPhysics(),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           TextField(
-            controller: searchFieldController, 
             onChanged: (text) => bloc.getReleasesByKeyword(text),
+            decoration: InputDecoration(
+                contentPadding: const EdgeInsets.symmetric(horizontal: 18)),
           ),
-          StreamBuilder<List<Release>>(
-            stream: bloc.searchStream,
-            builder: (context, snapshot) {
-              final releases = snapshot.data;
-              
-              if(releases == null)
-                return Container();
+          SizedBox(
+            height: 500,
+            child: StreamBuilder<List<Release>>(
+              stream: bloc.searchStream,
+              builder: (context, snapshot) {
+                final releases = snapshot.data;
 
-              if(releases.isEmpty) {
-                return getCenteredText("There're no such releases");
-              }
-              List<Release> foundReleases = snapshot.data;
-              var listView = getListViewOfFoundReleases(foundReleases);
-              return SizedBox(
-                    child: listView,
-                    height: 300);
-            },
+                if (releases == null) return Container();
+
+                if (releases.isEmpty) {
+                  return getCenteredText("There're no such releases");
+                }
+                List<Release> foundReleases = snapshot.data;
+                var listView = getListViewOfFoundReleases(foundReleases);
+                return Expanded(
+                  child: listView,
+                );
+              },
+            ),
           )
           /* FutureBuilder(
               future: SearchProvider.of(context).manager.findRelease(searchFieldController.text),

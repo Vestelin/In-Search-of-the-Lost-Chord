@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:in_search_of_the_lost_chord/models/mainPageManager.dart';
+import 'package:in_search_of_the_lost_chord/models/misc/mainPageManager.dart';
 import 'lesser/addAlbumWindow.dart';
 
 class MainPageTabs extends StatefulWidget {
@@ -54,10 +54,3 @@ class _MainPageTabsState extends State<MainPageTabs> {
     );
   }
 }
-
-
-  
-
-
-
-

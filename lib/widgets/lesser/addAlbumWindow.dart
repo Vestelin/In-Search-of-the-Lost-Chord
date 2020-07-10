@@ -28,7 +28,8 @@ class _AddAlbumWindowState extends State<AddAlbumWindow> {
                 padding: const EdgeInsets.all(8.0),
                 child: const Text(
                   "Add album",
-                  style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  style: const TextStyle(
+                      fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ),
               Padding(
@@ -42,7 +43,8 @@ class _AddAlbumWindowState extends State<AddAlbumWindow> {
                     fontSize: 18,
                   ),
                   decoration: const InputDecoration(
-                      labelText: "Name", labelStyle: const TextStyle(fontSize: 16)),
+                      labelText: "Name",
+                      labelStyle: const TextStyle(fontSize: 16)),
                 ),
               ),
               Padding(
@@ -61,25 +63,27 @@ class _AddAlbumWindowState extends State<AddAlbumWindow> {
               ),
               ButtonBar(children: [
                 FlatButton(
-                  child: const  Text(
+                  child: const Text(
                     "Cancel",
                   ),
                   onPressed: () => Navigator.pop(context),
                 ),
                 FlatButton(
-                  child: const Text("Create and Go"),
-                  onPressed: () {
-                    var releaseToAdd = Release.test();
-                    Cores.releaseListCore.addItem(releaseToAdd);
-                    Navigator.pop(context);
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => TracksView(releaseToAdd)));
-                  }
-                ),
+                    child: const Text("Create and Go"),
+                    onPressed: () {
+                      var releaseToAdd = Release.test();
+                      Cores.releaseListCore.addItem(releaseToAdd);
+                      Navigator.pop(context);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => TracksView(releaseToAdd)));
+                    }),
                 FlatButton(
                   child: const Text("Create"),
                   onPressed: () {
-                    Cores.releaseListCore.addItem(Release.test());
                     Navigator.pop(context);
+                    Cores.releaseListCore.addItem(Release.test());
                   },
                 )
               ])
