@@ -55,31 +55,10 @@ class _SearchState extends State<Search> {
                 }
                 List<Release> foundReleases = snapshot.data;
                 var listView = getListViewOfFoundReleases(foundReleases);
-                return Expanded(
-                  child: listView,
-                );
+                return listView;
               },
             ),
           )
-          /* FutureBuilder(
-              future: SearchProvider.of(context).manager.findRelease(searchFieldController.text),
-              builder: (context, snapshot) {
-                Widget result;
-                if (snapshot.connectionState == ConnectionState.done &&
-                    snapshot.data != null) {
-                  List<Release> foundReleases = snapshot.data;
-                  var listView = getListViewOfFoundReleases(foundReleases);
-                  result = SizedBox(
-                    child: listView,
-                    height: 300,
-                  );
-                } else if (snapshot.hasError) {
-                  result = getCenteredErrorText();
-                } else {
-                  result = CircularProgressIndicator();
-                }
-                return result;
-              }) */
         ],
       ),
     );
