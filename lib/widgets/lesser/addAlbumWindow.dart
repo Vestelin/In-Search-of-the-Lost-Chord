@@ -12,9 +12,17 @@ class AddAlbumWindow extends StatefulWidget {
 }
 
 class _AddAlbumWindowState extends State<AddAlbumWindow> {
-  TextEditingController nameController;
-  TextEditingController numberOfTracksController;
-  FocusNode numberFocus;
+  TextEditingController nameController = TextEditingController();
+  TextEditingController numberOfTracksController = TextEditingController();
+  FocusNode numberFocus = FocusNode();
+
+  final String errorText = "Please insert correct value";
+  bool nameFail = false;
+  bool numberFail = false;
+
+  String name;
+  int numberOfTracks;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -24,7 +32,7 @@ class _AddAlbumWindowState extends State<AddAlbumWindow> {
           width: 400,
           child: Card(
             child: Column(children: [
-              Padding(
+              const Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: const Text(
                   "Add album",
@@ -43,13 +51,14 @@ class _AddAlbumWindowState extends State<AddAlbumWindow> {
                     fontSize: 18,
                   ),
                   decoration: const InputDecoration(
-                      labelText: "Name",
-                      labelStyle: const TextStyle(fontSize: 16)),
+                    labelText: "Name",
+                    labelStyle: const TextStyle(fontSize: 16),
+                  ),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: TextField(
+                child: TextFormField(
                   focusNode: numberFocus,
                   controller: numberOfTracksController,
                   keyboardType: TextInputType.number,
@@ -59,6 +68,8 @@ class _AddAlbumWindowState extends State<AddAlbumWindow> {
                   decoration: const InputDecoration(
                       labelText: "Number of tracks",
                       labelStyle: const TextStyle(fontSize: 16)),
+                  onFieldSubmitted: (text) =>
+                      addReleaseAndRemoveDialog(context),
                 ),
               ),
               ButtonBar(children: [
@@ -71,19 +82,12 @@ class _AddAlbumWindowState extends State<AddAlbumWindow> {
                 FlatButton(
                     child: const Text("Create and Go"),
                     onPressed: () {
-                      var releaseToAdd = Release.test();
-                      Cores.releaseListCore.addItem(releaseToAdd);
-                      Navigator.pop(context);
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => TracksView(releaseToAdd)));
+                      addReleaseAndPushToTracksView(context);
                     }),
                 FlatButton(
                   child: const Text("Create"),
                   onPressed: () {
-                    Navigator.pop(context);
-                    Cores.releaseListCore.addItem(Release.test());
+                    addReleaseAndRemoveDialog(context);
                   },
                 )
               ])
@@ -92,5 +96,38 @@ class _AddAlbumWindowState extends State<AddAlbumWindow> {
         ),
       ],
     );
+  }
+
+  void addReleaseAndPushToTracksView(BuildContext context) {
+    Release releaseToAdd = _createReleaseFromGivenValues();
+    addReleaseAndRemoveDialog(context);
+    Navigator.pop(context);
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => TracksView(releaseToAdd)));
+  }
+
+  void addReleaseAndRemoveDialog(BuildContext context) {
+    Navigator.pop(context);
+    addRelease();
+  }
+
+  void addRelease({Release release}) {
+    final Release releaseToAdd = release ?? _createReleaseFromGivenValues();
+    Cores.releaseListCore.addItem(releaseToAdd);
+  }
+
+  Release _createReleaseFromGivenValues() {
+    String name = nameController.text.trim();
+    name = name != "" ? name : "Unnamed release";
+    int numberOfTracks = getNumberOfTracksFromTextField() ?? 0;
+    Release releaseToAdd = Release(name, numberOfTracks: numberOfTracks);
+    return releaseToAdd;
+  }
+
+  int getNumberOfTracksFromTextField() {
+    String numberofTracksInString = numberOfTracksController.text;
+    return numberofTracksInString != null && numberofTracksInString.trim() != ""
+        ? int.tryParse(numberofTracksInString)
+        : 0;
   }
 }

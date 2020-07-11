@@ -15,7 +15,13 @@ class Release extends INamed {
   }
 
   Release(name, {int numberOfTracks: 0}) : super(name: name) {
-    tracks = List<Track>()..length = numberOfTracks;
+    tracks = List<Track>();
+    if (numberOfTracks > 0) {
+      for (int i = 0; i < numberOfTracks; i++) {
+        Track trackWithIndexAsName = Track(i.toString());
+        tracks.add(trackWithIndexAsName);
+      }
+    }
   }
 
   Release.test() {

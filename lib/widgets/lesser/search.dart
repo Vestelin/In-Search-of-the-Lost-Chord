@@ -25,7 +25,10 @@ class _SearchState extends State<Search> {
   }
 
   Widget getCenteredText(String text) {
-    return Container(height: 200, child: Center(child: Text(text)));
+    return Padding(
+      child: Text(text),
+      padding: EdgeInsets.only(top: 100),
+    );
   }
 
   @override
