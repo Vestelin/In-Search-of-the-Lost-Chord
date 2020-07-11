@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:in_search_of_the_lost_chord/models/misc/ratingGrades.dart';
+import 'package:in_search_of_the_lost_chord/widgets/lesser/rateTile.dart';
 
 class RatingUtils {
   static Widget convertRatingToTextColour(RatingGrades rating) {
@@ -43,8 +44,8 @@ class RatingUtils {
 
   static Color getColorByRating(RatingGrades rating) {
     Color colour;
-    switch(rating) {
-       case RatingGrades.notRated:
+    switch (rating) {
+      case RatingGrades.notRated:
         colour = Colors.grey;
         break;
       case RatingGrades.poor:
@@ -73,5 +74,10 @@ class RatingUtils {
         break;
     }
     return colour;
+  }
+
+  static List<RateTile> getRateTiles() {
+    List<RateTile> tiles = RatingGrades.values.map((e) => RateTile(e)).toList();
+    return tiles;
   }
 }

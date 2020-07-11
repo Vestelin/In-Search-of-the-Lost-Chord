@@ -9,23 +9,22 @@ abstract class NameManipulationDialog<T> extends StatelessWidget {
 
   NameManipulationDialog(this.onClick);
 
-
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text("Set name"),
+      title: const Text("Set name"),
       content: TextField(
         controller: nameController,
         textInputAction: TextInputAction.done,
-        style: TextStyle(
+        style: const TextStyle(
           fontSize: 18,
         ),
-        decoration: InputDecoration(
+        decoration: const InputDecoration(
             labelText: "Name", labelStyle: TextStyle(fontSize: 16)),
       ),
       actions: <Widget>[
         FlatButton(
-          child: Text("Done"),
+          child: const Text("Done"),
           onPressed: () {
             onClick(nameController.text);
             Navigator.pop(context);
@@ -45,7 +44,7 @@ class ChangeNameDialog<T extends INamed> extends NameManipulationDialog {
   final T item;
   ChangeNameDialog(this.item, RatingAnimatedListCore core)
       : super((name) {
-          item.name = name;
-          core.listState.setState(() => item.name = name);
+          String correctName = name.trim() != "" ? name : item.name;
+          core.listState.setState(() => item.name = correctName);
         });
 }

@@ -69,7 +69,7 @@ class _AddAlbumWindowState extends State<AddAlbumWindow> {
                       labelText: "Number of tracks",
                       labelStyle: const TextStyle(fontSize: 16)),
                   onFieldSubmitted: (text) =>
-                      addReleaseAndRemoveDialog(context),
+                      _addReleaseAndRemoveDialog(context),
                 ),
               ),
               ButtonBar(children: [
@@ -82,12 +82,12 @@ class _AddAlbumWindowState extends State<AddAlbumWindow> {
                 FlatButton(
                     child: const Text("Create and Go"),
                     onPressed: () {
-                      addReleaseAndPushToTracksView(context);
+                      _addReleaseAndPushToTracksView(context);
                     }),
                 FlatButton(
                   child: const Text("Create"),
                   onPressed: () {
-                    addReleaseAndRemoveDialog(context);
+                    _addReleaseAndRemoveDialog(context);
                   },
                 )
               ])
@@ -98,20 +98,19 @@ class _AddAlbumWindowState extends State<AddAlbumWindow> {
     );
   }
 
-  void addReleaseAndPushToTracksView(BuildContext context) {
+  void _addReleaseAndPushToTracksView(BuildContext context) {
     Release releaseToAdd = _createReleaseFromGivenValues();
-    addReleaseAndRemoveDialog(context);
-    Navigator.pop(context);
+    _addReleaseAndRemoveDialog(context);
     Navigator.push(context,
         MaterialPageRoute(builder: (context) => TracksView(releaseToAdd)));
   }
 
-  void addReleaseAndRemoveDialog(BuildContext context) {
+  void _addReleaseAndRemoveDialog(BuildContext context) {
     Navigator.pop(context);
-    addRelease();
+    _addRelease();
   }
 
-  void addRelease({Release release}) {
+  void _addRelease({Release release}) {
     final Release releaseToAdd = release ?? _createReleaseFromGivenValues();
     Cores.releaseListCore.addItem(releaseToAdd);
   }
