@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:in_search_of_the_lost_chord/bloc/blocProvider.dart';
-import 'package:in_search_of_the_lost_chord/bloc/rateBloc.dart';
+import 'package:in_search_of_the_lost_chord/bloc/trackBloc.dart';
 import 'package:in_search_of_the_lost_chord/models/misc/ratingGrades.dart';
 import 'package:in_search_of_the_lost_chord/models/utils/ratingUtils.dart';
 
@@ -10,7 +10,7 @@ class RateTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bloc = BlocProvider.of<RateBloc>(context);
+    final bloc = BlocProvider.of<TrackBloc>(context);
     return Container(
       decoration: BoxDecoration(
         border: Border.all(width: 0.3),

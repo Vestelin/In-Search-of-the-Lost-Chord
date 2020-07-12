@@ -5,17 +5,17 @@ import 'package:in_search_of_the_lost_chord/models/track.dart';
 
 import 'bloc.dart';
 
-class RateBloc implements Bloc {
+class TrackBloc implements Bloc {
   final Track track;
 
-  RateBloc(this.track);
+  TrackBloc(this.track);
 
   RatingGrades get rating => track.rating;
   set rating(value) => track.rating = value;
 
-  final StreamController rateController = StreamController<RatingGrades>();
+  final StreamController rateController = StreamController<Track>();
 
-  Stream<RatingGrades> get rateStream => rateController.stream;
+  Stream<Track> get trackStream => rateController.stream;
 
   RatingGrades getRating() {
     return rating;
@@ -23,7 +23,7 @@ class RateBloc implements Bloc {
 
   void rateTrack(RatingGrades newRating) {
     rating = newRating;
-    rateController.sink.add(newRating);
+    rateController.sink.add(track);
   }
 
   void dispose() => rateController.close();
