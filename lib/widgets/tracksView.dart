@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:in_search_of_the_lost_chord/models/release.dart';
+import 'package:in_search_of_the_lost_chord/models/utils/ratingUtils.dart';
 import 'package:in_search_of_the_lost_chord/widgets/lesser/tabBarContainer.dart';
-import 'package:in_search_of_the_lost_chord/widgets/rateTrack.dart';
+import 'package:in_search_of_the_lost_chord/widgets/lesser/rateTrack.dart';
 
 import 'lesser/trackList.dart';
 
@@ -26,7 +27,7 @@ class _TracksViewState extends State<TracksView> {
           title: Text(widget.release.name),
         ),
         body: TabBarView(
-            children: [TrackList(widget.release.tracks), RateTrack()]),
+            children: [TrackList(widget.release.tracks), Placeholder()]),
         bottomNavigationBar: TabBar(
           tabs: <Widget>[
             TabBarContainer(Icon(Icons.queue_music), "Tracks"),

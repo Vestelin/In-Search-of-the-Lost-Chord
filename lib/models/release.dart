@@ -18,7 +18,7 @@ class Release extends INamed {
     tracks = List<Track>();
     if (numberOfTracks > 0) {
       for (int i = 0; i < numberOfTracks; i++) {
-        Track trackWithIndexAsName = Track(i.toString());
+        Track trackWithIndexAsName = Track("Track " + (i + 1).toString());
         tracks.add(trackWithIndexAsName);
       }
     }
