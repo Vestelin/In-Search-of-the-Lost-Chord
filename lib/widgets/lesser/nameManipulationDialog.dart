@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:in_search_of_the_lost_chord/models/iNamed.dart';
 import 'package:in_search_of_the_lost_chord/models/misc/cores.dart';
-import 'package:in_search_of_the_lost_chord/models/ratingAnimatedListCore.dart';
+import 'package:in_search_of_the_lost_chord/models/misc/ratingAnimatedListCore.dart';
 
 abstract class NameManipulationDialog<T> extends StatelessWidget {
   final Function(String) onClick;

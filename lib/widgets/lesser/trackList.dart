@@ -3,7 +3,7 @@ import 'package:in_search_of_the_lost_chord/bloc/blocProvider.dart';
 import 'package:in_search_of_the_lost_chord/bloc/trackBloc.dart';
 import 'package:in_search_of_the_lost_chord/bloc/trackListBloc.dart';
 import 'package:in_search_of_the_lost_chord/models/misc/cores.dart';
-import 'package:in_search_of_the_lost_chord/models/ratingAnimatedListCore.dart';
+import 'package:in_search_of_the_lost_chord/models/misc/ratingAnimatedListCore.dart';
 import 'package:in_search_of_the_lost_chord/models/track.dart';
 import 'package:in_search_of_the_lost_chord/widgets/lesser/trackTile.dart';
 

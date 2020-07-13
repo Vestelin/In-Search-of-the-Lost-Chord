@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:in_search_of_the_lost_chord/models/misc/cores.dart';
-import 'package:in_search_of_the_lost_chord/models/ratingAnimatedListCore.dart';
+import 'package:in_search_of_the_lost_chord/models/misc/ratingAnimatedListCore.dart';
 import 'package:in_search_of_the_lost_chord/models/release.dart';
 
 class ReleaseList extends StatefulWidget {
@@ -21,8 +21,7 @@ class _ReleaseListState extends State<ReleaseList> {
       key: core.listKey,
       itemBuilder: (context, index, animation) =>
           core.buildItem(index, animation),
-      initialItemCount:
-          core.presentedList.length,
+      initialItemCount: core.presentedList.length,
     );
   }
 }
