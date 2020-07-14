@@ -18,25 +18,38 @@ class _TrackListState extends State<TrackList> {
   List<Track> tracks;
   RatingAnimatedListCore<Track> core;
   _TrackListState(this.tracks) {
-    core = RatingAnimatedListCore(
+    /* core = RatingAnimatedListCore(
         (item) => BlocProvider(bloc: TrackBloc(item), child: TrackTile(item)),
         GlobalKey<AnimatedListState>(),
         tracks,
-        false);
+        false); */
     Cores.currentTrackCore = core;
   }
   @override
   Widget build(BuildContext context) {
     final bloc = BlocProvider.of<TrackListBloc>(context);
     return StreamBuilder<Object>(
-        stream: bloc.stream,
-        builder: (context, snapshot) {
-          return AnimatedList(
+      stream: bloc.stream,
+      initialData: bloc.tracks,
+      builder: (context, snapshot) {
+        List<Track> trackss = snapshot.data;
+        if (trackss == null) return Container();
+        return ListView.builder(
+            itemCount: trackss.length,
+            itemBuilder: (context, index) => BlocProvider(
+                bloc: TrackBloc(
+                  trackss[index],
+                  bloc.rateTrack,
+                ),
+                child: TrackTile(trackss[index])));
+      },
+    );
+    /* return AnimatedList(
             itemBuilder: (context, index, animation) =>
                 core.buildItem(index, animation),
             key: core.listKey,
             initialItemCount: tracks.length,
           );
-        });
+        } );*/
   }
 }

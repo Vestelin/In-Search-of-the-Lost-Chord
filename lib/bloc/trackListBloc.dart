@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:in_search_of_the_lost_chord/models/misc/ratingGrades.dart';
 import 'package:in_search_of_the_lost_chord/models/release.dart';
 import 'package:in_search_of_the_lost_chord/models/track.dart';
 
@@ -7,13 +8,13 @@ import 'bloc.dart';
 
 class TrackListBloc implements Bloc {
   final Release _release;
-  List<Track> _tracks;
 
-  TrackListBloc(this._release) {
-    _tracks = _release.tracks;
-  }
+  TrackListBloc(this._release);
 
-  StreamController<List<Track>> controller = StreamController<List<Track>>();
+  List<Track> get tracks => _release.tracks;
+
+  StreamController<List<Track>> controller =
+      StreamController<List<Track>>.broadcast();
 
   Stream<List<Track>> get stream => controller.stream;
 
@@ -21,8 +22,14 @@ class TrackListBloc implements Bloc {
     _release.addTrack(track);
   }
 
+  void rateTrack(Track track) {
+    var element = tracks.indexOf(track);
+    tracks[element].rating = RatingGrades.excellent;
+    loadTracks();
+  }
+
   void loadTracks() {
-    controller.sink.add(_tracks);
+    controller.sink.add(tracks);
   }
 
   @override

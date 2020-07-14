@@ -8,7 +8,9 @@ import 'bloc.dart';
 class TrackBloc implements Bloc {
   final Track track;
 
-  TrackBloc(this.track);
+  TrackBloc(this.track, this.refreshFunction);
+
+  final Function(Track) refreshFunction;
 
   RatingGrades get rating => track.rating;
   set rating(value) => track.rating = value;
@@ -24,6 +26,7 @@ class TrackBloc implements Bloc {
   void rateTrack(RatingGrades newRating) {
     rating = newRating;
     rateController.sink.add(track);
+    refreshFunction(track);
   }
 
   void dispose() => rateController.close();
