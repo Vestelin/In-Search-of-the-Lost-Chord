@@ -28,20 +28,18 @@ class _TrackListState extends State<TrackList> {
   @override
   Widget build(BuildContext context) {
     final bloc = BlocProvider.of<TrackListBloc>(context);
-    return StreamBuilder<Object>(
+    return StreamBuilder<List<Track>>(
       stream: bloc.stream,
       initialData: bloc.tracks,
       builder: (context, snapshot) {
-        List<Track> trackss = snapshot.data;
-        if (trackss == null) return Container();
+        List<Track> tracksData = snapshot.data;
+        if (tracksData == null) return Container();
         return ListView.builder(
-            itemCount: trackss.length,
+            cacheExtent: 60,
+            itemCount: tracksData.length,
             itemBuilder: (context, index) => BlocProvider(
-                bloc: TrackBloc(
-                  trackss[index],
-                  bloc.rateTrack,
-                ),
-                child: TrackTile(trackss[index])));
+                bloc: TrackBloc(tracksData[index], bloc.rateTrack),
+                child: TrackTile(tracksData[index], key: UniqueKey())));
       },
     );
     /* return AnimatedList(

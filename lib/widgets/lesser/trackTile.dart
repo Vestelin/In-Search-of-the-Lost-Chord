@@ -12,7 +12,7 @@ import 'nameManipulationDialog.dart';
 
 class TrackTile extends StatefulWidget {
   final Track track;
-  TrackTile(this.track);
+  TrackTile(this.track, {key}) : super(key: key);
   @override
   State<StatefulWidget> createState() {
     return _TrackTileState();
