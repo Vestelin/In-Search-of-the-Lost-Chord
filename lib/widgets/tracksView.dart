@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:in_search_of_the_lost_chord/bloc/blocProvider.dart';
 import 'package:in_search_of_the_lost_chord/bloc/trackListBloc.dart';
 import 'package:in_search_of_the_lost_chord/models/release.dart';
-import 'package:in_search_of_the_lost_chord/models/utils/ratingUtils.dart';
 import 'package:in_search_of_the_lost_chord/widgets/lesser/tabBarContainer.dart';
-import 'package:in_search_of_the_lost_chord/widgets/lesser/rateTrack.dart';
-
 import 'lesser/trackList.dart';
 
 class TracksView extends StatefulWidget {

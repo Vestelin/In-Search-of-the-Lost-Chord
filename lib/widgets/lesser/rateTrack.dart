@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:in_search_of_the_lost_chord/bloc/trackBloc.dart';
 import 'package:in_search_of_the_lost_chord/models/utils/ratingUtils.dart';
 import 'package:in_search_of_the_lost_chord/widgets/lesser/rateTile.dart';
 
 class RateTrack extends StatefulWidget {
   final List<RateTile> rateTiles = RatingUtils.getRateTiles();
-  final TrackBloc _bloc;
-  RateTrack(this._bloc);
+  RateTrack();
   @override
   State<StatefulWidget> createState() {
     return _RateTrackState();
