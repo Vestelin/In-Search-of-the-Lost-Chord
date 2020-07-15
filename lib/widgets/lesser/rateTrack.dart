@@ -5,6 +5,8 @@ import 'package:in_search_of_the_lost_chord/widgets/lesser/rateTile.dart';
 
 class RateTrack extends StatefulWidget {
   final List<RateTile> rateTiles = RatingUtils.getRateTiles();
+  final TrackBloc _bloc;
+  RateTrack(this._bloc);
   @override
   State<StatefulWidget> createState() {
     return _RateTrackState();
@@ -14,43 +16,17 @@ class RateTrack extends StatefulWidget {
 class _RateTrackState extends State<RateTrack> {
   @override
   Widget build(BuildContext context) {
-    // return NotificationListener<OverscrollIndicatorNotification>(
-    //   onNotification: (OverscrollIndicatorNotification overscroll) {
-    //     overscroll.disallowGlow();
-    //     return false;
-    //   },
-    // child:
     return Container(
       child: Center(
         child: SizedBox(
           height: 60,
-          child: ListWheelScrollView(
+          child: ListView(
             physics: BouncingScrollPhysics(),
-            //squeeze: 1,
-            //magnification: 5,
-            //useMagnifier: true,
-            // diameterRatio: 2,
             itemExtent: 60,
             children: widget.rateTiles,
-            //perspective: 0.0015,
           ),
         ),
       ),
-      //),
     );
   }
 }
-
-/* class RateTrack extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() {
-    return _RateTrackState();
-  }
-}
-
-class _RateTrackState extends State<RateTrack> {
-  @override
-  Widget build(BuildContext context) {
-    return
-  }
-} */

@@ -3,6 +3,7 @@ import 'package:in_search_of_the_lost_chord/bloc/blocProvider.dart';
 import 'package:in_search_of_the_lost_chord/bloc/trackBloc.dart';
 import 'package:in_search_of_the_lost_chord/models/misc/ratingGrades.dart';
 import 'package:in_search_of_the_lost_chord/models/utils/ratingUtils.dart';
+import 'package:in_search_of_the_lost_chord/widgets/lesser/rateTrackDialog.dart';
 
 class RateTile extends StatelessWidget {
   final RatingGrades grade;
@@ -10,20 +11,16 @@ class RateTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bloc = BlocProvider.of<TrackBloc>(context);
-    return Container(
-      decoration: BoxDecoration(
-        border: Border.all(width: 0.3),
-      ),
-      //color: Colors.grey,
-      child: ListTile(
-        contentPadding: const EdgeInsets.symmetric(horizontal: 20),
-        title: Center(child: RatingUtils.convertRatingToTextColour(grade)),
-        onTap: () {
-          bloc.rateTrack(grade);
-          Navigator.pop(context);
-        },
-      ),
-    );
+    final bloc = TrackBlocProvider.of(context).bloc;
+    return Card(
+        child: ListTile(
+      contentPadding: const EdgeInsets.symmetric(horizontal: 20),
+      title: Center(child: RatingUtils.convertRatingToTextColour(grade)),
+      onTap: () {
+        Navigator.pop(context);
+        bloc.rateTrack(grade);
+      },
+      //),
+    ));
   }
 }

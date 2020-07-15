@@ -43,11 +43,10 @@ class _TrackTileState extends State<TrackTile> {
                 trailing:
                     ToReconsider(widget.track.modifiers, widget.track.rating),
                 onTap: () {
-                  bloc.rateTrack(RatingGrades.excellent);
-                  /* showDialog(
+                  showDialog(
                     context: context,
-                    builder: (context) => Dialog(child: RateTrackDialog()),
-                  ); */
+                    builder: (context) => Dialog(child: RateTrackDialog(bloc)),
+                  );
                 },
                 onLongPress: () {
                   showDialog(

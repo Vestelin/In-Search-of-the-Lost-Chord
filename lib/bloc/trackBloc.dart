@@ -10,7 +10,7 @@ class TrackBloc implements Bloc {
 
   TrackBloc(this.track, this.refreshFunction);
 
-  final Function(Track) refreshFunction;
+  final Function refreshFunction;
 
   RatingGrades get rating => track.rating;
   set rating(value) => track.rating = value;
@@ -26,7 +26,7 @@ class TrackBloc implements Bloc {
   void rateTrack(RatingGrades newRating) {
     rating = newRating;
     rateController.sink.add(track);
-    refreshFunction(track);
+    refreshFunction();
   }
 
   void dispose() => rateController.close();

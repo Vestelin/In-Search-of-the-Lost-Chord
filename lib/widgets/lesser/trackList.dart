@@ -35,10 +35,9 @@ class _TrackListState extends State<TrackList> {
         List<Track> tracksData = snapshot.data;
         if (tracksData == null) return Container();
         return ListView.builder(
-            cacheExtent: 60,
             itemCount: tracksData.length,
             itemBuilder: (context, index) => BlocProvider(
-                bloc: TrackBloc(tracksData[index], bloc.rateTrack),
+                bloc: TrackBloc(tracksData[index], bloc.loadTracks),
                 child: TrackTile(tracksData[index], key: UniqueKey())));
       },
     );
