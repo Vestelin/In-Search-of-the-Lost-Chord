@@ -16,7 +16,8 @@ class MainPageManager {
       case 0:
         return ReleaseList();
       case 1:
-        return BlocProvider<SearchBloc>(child: Search(), bloc: SearchBloc());
+        //return BlocProvider<SearchBloc>(child: Search(), bloc: SearchBloc());
+        return Search();
       default:
         return const Center(
           child: const Text(

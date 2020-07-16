@@ -40,7 +40,7 @@ class _SearchState extends State<Search> {
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           TextField(
-            onChanged: (text) => bloc.getReleasesByKeyword(text),
+            onChanged: (text) => bloc.sinkReleasesByKeyword(text),
             decoration: InputDecoration(
                 contentPadding: const EdgeInsets.symmetric(horizontal: 18)),
           ),
@@ -48,9 +48,9 @@ class _SearchState extends State<Search> {
             height: 500,
             child: StreamBuilder<List<Release>>(
               stream: bloc.searchStream,
+              initialData: bloc.actualFoundReleases,
               builder: (context, snapshot) {
                 final releases = snapshot.data;
-
                 if (releases == null) return Container();
 
                 if (releases.isEmpty) {

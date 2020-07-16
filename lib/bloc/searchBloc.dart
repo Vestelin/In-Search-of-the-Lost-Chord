@@ -6,16 +6,27 @@ import 'package:in_search_of_the_lost_chord/models/release.dart';
 
 class SearchBloc implements Bloc {
   List<Release> _releases;
+  String searchedWord;
   List<Release> get releases => _releases;
+  List<Release> actualFoundReleases = List<Release>();
 
   final StreamController<List<Release>> _searchController =
       StreamController<List<Release>>();
 
   Stream<List<Release>> get searchStream => _searchController.stream;
 
-  void getReleasesByKeyword(String keyword) async {
+  Future<List<Release>> getReleasesByKeyword(String keyword) async {
+    searchedWord = keyword;
     List<Release> tmpReleases;
-    tmpReleases = await Database.getReleasesByKeyword(keyword);
+    tmpReleases = await Database.getReleasesByKeyword(searchedWord);
+    return tmpReleases;
+  }
+
+  void sinkReleasesByKeyword(String keyword) async {
+    searchedWord = keyword;
+    List<Release> tmpReleases;
+    tmpReleases = await Database.getReleasesByKeyword(searchedWord);
+    actualFoundReleases = tmpReleases;
     _searchController.sink.add(tmpReleases);
   }
 
