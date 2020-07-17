@@ -9,7 +9,6 @@ class SearchBloc implements Bloc {
   List<Release> _releases;
   String searchedWord;
   List<Release> get releases => _releases;
-  List<Release> actualFoundReleases;
 
   final StreamController<List<Release>> _searchController =
       StreamController<List<Release>>();
@@ -18,17 +17,14 @@ class SearchBloc implements Bloc {
 
   Future<List<Release>> getReleasesByKeyword(String keyword) async {
     searchedWord = keyword;
-    List<Release> tmpReleases;
-    tmpReleases = await Database.getReleasesByKeyword(searchedWord);
-    return tmpReleases;
+    List<Release> foundReleases;
+    foundReleases = await Database.getReleasesByKeyword(searchedWord);
+    return foundReleases;
   }
 
   void sinkReleasesByKeyword(String keyword) async {
-    searchedWord = keyword;
-    List<Release> tmpReleases;
-    tmpReleases = await Database.getReleasesByKeyword(searchedWord);
-    actualFoundReleases = tmpReleases;
-    _searchController.sink.add(tmpReleases);
+    List<Release> foundReleases = await getReleasesByKeyword(keyword);
+    _searchController.sink.add(foundReleases);
   }
 
   @override

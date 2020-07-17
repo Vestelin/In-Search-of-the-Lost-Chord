@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:in_search_of_the_lost_chord/bloc/blocProvider.dart';
 import 'package:in_search_of_the_lost_chord/bloc/searchBloc.dart';
-import 'package:in_search_of_the_lost_chord/models/misc/mainPageManager.dart';
 import 'lesser/addAlbumWindow.dart';
+import 'lesser/releaseList.dart';
+import 'lesser/search.dart';
 
 class MainPageTabs extends StatefulWidget {
   final MainPageManager manager = MainPageManager();
@@ -16,7 +17,7 @@ class MainPageTabs extends StatefulWidget {
 PageController controller = PageController();
 
 class _MainPageTabsState extends State<MainPageTabs> {
-  void onNavigationTap(int index) =>
+  void setSelectedToChosen(int index) =>
       setState(() => widget.manager.selected = index);
 
   @override
@@ -52,26 +53,30 @@ class _MainPageTabsState extends State<MainPageTabs> {
           )
         ],
         currentIndex: widget.manager.selected,
-        onTap: (index) => controller.jumpToPage(index), //onNavigationTap,
+        onTap: (index) => controller.jumpToPage(index),
       ),
       body: GestureDetector(
         onTap: () {
           FocusScopeNode currentFocus = FocusScope.of(context);
-
           if (!currentFocus.hasPrimaryFocus) currentFocus.unfocus();
         },
         child: BlocProvider<SearchBloc>(
             child: PageView(
-              onPageChanged: onNavigationTap,
-              controller: controller,
-              children: MainPageManager.mainPageWigets
-
-              /* child: widget.manager
-                  .getProperBody() */
-              ,
-            ), //Scaffold(body: widget.manager.getProperBody()),
+                onPageChanged: setSelectedToChosen,
+                controller: controller,
+                children: widget.manager.mainPageWidgets),
             bloc: SearchBloc()),
       ),
     );
   }
+}
+
+class MainPageManager {
+  int selected;
+
+  MainPageManager() {
+    selected = 0;
+  }
+
+  final List<Widget> mainPageWidgets = [ReleaseList(), Search()];
 }

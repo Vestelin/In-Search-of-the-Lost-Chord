@@ -32,8 +32,8 @@ class _TracksViewState extends State<TracksView> {
         ),
         bottomNavigationBar: TabBar(
           tabs: <Widget>[
-            TabBarContainer(Icon(Icons.queue_music), "Tracks"),
-            TabBarContainer(Icon(Icons.history), "History")
+            const TabBarContainer(const Icon(Icons.queue_music), "Tracks"),
+            const TabBarContainer(const Icon(Icons.history), "History")
           ],
         ),
       ),

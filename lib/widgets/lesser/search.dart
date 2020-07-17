@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:in_search_of_the_lost_chord/bloc/blocProvider.dart';
 import 'package:in_search_of_the_lost_chord/bloc/searchBloc.dart';
+import 'package:in_search_of_the_lost_chord/models/iNamed.dart';
 import 'package:in_search_of_the_lost_chord/models/release.dart';
 import 'package:in_search_of_the_lost_chord/widgets/lesser/releaseTile.dart';
 import 'package:keyboard_visibility/keyboard_visibility.dart';
@@ -16,11 +17,9 @@ class Search extends StatefulWidget {
 
 class _SearchState extends State<Search>
     with AutomaticKeepAliveClientMixin<Search> {
-  bool t = true;
   SearchBloc bloc;
-  KeyboardVisibilityNotification _keyboardVisibilityNotification =
+  final KeyboardVisibilityNotification _keyboardVisibilityNotification =
       KeyboardVisibilityNotification();
-  //_SearchState({key}) : super(key: key);
   Widget getListViewOfFoundReleases(List<Release> foundReleases) {
     return ListView.builder(
         physics: NeverScrollableScrollPhysics(),
@@ -57,37 +56,33 @@ class _SearchState extends State<Search>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return Scaffold(
-      body: SingleChildScrollView(
-        physics: NeverScrollableScrollPhysics(),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            TextField(
-              onChanged: (text) => bloc.sinkReleasesByKeyword(text),
-              decoration: InputDecoration(
-                  contentPadding: const EdgeInsets.symmetric(horizontal: 18)),
+    return SingleChildScrollView(
+      physics: NeverScrollableScrollPhysics(),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          TextField(
+            onChanged: (text) => bloc.sinkReleasesByKeyword(text),
+            decoration: InputDecoration(
+                contentPadding: const EdgeInsets.symmetric(horizontal: 18)),
+          ),
+          SizedBox(
+            height: 500,
+            child: StreamBuilder<List<Release>>(
+              stream: bloc.searchStream,
+              builder: (context, snapshot) {
+                final releases = snapshot.data;
+                if (releases == null) return Container();
+                if (releases.isEmpty) {
+                  return getCenteredText("There're no such releases");
+                }
+                List<Release> foundReleases = snapshot.data;
+                var listView = getListViewOfFoundReleases(foundReleases);
+                return listView;
+              },
             ),
-            SizedBox(
-              height: 500,
-              child: StreamBuilder<List<Release>>(
-                stream: bloc.searchStream,
-                //initialData: bloc.actualFoundReleases,
-                builder: (context, snapshot) {
-                  final releases = snapshot.data;
-                  if (releases == null)
-                    return Container();
-                  else if (releases.isEmpty) {
-                    return getCenteredText("There're no such releases");
-                  }
-                  List<Release> foundReleases = snapshot.data;
-                  var listView = getListViewOfFoundReleases(foundReleases);
-                  return listView;
-                },
-              ),
-            )
-          ],
-        ),
+          )
+        ],
       ),
     );
   }
