@@ -54,17 +54,24 @@ class _MainPageTabsState extends State<MainPageTabs> {
         currentIndex: widget.manager.selected,
         onTap: (index) => controller.jumpToPage(index), //onNavigationTap,
       ),
-      body: BlocProvider<SearchBloc>(
-          child: PageView(
-            onPageChanged: onNavigationTap,
-            controller: controller,
-            children: MainPageManager.mainPageWigets
+      body: GestureDetector(
+        onTap: () {
+          FocusScopeNode currentFocus = FocusScope.of(context);
 
-            /* child: widget.manager
-                .getProperBody() */
-            ,
-          ), //Scaffold(body: widget.manager.getProperBody()),
-          bloc: SearchBloc()),
+          if (!currentFocus.hasPrimaryFocus) currentFocus.unfocus();
+        },
+        child: BlocProvider<SearchBloc>(
+            child: PageView(
+              onPageChanged: onNavigationTap,
+              controller: controller,
+              children: MainPageManager.mainPageWigets
+
+              /* child: widget.manager
+                  .getProperBody() */
+              ,
+            ), //Scaffold(body: widget.manager.getProperBody()),
+            bloc: SearchBloc()),
+      ),
     );
   }
 }
