@@ -13,6 +13,8 @@ class MainPageTabs extends StatefulWidget {
   }
 }
 
+PageController controller = PageController();
+
 class _MainPageTabsState extends State<MainPageTabs> {
   void onNavigationTap(int index) =>
       setState(() => widget.manager.selected = index);
@@ -50,10 +52,19 @@ class _MainPageTabsState extends State<MainPageTabs> {
           )
         ],
         currentIndex: widget.manager.selected,
-        onTap: onNavigationTap,
+        onTap: (index) => controller.jumpToPage(index), //onNavigationTap,
       ),
       body: BlocProvider<SearchBloc>(
-          child: widget.manager.getProperBody(), bloc: SearchBloc()),
+          child: PageView(
+            onPageChanged: onNavigationTap,
+            controller: controller,
+            children: MainPageManager.mainPageWigets
+
+            /* child: widget.manager
+                .getProperBody() */
+            ,
+          ), //Scaffold(body: widget.manager.getProperBody()),
+          bloc: SearchBloc()),
     );
   }
 }

@@ -11,13 +11,19 @@ class MainPageManager {
     selected = 0;
   }
 
+  static final mainPageWigets = [ReleaseList(), Search()];
+
   Widget getProperBody() {
+    /* return IndexedStack(
+        children: <Widget>[ReleaseList(), Search()], index: selected); */
     switch (selected) {
       case 0:
-        return ReleaseList();
+        return mainPageWigets[0];
+        break;
       case 1:
         //return BlocProvider<SearchBloc>(child: Search(), bloc: SearchBloc());
-        return Search();
+        return mainPageWigets[1];
+        break;
       default:
         return const Center(
           child: const Text(
