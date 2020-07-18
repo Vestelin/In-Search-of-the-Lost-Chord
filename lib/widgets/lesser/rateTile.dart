@@ -11,18 +11,19 @@ enum RateTileType { ratingAlreadyExisting, ratingAtCreation }
 abstract class RateTile extends StatelessWidget {
   final RatingGrades grade;
   RateTile(this.grade);
+  static const double _bottomPaddingValue = 6.0;
 }
 
 class ExistingTrackRateTile extends RateTile {
   ExistingTrackRateTile(grade) : super(grade);
   @override
   Widget build(BuildContext context) {
-    final bloc = TrackBlocProvider.of(context).bloc;
+    final bloc = BlocProvider.of<TrackBloc>(context);
     return Card(
         child: ListTile(
-      title: Padding(
-        padding: const EdgeInsets.only(bottom: 6),
-        child: Center(
+      title: Center(
+        child: Padding(
+          padding: const EdgeInsets.only(bottom: RateTile._bottomPaddingValue),
           child: RatingUtils.convertRatingToTextColour(grade),
         ),
       ),
@@ -39,13 +40,24 @@ class NewTrackRateTile extends RateTile {
   @override
   Widget build(BuildContext context) {
     final bloc = BlocProvider.of<AddingTrackBloc>(context);
-    return Card(
-        child: ListTile(
-      contentPadding: const EdgeInsets.symmetric(horizontal: 20),
-      title: Center(child: RatingUtils.convertRatingToTextColour(grade)),
-      onTap: () {
-        bloc.changeCurrentGrade(grade);
-      },
-    ));
+    return StreamBuilder<RatingGrades>(
+        stream: bloc.stream,
+        builder: (context, snapshot) {
+          var data = snapshot.data;
+          return Card(
+              color: data == grade ? Color(0x99616161) : null,
+              child: ListTile(
+                contentPadding: const EdgeInsets.symmetric(horizontal: 20),
+                title: Padding(
+                  padding: const EdgeInsets.only(
+                      bottom: RateTile._bottomPaddingValue),
+                  child: Center(
+                      child: RatingUtils.convertRatingToTextColour(grade)),
+                ),
+                onTap: () {
+                  bloc.changeCurrentGrade(grade);
+                },
+              ));
+        });
   }
 }

@@ -67,10 +67,12 @@ class _AddTrackDialogState<Track> extends State<AddTrackDialog<Track>> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: const Text("Add track"),
+      contentPadding: EdgeInsets.fromLTRB(20, 20, 20, 0),
       content: Column(
+        mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           TextField(
+            autofocus: true,
             controller: nameController,
             textInputAction: TextInputAction.done,
             style: const TextStyle(
@@ -78,6 +80,9 @@ class _AddTrackDialogState<Track> extends State<AddTrackDialog<Track>> {
             ),
             decoration: const InputDecoration(
                 labelText: "Name", labelStyle: TextStyle(fontSize: 16)),
+          ),
+          Container(
+            height: 15,
           ),
           StreamBuilder<RatingGrades>(
               stream: bloc.stream,

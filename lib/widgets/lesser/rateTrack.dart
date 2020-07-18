@@ -15,14 +15,12 @@ class _RateTrackState extends State<RateTrack> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Center(
-        child: SizedBox(
-          height: 60,
-          child: ListView(
-            physics: BouncingScrollPhysics(),
-            itemExtent: 60,
-            children: widget.rateTiles,
-          ),
+      child: SizedBox(
+        height: 60,
+        child: ListView(
+          physics: BouncingScrollPhysics(),
+          itemExtent: 60,
+          children: widget.rateTiles,
         ),
       ),
     );
