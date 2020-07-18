@@ -3,8 +3,8 @@ import 'package:in_search_of_the_lost_chord/models/utils/ratingUtils.dart';
 import 'package:in_search_of_the_lost_chord/widgets/lesser/rateTile.dart';
 
 class RateTrack extends StatefulWidget {
-  final List<RateTile> rateTiles = RatingUtils.getRateTiles();
-  RateTrack();
+  final List<RateTile> rateTiles; // = RatingUtils.getExistingTrackRateTiles();
+  RateTrack(this.rateTiles);
   @override
   State<StatefulWidget> createState() {
     return _RateTrackState();

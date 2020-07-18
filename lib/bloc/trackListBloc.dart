@@ -20,6 +20,7 @@ class TrackListBloc implements Bloc {
 
   void addTrack(track) {
     _release.addTrack(track);
+    controller.sink.add(tracks);
   }
 
   void rateTrack(Track track) {

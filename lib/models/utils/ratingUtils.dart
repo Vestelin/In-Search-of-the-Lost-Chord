@@ -76,8 +76,15 @@ class RatingUtils {
     return colour;
   }
 
-  static List<RateTile> getRateTiles() {
-    List<RateTile> tiles = RatingGrades.values.map((e) => RateTile(e)).toList();
+  static List<RateTile> getExistingTrackRateTiles() {
+    List<RateTile> tiles =
+        RatingGrades.values.map((e) => ExistingTrackRateTile(e)).toList();
+    return tiles;
+  }
+
+  static List<RateTile> getNewTrackRateTiles() {
+    List<RateTile> tiles =
+        RatingGrades.values.map((e) => NewTrackRateTile(e)).toList();
     return tiles;
   }
 }

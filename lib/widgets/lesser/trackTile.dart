@@ -7,7 +7,7 @@ import 'package:in_search_of_the_lost_chord/models/utils/ratingUtils.dart';
 import 'package:in_search_of_the_lost_chord/widgets/lesser/rateTrackDialog.dart';
 
 import 'modifiers/toReconsider.dart';
-import 'nameManipulationDialog.dart';
+import 'dialogs.dart';
 
 class TrackTile extends StatefulWidget {
   final Track track;

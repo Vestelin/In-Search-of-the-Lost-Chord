@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:in_search_of_the_lost_chord/bloc/trackBloc.dart';
+import 'package:in_search_of_the_lost_chord/models/utils/ratingUtils.dart';
 import 'package:in_search_of_the_lost_chord/widgets/lesser/rateTrack.dart';
 
 class TrackBlocProvider extends InheritedWidget {
@@ -28,7 +29,7 @@ class RateTrackDialog extends StatelessWidget {
         child: Column(
           children: <Widget>[
             Center(
-              child: RateTrack(),
+              child: RateTrack(RatingUtils.getExistingTrackRateTiles()),
             )
           ],
         ),

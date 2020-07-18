@@ -3,7 +3,7 @@ import 'package:in_search_of_the_lost_chord/models/misc/cores.dart';
 import 'package:in_search_of_the_lost_chord/models/release.dart';
 
 import '../tracksView.dart';
-import 'nameManipulationDialog.dart';
+import 'dialogs.dart';
 
 class ReleaseTile extends StatefulWidget {
   final Release release;
@@ -36,7 +36,9 @@ class _ReleaseTileState extends State<ReleaseTile> {
           },
           onLongPress: () {
             showDialog(
-                context: context, builder: (context) => ChangeNameDialog(widget.release, Cores.releaseListCore));
+                context: context,
+                builder: (context) =>
+                    ChangeNameDialog(widget.release, Cores.releaseListCore));
           },
         ),
       ),
