@@ -98,7 +98,11 @@ class _AddTrackDialogState<Track> extends State<AddTrackDialog<Track>> {
         FlatButton(
           child: const Text("Done"),
           onPressed: () {
-            //onClick(nameController.text);
+            String trimmedTypedName = nameController.text.trim();
+            String properName =
+                trimmedTypedName == "" ? "Unnamed Track" : trimmedTypedName;
+            bloc.name = properName;
+            bloc.finalizeAdding();
             Navigator.pop(context);
           },
         )

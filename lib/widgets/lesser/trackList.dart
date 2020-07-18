@@ -37,7 +37,8 @@ class _TrackListState extends State<TrackList> {
               onPressed: () => showDialog(
                     context: context,
                     builder: (context) => BlocProvider<AddingTrackBloc>(
-                        child: AddTrackDialog(), bloc: AddingTrackBloc()),
+                        child: AddTrackDialog(),
+                        bloc: AddingTrackBloc(trackListBloc: bloc)),
                   ),
               child: Icon(Icons.add))
         ],
