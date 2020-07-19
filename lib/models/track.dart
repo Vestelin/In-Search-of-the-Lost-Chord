@@ -11,4 +11,16 @@ class Track extends INamed {
     this.rating = rating ?? RatingGrades.notRated;
     this.modifiers = modifiers ?? {TrackModifier.toReconsider: false};
   }
+
+  void rate(RatingGrades newRating) {
+    rating = newRating;
+  }
+
+  void changeName(String newName) {
+    name = newName;
+  }
+
+  void toogleModifier(TrackModifier modifier) {
+    modifiers[modifier] ^= true;
+  }
 }

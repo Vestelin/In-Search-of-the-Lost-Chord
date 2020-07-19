@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:in_search_of_the_lost_chord/bloc/blocProvider.dart';
 import 'package:in_search_of_the_lost_chord/bloc/searchBloc.dart';
-import 'lesser/addAlbumWindow.dart';
+import 'lesser/dialogs.dart';
 import 'lesser/releaseList.dart';
 import 'lesser/search.dart';
 

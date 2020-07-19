@@ -12,29 +12,24 @@ class TrackBloc implements Bloc {
   TrackBloc(this.track);
 
   RatingGrades get rating => track.rating;
-  set rating(value) => track.rating = value;
   Map<TrackModifier, bool> get modifiers => track.modifiers;
 
   final StreamController rateController = StreamController<Track>.broadcast();
 
   Stream<Track> get trackStream => rateController.stream;
 
-  RatingGrades getRating() {
-    return rating;
-  }
-
   void rateTrack(RatingGrades newRating) {
-    rating = newRating;
+    track.rate(newRating);
     rateController.sink.add(track);
   }
 
   void changeName(String newName) {
-    track.name = newName;
+    track.changeName(newName);
     rateController.sink.add(track);
   }
 
   void switchModifier(TrackModifier modifier) {
-    modifiers[TrackModifier.toReconsider] ^= true;
+    track.toogleModifier(modifier);
     rateController.sink.add(track);
   }
 

@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:in_search_of_the_lost_chord/bloc/addingTrackBloc.dart';
 import 'package:in_search_of_the_lost_chord/bloc/blocProvider.dart';
+import 'package:in_search_of_the_lost_chord/bloc/trackBloc.dart';
 import 'package:in_search_of_the_lost_chord/models/iNamed.dart';
+import 'package:in_search_of_the_lost_chord/models/misc/cores.dart';
 import 'package:in_search_of_the_lost_chord/models/misc/ratingAnimatedListCore.dart';
 import 'package:in_search_of_the_lost_chord/models/misc/ratingGrades.dart';
+import 'package:in_search_of_the_lost_chord/models/release.dart';
 import 'package:in_search_of_the_lost_chord/models/utils/ratingUtils.dart';
 import 'package:in_search_of_the_lost_chord/widgets/lesser/rateTrack.dart';
+
+import '../tracksView.dart';
 
 abstract class NameManipulationDialog<T> extends StatelessWidget {
   final Function(String) onClick;
@@ -121,4 +126,157 @@ class ChangeNameDialog<T extends INamed> extends NameManipulationDialog {
 
 class ChangeTrackNameDialog extends NameManipulationDialog {
   ChangeTrackNameDialog({onClick}) : super(onClick);
+}
+
+class RateTrackDialog extends StatelessWidget {
+  final TrackBloc _bloc;
+  RateTrackDialog(this._bloc);
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      shouldDispose: false,
+      bloc: _bloc,
+      child: SizedBox(
+        height: 100,
+        width: 200,
+        child: Column(
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Center(
+                child: RateTrack(RatingUtils.getExistingTrackRateTiles()),
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class AddAlbumWindow extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return _AddAlbumWindowState();
+  }
+}
+
+class _AddAlbumWindowState extends State<AddAlbumWindow> {
+  TextEditingController nameController = TextEditingController();
+  TextEditingController numberOfTracksController = TextEditingController();
+  FocusNode numberFocus = FocusNode();
+
+  final String errorText = "Please insert correct value";
+  bool nameFail = false;
+  bool numberFail = false;
+
+  String name;
+  int numberOfTracks;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[
+        Container(
+          width: 400,
+          child: Card(
+            child: Column(children: [
+              const Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: const Text(
+                  "Add album",
+                  style: const TextStyle(
+                      fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(4.0),
+                child: TextField(
+                  autofocus: true,
+                  controller: nameController,
+                  textInputAction: TextInputAction.next,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    fontSize: 18,
+                  ),
+                  decoration: const InputDecoration(
+                    labelText: "Name",
+                    labelStyle: const TextStyle(fontSize: 16),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  focusNode: numberFocus,
+                  controller: numberOfTracksController,
+                  keyboardType: TextInputType.number,
+                  textInputAction: TextInputAction.done,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(fontSize: 18),
+                  decoration: const InputDecoration(
+                      labelText: "Number of tracks",
+                      labelStyle: const TextStyle(fontSize: 16)),
+                  onFieldSubmitted: (text) =>
+                      _addReleaseAndRemoveDialog(context),
+                ),
+              ),
+              ButtonBar(children: [
+                FlatButton(
+                  child: const Text(
+                    "Cancel",
+                  ),
+                  onPressed: () => Navigator.pop(context),
+                ),
+                FlatButton(
+                    child: const Text("Create and Go"),
+                    onPressed: () {
+                      _addReleaseAndPushToTracksView(context);
+                    }),
+                FlatButton(
+                  child: const Text("Create"),
+                  onPressed: () {
+                    _addReleaseAndRemoveDialog(context);
+                  },
+                )
+              ])
+            ]),
+          ),
+        ),
+      ],
+    );
+  }
+
+  void _addReleaseAndPushToTracksView(BuildContext context) {
+    Release releaseToAdd = _createReleaseFromGivenValues();
+    _addReleaseAndRemoveDialog(context);
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => TracksView(releaseToAdd)));
+  }
+
+  void _addReleaseAndRemoveDialog(BuildContext context) {
+    Navigator.pop(context);
+    _addRelease();
+  }
+
+  void _addRelease({Release release}) {
+    final Release releaseToAdd = release ?? _createReleaseFromGivenValues();
+    Cores.releaseListCore.addItem(releaseToAdd);
+  }
+
+  Release _createReleaseFromGivenValues() {
+    String name = nameController.text.trim();
+    name = name != "" ? name : "Unnamed release";
+    int numberOfTracks = getNumberOfTracksFromTextField() ?? 0;
+    Release releaseToAdd = Release(name, numberOfTracks: numberOfTracks);
+    return releaseToAdd;
+  }
+
+  int getNumberOfTracksFromTextField() {
+    String numberofTracksInString = numberOfTracksController.text;
+    return numberofTracksInString != null && numberofTracksInString.trim() != ""
+        ? int.tryParse(numberofTracksInString)
+        : 0;
+  }
 }

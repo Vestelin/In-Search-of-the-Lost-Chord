@@ -16,15 +16,7 @@ class TrackList extends StatefulWidget {
 
 class _TrackListState extends State<TrackList> {
   List<Track> tracks;
-  //RatingAnimatedListCore<Track> core;
-  _TrackListState(this.tracks) {
-    /* core = RatingAnimatedListCore(
-        (item) => BlocProvider(bloc: TrackBloc(item), child: TrackTile(item)),
-        GlobalKey<AnimatedListState>(),
-        tracks,
-        false); */
-    // Cores.currentTrackCore = core;
-  }
+  _TrackListState(this.tracks);
   @override
   Widget build(BuildContext context) {
     final bloc = BlocProvider.of<TrackListBloc>(context);
@@ -32,14 +24,17 @@ class _TrackListState extends State<TrackList> {
       appBar: AppBar(
         title: Text(bloc.releaseName),
         actions: <Widget>[
-          FlatButton(
-              onPressed: () => showDialog(
-                    context: context,
-                    builder: (context) => BlocProvider<AddingTrackBloc>(
-                        child: AddTrackDialog(),
-                        bloc: AddingTrackBloc(trackListBloc: bloc)),
-                  ),
-              child: Icon(Icons.add))
+          Container(
+            width: 60,
+            child: FlatButton(
+                onPressed: () => showDialog(
+                      context: context,
+                      builder: (context) => BlocProvider<AddingTrackBloc>(
+                          child: AddTrackDialog(),
+                          bloc: AddingTrackBloc(trackListBloc: bloc)),
+                    ),
+                child: Icon(Icons.add)),
+          )
         ],
       ),
       body: StreamBuilder<List<Track>>(
@@ -57,12 +52,5 @@ class _TrackListState extends State<TrackList> {
         },
       ),
     );
-    /* return AnimatedList(
-            itemBuilder: (context, index, animation) =>
-                core.buildItem(index, animation),
-            key: core.listKey,
-            initialItemCount: tracks.length,
-          );
-        } );*/
   }
 }

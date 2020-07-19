@@ -5,20 +5,31 @@ import 'track.dart';
 import 'utils/stringUtils.dart';
 
 class Release extends INamed {
-  static const int commaIndexPositionInRating = 1;
-  List<Track> tracks;
-  bool isConcept;
-  Duration duration;
+  List<Track> tracks = List<Track>();
+  List<List<Track>> historyOfRatings = List<List<Track>>();
 
   void addTrack(Track track) {
     tracks.add(track);
   }
 
+  void resetTracksRating() {
+    tracks.forEach((element) => element.rate(RatingGrades.notRated));
+  }
+
+  void addCurrentTracksToHistory() {
+    historyOfRatings.add(List<Track>.from(tracks));
+  }
+
+  void historyTracks() {
+    addCurrentTracksToHistory();
+    resetTracksRating();
+  }
+
   Release(name, {int numberOfTracks: 0}) : super(name: name) {
     tracks = List<Track>();
     if (numberOfTracks > 0) {
-      for (int i = 0; i < numberOfTracks; i++) {
-        Track trackWithIndexAsName = Track("Track " + (i + 1).toString());
+      for (int i = 1; i <= numberOfTracks; i++) {
+        Track trackWithIndexAsName = Track("Track " + (i).toString());
         tracks.add(trackWithIndexAsName);
       }
     }
