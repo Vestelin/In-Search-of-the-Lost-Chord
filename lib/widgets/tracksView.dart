@@ -22,9 +22,6 @@ class _TracksViewState extends State<TracksView> {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-        appBar: AppBar(
-          title: Text(widget.release.name),
-        ),
         body: BlocProvider<TrackListBloc>(
           bloc: TrackListBloc(widget.release),
           child: TabBarView(

@@ -11,6 +11,8 @@ class TrackListBloc implements Bloc {
 
   TrackListBloc(this._release);
 
+  String get releaseName => _release.name;
+
   List<Track> get tracks => _release.tracks;
 
   StreamController<List<Track>> controller =

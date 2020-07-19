@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:in_search_of_the_lost_chord/bloc/blocProvider.dart';
 import 'package:in_search_of_the_lost_chord/bloc/trackBloc.dart';
-import 'package:in_search_of_the_lost_chord/models/misc/cores.dart';
 import 'package:in_search_of_the_lost_chord/models/track.dart';
 import 'package:in_search_of_the_lost_chord/models/utils/ratingUtils.dart';
 import 'package:in_search_of_the_lost_chord/widgets/lesser/rateTrackDialog.dart';
@@ -38,7 +37,7 @@ class _TrackTileState extends State<TrackTile> {
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(fontSize: 18)),
                 subtitle: RatingUtils.convertRatingToTextColour(data.rating),
-                trailing: ToReconsider(data.modifiers, data.rating),
+                trailing: ToReconsider(),
                 onTap: () {
                   showDialog(
                     context: context,
@@ -52,9 +51,6 @@ class _TrackTileState extends State<TrackTile> {
                       onClick: (String newName) => bloc.changeName(newName),
                     ),
                   );
-
-                  /* (context) => ChangeNameDialog(
-                          widget.track, Cores.currentTrackCore)) */
                 },
               );
             }),

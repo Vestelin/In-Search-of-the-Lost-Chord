@@ -1,40 +1,43 @@
 import 'package:flutter/material.dart';
+import 'package:in_search_of_the_lost_chord/bloc/blocProvider.dart';
+import 'package:in_search_of_the_lost_chord/bloc/trackBloc.dart';
 import 'package:in_search_of_the_lost_chord/models/misc/modifier.dart';
 import 'package:in_search_of_the_lost_chord/models/misc/ratingGrades.dart';
+import 'package:in_search_of_the_lost_chord/models/track.dart';
 import 'package:in_search_of_the_lost_chord/models/utils/ratingUtils.dart';
 
 class ToReconsider extends StatefulWidget {
-  final List<TrackModifier> modifiers;
-  final RatingGrades rating;
-  ToReconsider(this.modifiers, this.rating);
-
   @override
   State<StatefulWidget> createState() {
-    return _ToReconsiderState(modifiers, rating);
+    return _ToReconsiderState();
   }
 }
 
 class _ToReconsiderState extends State<ToReconsider> {
-  bool selected;
-  RatingGrades rating;
-  _ToReconsiderState(List<TrackModifier> modifiers, this.rating) {
-    selected = modifiers.contains(TrackModifier.toReconsider);
+  TrackBloc bloc;
+
+  @override
+  void initState() {
+    super.initState();
+    bloc = BlocProvider.of<TrackBloc>(context);
   }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => setState(() {
-        if(selected) {
-          widget.modifiers.remove(TrackModifier.toReconsider);
-        }
-        if(!selected) {
-          widget.modifiers.add(TrackModifier.toReconsider);
-        }
-        selected = !selected;
-      }),
-      child: Container(
-          child: Icon(Icons.help,
-              color: selected ? RatingUtils.getColorByRating(rating) : Colors.grey[700])),
+      onTap: () => bloc.switchModifier(TrackModifier.toReconsider),
+      child: StreamBuilder<Track>(
+          stream: bloc.trackStream,
+          initialData: bloc.track,
+          builder: (context, snapshot) {
+            var data = snapshot.data;
+            var hasToReconsider = data?.modifiers[TrackModifier.toReconsider];
+            return Container(
+                child: Icon(Icons.help,
+                    color: hasToReconsider
+                        ? RatingUtils.getColorByRating(data.rating)
+                        : Colors.grey[700]));
+          }),
     );
   }
 }

@@ -5,10 +5,10 @@ import 'package:in_search_of_the_lost_chord/models/misc/ratingGrades.dart';
 class Track extends INamed {
   String name;
   RatingGrades rating;
-  List<TrackModifier> modifiers;
+  Map<TrackModifier, bool> modifiers;
 
-  Track(this.name, {RatingGrades rating, List<TrackModifier> modifiers}) {
+  Track(this.name, {RatingGrades rating, Map<TrackModifier, bool> modifiers}) {
     this.rating = rating ?? RatingGrades.notRated;
-    this.modifiers = modifiers ?? List<TrackModifier>();
+    this.modifiers = modifiers ?? {TrackModifier.toReconsider: false};
   }
 }

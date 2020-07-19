@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:in_search_of_the_lost_chord/bloc/bloc.dart';
 import 'package:in_search_of_the_lost_chord/dataManagement/database.dart';
 import 'package:in_search_of_the_lost_chord/models/release.dart';
-import 'package:in_search_of_the_lost_chord/widgets/lesser/search.dart';
 
 class SearchBloc implements Bloc {
   List<Release> _releases;

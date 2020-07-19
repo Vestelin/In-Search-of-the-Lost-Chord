@@ -3,8 +3,6 @@ import 'package:in_search_of_the_lost_chord/bloc/addingTrackBloc.dart';
 import 'package:in_search_of_the_lost_chord/bloc/blocProvider.dart';
 import 'package:in_search_of_the_lost_chord/bloc/trackBloc.dart';
 import 'package:in_search_of_the_lost_chord/bloc/trackListBloc.dart';
-import 'package:in_search_of_the_lost_chord/models/misc/cores.dart';
-import 'package:in_search_of_the_lost_chord/models/misc/ratingAnimatedListCore.dart';
 import 'package:in_search_of_the_lost_chord/models/track.dart';
 import 'package:in_search_of_the_lost_chord/widgets/lesser/dialogs.dart';
 import 'package:in_search_of_the_lost_chord/widgets/lesser/trackTile.dart';
@@ -32,6 +30,7 @@ class _TrackListState extends State<TrackList> {
     final bloc = BlocProvider.of<TrackListBloc>(context);
     return Scaffold(
       appBar: AppBar(
+        title: Text(bloc.releaseName),
         actions: <Widget>[
           FlatButton(
               onPressed: () => showDialog(
@@ -53,7 +52,8 @@ class _TrackListState extends State<TrackList> {
               itemCount: tracksData.length,
               itemBuilder: (context, index) => BlocProvider(
                   bloc: TrackBloc(tracksData[index]),
-                  child: TrackTile(tracksData[index], key: UniqueKey())));
+                  child: TrackTile(tracksData[index],
+                      key: ValueKey(tracksData[index]))));
         },
       ),
     );
