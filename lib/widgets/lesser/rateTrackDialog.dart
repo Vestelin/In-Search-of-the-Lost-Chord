@@ -10,6 +10,7 @@ class RateTrackDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
+      shouldDispose: false,
       bloc: _bloc,
       child: SizedBox(
         height: 100,

@@ -5,8 +5,13 @@ import 'bloc.dart';
 class BlocProvider<T extends Bloc> extends StatefulWidget {
   final Widget child;
   final T bloc;
-  const BlocProvider({Key key, @required this.bloc, @required this.child}) : super(key: key);
-
+  final bool shouldDispose;
+  const BlocProvider(
+      {Key key,
+      @required this.bloc,
+      @required this.child,
+      this.shouldDispose: true})
+      : super(key: key);
 
   static T of<T extends Bloc>(BuildContext context) {
     final provider = context.findAncestorWidgetOfExactType<BlocProvider<T>>();
@@ -24,7 +29,7 @@ class _BlocProviderState extends State<BlocProvider> {
 
   @override
   void dispose() {
-    widget.bloc.dispose();
+    if (widget.shouldDispose) widget.bloc.dispose();
     super.dispose();
   }
 }
