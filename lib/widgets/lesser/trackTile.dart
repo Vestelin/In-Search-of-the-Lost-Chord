@@ -28,19 +28,17 @@ class _TrackTileState extends State<TrackTile> {
         color: Colors.grey[800],
         child: StreamBuilder<Track>(
             stream: bloc.trackStream,
+            initialData: bloc.track,
             builder: (context, snapshot) {
               var data = snapshot.data;
-              if (data != null) return Container();
               return ListTile(
                 contentPadding: const EdgeInsets.symmetric(horizontal: 20),
-                title: Text(widget.track.name,
+                title: Text(data.name,
                     softWrap: true,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(fontSize: 18)),
-                subtitle:
-                    RatingUtils.convertRatingToTextColour(widget.track.rating),
-                trailing:
-                    ToReconsider(widget.track.modifiers, widget.track.rating),
+                subtitle: RatingUtils.convertRatingToTextColour(data.rating),
+                trailing: ToReconsider(data.modifiers, data.rating),
                 onTap: () {
                   showDialog(
                     context: context,

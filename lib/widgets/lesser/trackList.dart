@@ -52,7 +52,7 @@ class _TrackListState extends State<TrackList> {
           return ListView.builder(
               itemCount: tracksData.length,
               itemBuilder: (context, index) => BlocProvider(
-                  bloc: TrackBloc(tracksData[index], bloc.loadTracks),
+                  bloc: TrackBloc(tracksData[index]),
                   child: TrackTile(tracksData[index], key: UniqueKey())));
         },
       ),
