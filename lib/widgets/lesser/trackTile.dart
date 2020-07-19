@@ -49,9 +49,14 @@ class _TrackTileState extends State<TrackTile> {
                 },
                 onLongPress: () {
                   showDialog(
-                      context: context,
-                      builder: (context) => ChangeNameDialog(
-                          widget.track, Cores.currentTrackCore));
+                    context: context,
+                    builder: (context) => ChangeTrackNameDialog(
+                      onClick: (String newName) => bloc.changeName(newName),
+                    ),
+                  );
+
+                  /* (context) => ChangeNameDialog(
+                          widget.track, Cores.currentTrackCore)) */
                 },
               );
             }),

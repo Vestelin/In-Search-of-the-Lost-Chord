@@ -7,8 +7,6 @@ import '../release.dart';
 
 class Cores {
   static RatingAnimatedListCore releaseListCore;
-  static RatingAnimatedListCore currentTrackCore;
-  static RatingAnimatedListCore trackListcore;
 
   static initializeCores() {
     releaseListCore = RatingAnimatedListCore<Release>(

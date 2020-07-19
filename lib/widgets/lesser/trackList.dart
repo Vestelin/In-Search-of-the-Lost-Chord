@@ -18,14 +18,14 @@ class TrackList extends StatefulWidget {
 
 class _TrackListState extends State<TrackList> {
   List<Track> tracks;
-  RatingAnimatedListCore<Track> core;
+  //RatingAnimatedListCore<Track> core;
   _TrackListState(this.tracks) {
     /* core = RatingAnimatedListCore(
         (item) => BlocProvider(bloc: TrackBloc(item), child: TrackTile(item)),
         GlobalKey<AnimatedListState>(),
         tracks,
         false); */
-    Cores.currentTrackCore = core;
+    // Cores.currentTrackCore = core;
   }
   @override
   Widget build(BuildContext context) {

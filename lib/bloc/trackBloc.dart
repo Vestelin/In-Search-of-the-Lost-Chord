@@ -29,5 +29,11 @@ class TrackBloc implements Bloc {
     refreshFunction();
   }
 
+  void changeName(String newName) {
+    track.name = newName;
+    rateController.sink.add(track);
+    refreshFunction();
+  }
+
   void dispose() => rateController.close();
 }

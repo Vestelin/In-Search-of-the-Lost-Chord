@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:in_search_of_the_lost_chord/bloc/addingTrackBloc.dart';
 import 'package:in_search_of_the_lost_chord/bloc/blocProvider.dart';
+import 'package:in_search_of_the_lost_chord/bloc/trackBloc.dart';
 import 'package:in_search_of_the_lost_chord/models/iNamed.dart';
 import 'package:in_search_of_the_lost_chord/models/misc/cores.dart';
 import 'package:in_search_of_the_lost_chord/models/misc/ratingAnimatedListCore.dart';
 import 'package:in_search_of_the_lost_chord/models/misc/ratingGrades.dart';
+import 'package:in_search_of_the_lost_chord/models/track.dart';
 import 'package:in_search_of_the_lost_chord/models/utils/ratingUtils.dart';
 import 'package:in_search_of_the_lost_chord/widgets/lesser/rateTrack.dart';
 
@@ -40,10 +42,10 @@ abstract class NameManipulationDialog<T> extends StatelessWidget {
   }
 }
 
-class CreateItemDialog<T extends INamed> extends NameManipulationDialog {
+/* class CreateItemDialog<T extends INamed> extends NameManipulationDialog {
   CreateItemDialog(T Function(String) creater)
       : super((name) => Cores.currentTrackCore.addItem(creater(name)));
-}
+} */
 
 class AddTrackDialog<Track> extends StatefulWidget {
   AddTrackDialog();
@@ -118,4 +120,8 @@ class ChangeNameDialog<T extends INamed> extends NameManipulationDialog {
           String correctName = name.trim() != "" ? name : item.name;
           core.listState.setState(() => item.name = correctName);
         });
+}
+
+class ChangeTrackNameDialog extends NameManipulationDialog {
+  ChangeTrackNameDialog({onClick}) : super(onClick);
 }
