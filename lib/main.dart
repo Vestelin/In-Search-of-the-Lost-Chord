@@ -7,9 +7,12 @@ import 'models/misc/cores.dart';
 import 'models/release.dart';
 
 void main() async {
-  Cores.initializeCores();
+  WidgetsFlutterBinding.ensureInitialized();
+
   Database.dataManager = await JsonToFile.asyncFactory<List<Release>>()
       as JsonToFile<List<Release>>;
+  await Database.loadReleases();
+  Cores.initializeCores();
   runApp(MyApp());
 }
 

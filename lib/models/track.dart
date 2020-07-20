@@ -6,11 +6,11 @@ import 'package:in_search_of_the_lost_chord/models/misc/ratingGrades.dart';
 import 'package:in_search_of_the_lost_chord/widgets/lesser/modifiers/toReconsider.dart';
 
 class Track extends INamed {
-  String name;
   RatingGrades rating;
   Map<TrackModifier, bool> modifiers;
 
-  Track(this.name, {RatingGrades rating, List<TrackModifier> modifiers}) {
+  Track(name, {RatingGrades rating, List<TrackModifier> modifiers})
+      : super(name: name) {
     this.rating = rating ?? RatingGrades.notRated;
     this.modifiers = modifiers ?? {TrackModifier.toReconsider: false};
   }
@@ -22,13 +22,16 @@ class Track extends INamed {
   }
 
   Track.fromJson(Map<String, dynamic> json) {
-    name = json[name];
+    name = json['name'];
     int ratingIndex = json['rating'] as int;
     rating = RatingGrades.values[ratingIndex];
-    List<TrackModifierWrapper> modifiersDecoded = json[modifiers];
-    Map<TrackModifier, bool> convertedToMap;
-    modifiersDecoded.forEach((element) {
-      convertedToMap[element.modifier] = element.isEnabled;
+    List<dynamic> modifiersDecoded = json['modifiers'];
+    Map<TrackModifier, bool> convertedToMap = {
+      TrackModifier.toReconsider: false
+    };
+    modifiersDecoded?.forEach((element) {
+      convertedToMap[TrackModifier.values[element['modifier']]] =
+          element['isEnabled'];
     });
     modifiers = convertedToMap;
   }

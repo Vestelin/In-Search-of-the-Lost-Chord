@@ -14,7 +14,7 @@ class JsonToFile<T> implements IDataManager<T> {
     String path = dir.path;
     path += "savedData.json";
     File file = File(path);
-    if (!await file.exists()) file.create(recursive: true);
+    if (!await file.exists()) await file.create(recursive: true);
     return JsonToFile<T>(path, file);
   }
 
@@ -23,11 +23,12 @@ class JsonToFile<T> implements IDataManager<T> {
     String dataEncoded = jsonEncode(data);
     //File file = File('$directoryPath/savedData.json');
     file.writeAsString(dataEncoded);
+    //file.delete();
   }
 
-  Future<List<Map<String, dynamic>>> load() async {
+  Future<List<dynamic>> load() async {
     String data = await file.readAsString();
-    List<Map<String, dynamic>> decodedData = jsonDecode(data);
+    List<dynamic> decodedData = data.trim() != "" ? jsonDecode(data) : null;
     return decodedData;
   }
 }

@@ -5,16 +5,17 @@ import 'package:in_search_of_the_lost_chord/models/release.dart';
 import 'IDataManager.dart';
 
 class Database {
-  static List<Release> releases = [
+  static List<Release> releases;
+  /*  = [
     Release.test(),
     Release("ziemniak"),
     Release("dwa ziemniaki")
-  ];
+  ]; */
 
   static IDataManager<List<Release>> dataManager;
 
-  static void loadReleases() async {
-    List<Map<String, dynamic>> decodedData = await dataManager.load();
+  static Future<void> loadReleases() async {
+    List<dynamic> decodedData = await dataManager.load();
     releases = decodedData?.map((e) => Release.fromJson(e))?.toList() ??
         List<Release>();
   }
