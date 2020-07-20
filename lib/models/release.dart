@@ -1,5 +1,6 @@
 import 'package:in_search_of_the_lost_chord/models/tracksHistory.dart';
 import 'package:in_search_of_the_lost_chord/models/misc/ratingGrades.dart';
+import 'package:in_search_of_the_lost_chord/widgets/lesser/history.dart';
 
 import 'iNamed.dart';
 import 'track.dart';
@@ -35,6 +36,26 @@ class Release extends INamed {
         tracks.add(trackWithIndexAsName);
       }
     }
+  }
+
+  Release.fromJson(Map<String, dynamic> json) : super(name: json['name']) {
+    var deserializedTracks = json['tracks'] as List;
+    tracks = deserializedTracks.map((e) => Track.fromJson(e)).toList();
+    var deserializedHistory = json['history'] as List;
+    historyOfRatings =
+        deserializedHistory.map((e) => TracksHistory.fromJson(e)).toList();
+  }
+
+  Map<String, dynamic> toJson() {
+    List<Map<String, dynamic>> encodedTracks =
+        tracks.map((e) => e.toJson()).toList();
+    List<Map<String, dynamic>> encodedHistory =
+        historyOfRatings.map((e) => e.toJson()).toList();
+    return <String, dynamic>{
+      'name': name,
+      'tracks': encodedTracks,
+      'history': encodedHistory
+    };
   }
 
   Release.test() {
