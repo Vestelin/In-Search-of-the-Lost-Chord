@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:in_search_of_the_lost_chord/widgets/mainPageTabs.dart';
 
+import 'dataManagement/JsonToFile.dart';
+import 'dataManagement/database.dart';
 import 'models/misc/cores.dart';
+import 'models/release.dart';
 
-void main() {
+void main() async {
   Cores.initializeCores();
+  Database.dataManager = await JsonToFile.asyncFactory<List<Release>>()
+      as JsonToFile<List<Release>>;
   runApp(MyApp());
 }
 
