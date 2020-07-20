@@ -12,6 +12,12 @@ class Track extends INamed {
     this.modifiers = modifiers ?? {TrackModifier.toReconsider: false};
   }
 
+  Track.fromTrack(Track track) {
+    name = track.name;
+    rating = track.rating;
+    modifiers = track.modifiers;
+  }
+
   void rate(RatingGrades newRating) {
     rating = newRating;
   }

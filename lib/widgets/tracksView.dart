@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:in_search_of_the_lost_chord/bloc/blocProvider.dart';
+import 'package:in_search_of_the_lost_chord/bloc/historyBloc.dart';
 import 'package:in_search_of_the_lost_chord/bloc/trackListBloc.dart';
 import 'package:in_search_of_the_lost_chord/models/release.dart';
+import 'package:in_search_of_the_lost_chord/widgets/lesser/history.dart';
 import 'package:in_search_of_the_lost_chord/widgets/lesser/tabBarContainer.dart';
 import 'lesser/trackList.dart';
 
@@ -24,8 +26,11 @@ class _TracksViewState extends State<TracksView> {
       child: Scaffold(
         body: BlocProvider<TrackListBloc>(
           bloc: TrackListBloc(widget.release),
-          child: TabBarView(
-              children: [TrackList(widget.release.tracks), Placeholder()]),
+          child: BlocProvider<HistoryBloc>(
+            bloc: HistoryBloc(widget.release),
+            child: TabBarView(
+                children: [TrackList(widget.release.tracks), History()]),
+          ),
         ),
         bottomNavigationBar: TabBar(
           tabs: <Widget>[

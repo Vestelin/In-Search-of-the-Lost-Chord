@@ -7,6 +7,23 @@ import 'package:in_search_of_the_lost_chord/models/utils/ratingUtils.dart';
 import 'modifiers/toReconsider.dart';
 import 'dialogs.dart';
 
+class HistoryTrackTile extends StatelessWidget {
+  final Track track;
+  HistoryTrackTile(this.track);
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      contentPadding: const EdgeInsets.symmetric(horizontal: 20),
+      title: Text(track.name,
+          softWrap: true,
+          overflow: TextOverflow.ellipsis,
+          style: TextStyle(fontSize: 18)),
+      subtitle: RatingUtils.convertRatingToTextColour(track.rating),
+    );
+  }
+}
+
 class TrackTile extends StatefulWidget {
   final Track track;
   TrackTile(this.track, {key}) : super(key: key);
@@ -17,9 +34,15 @@ class TrackTile extends StatefulWidget {
 }
 
 class _TrackTileState extends State<TrackTile> {
+  TrackBloc bloc;
+  @override
+  void initState() {
+    super.initState();
+    bloc = BlocProvider.of<TrackBloc>(context);
+  }
+
   @override
   Widget build(BuildContext context) {
-    final bloc = BlocProvider.of<TrackBloc>(context);
     return Container(
       decoration: BoxDecoration(border: Border.all(width: 0.3)),
       child: Ink(

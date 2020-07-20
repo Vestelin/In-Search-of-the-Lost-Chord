@@ -1,12 +1,12 @@
+import 'package:in_search_of_the_lost_chord/models/tracksHistory.dart';
 import 'package:in_search_of_the_lost_chord/models/misc/ratingGrades.dart';
 
 import 'iNamed.dart';
 import 'track.dart';
-import 'utils/stringUtils.dart';
 
 class Release extends INamed {
   List<Track> tracks = List<Track>();
-  List<List<Track>> historyOfRatings = List<List<Track>>();
+  List<TracksHistory> historyOfRatings;
 
   void addTrack(Track track) {
     tracks.add(track);
@@ -17,7 +17,8 @@ class Release extends INamed {
   }
 
   void addCurrentTracksToHistory() {
-    historyOfRatings.add(List<Track>.from(tracks));
+    var historyTracks = tracks.map((e) => Track.fromTrack(e)).toList();
+    historyOfRatings.add(TracksHistory(tracks: historyTracks));
   }
 
   void historyTracks() {
@@ -26,6 +27,7 @@ class Release extends INamed {
   }
 
   Release(name, {int numberOfTracks: 0}) : super(name: name) {
+    historyOfRatings = List<TracksHistory>();
     tracks = List<Track>();
     if (numberOfTracks > 0) {
       for (int i = 1; i <= numberOfTracks; i++) {
@@ -37,6 +39,7 @@ class Release extends INamed {
 
   Release.test() {
     name = "test";
+    historyOfRatings = List<TracksHistory>();
     tracks = [
       Track("One of These Days", rating: RatingGrades.masterpiece),
       Track("a Pillow of Winds", rating: RatingGrades.excellent),
@@ -46,6 +49,4 @@ class Release extends INamed {
       Track("Echoes", rating: RatingGrades.masterpiece)
     ];
   }
-
-  get ratingWithComma => StringUtils.insertCharAtIndex("rating", ',');
 }

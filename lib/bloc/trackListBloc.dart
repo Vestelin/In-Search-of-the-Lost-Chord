@@ -25,12 +25,6 @@ class TrackListBloc implements Bloc {
     controller.sink.add(tracks);
   }
 
-  void rateTrack(Track track) {
-    var element = tracks.indexOf(track);
-    tracks[element].rating = RatingGrades.excellent;
-    loadTracks();
-  }
-
   void loadTracks() {
     controller.sink.add(tracks);
   }

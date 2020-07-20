@@ -4,19 +4,36 @@ import 'package:in_search_of_the_lost_chord/bloc/blocProvider.dart';
 import 'package:in_search_of_the_lost_chord/bloc/trackBloc.dart';
 import 'package:in_search_of_the_lost_chord/bloc/trackListBloc.dart';
 import 'package:in_search_of_the_lost_chord/models/track.dart';
+import 'package:in_search_of_the_lost_chord/models/tracksHistory.dart';
 import 'package:in_search_of_the_lost_chord/widgets/lesser/dialogs.dart';
 import 'package:in_search_of_the_lost_chord/widgets/lesser/trackTile.dart';
+
+class HistoryTrackList extends StatelessWidget {
+  final TracksHistory history;
+  HistoryTrackList(this.history);
+  @override
+  Widget build(BuildContext context) {
+    List<Track> tracks = history.tracks;
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(history.dateOfSaving.toString()),
+      ),
+      body: ListView.builder(
+        itemCount: tracks.length,
+        itemBuilder: (context, index) => HistoryTrackTile(tracks[index]),
+      ),
+    );
+  }
+}
 
 class TrackList extends StatefulWidget {
   final List<Track> tracks;
   TrackList(this.tracks);
   @override
-  _TrackListState createState() => _TrackListState(tracks);
+  _TrackListState createState() => _TrackListState();
 }
 
 class _TrackListState extends State<TrackList> {
-  List<Track> tracks;
-  _TrackListState(this.tracks);
   @override
   Widget build(BuildContext context) {
     final bloc = BlocProvider.of<TrackListBloc>(context);
