@@ -1,12 +1,15 @@
 import 'package:in_search_of_the_lost_chord/models/track.dart';
 
 class TracksHistory {
-  DateTime dateOfSaving;
+  String dateOfSaving;
   List<Track> tracks;
 
   TracksHistory({this.tracks}) {
     var now = DateTime.now();
-    dateOfSaving = DateTime(now.year, now.month, now.day, now.hour, now.minute);
+    dateOfSaving = DateTime(now.year, now.month, now.day, now.hour, now.minute)
+        .toString()
+        .substring(0, 16)
+        .replaceAll(RegExp(r'-'), '.');
   }
 
   TracksHistory.fromJson(Map<String, dynamic> json) {
@@ -18,6 +21,6 @@ class TracksHistory {
   Map<String, dynamic> toJson() {
     List<Map<String, dynamic>> encodedTracks =
         tracks.map((e) => e.toJson()).toList();
-    return {'dateOfSaving': dateOfSaving.toString(), 'tracks': encodedTracks};
+    return {'dateOfSaving': dateOfSaving, 'tracks': encodedTracks};
   }
 }
