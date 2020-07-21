@@ -6,8 +6,6 @@ import 'package:in_search_of_the_lost_chord/widgets/lesser/releaseTile.dart';
 import 'package:keyboard_visibility/keyboard_visibility.dart';
 
 class Search extends StatefulWidget {
-  //static final GlobalKey<_SearchState> searchStateGlobalKey = GlobalKey();
-  // Search() : super(key: Search.searchStateGlobalKey);
   @override
   State<StatefulWidget> createState() {
     return _SearchState();

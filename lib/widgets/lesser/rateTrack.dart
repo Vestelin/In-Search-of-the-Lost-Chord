@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:in_search_of_the_lost_chord/widgets/lesser/rateTile.dart';
 
 class RateTrack extends StatefulWidget {
-  final List<RateTile> rateTiles; // = RatingUtils.getExistingTrackRateTiles();
+  final List<RateTile> rateTiles;
   RateTrack(this.rateTiles);
   @override
   State<StatefulWidget> createState() {

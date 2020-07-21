@@ -1,16 +1,8 @@
-import 'dart:convert';
-
 import 'package:in_search_of_the_lost_chord/models/release.dart';
-
 import 'IDataManager.dart';
 
 class Database {
   static List<Release> releases;
-  /*  = [
-    Release.test(),
-    Release("ziemniak"),
-    Release("dwa ziemniaki")
-  ]; */
 
   static IDataManager<List<Release>> dataManager;
 

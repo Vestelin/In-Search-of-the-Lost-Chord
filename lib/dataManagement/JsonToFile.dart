@@ -21,9 +21,7 @@ class JsonToFile<T> implements IDataManager<T> {
   @override
   void save(T data) async {
     String dataEncoded = jsonEncode(data);
-    //File file = File('$directoryPath/savedData.json');
     file.writeAsString(dataEncoded);
-    //file.delete();
   }
 
   Future<List<dynamic>> load() async {
