@@ -27,7 +27,7 @@ class _ReleaseTileState extends State<ReleaseTile> {
           title: Text(widget.release.name,
               softWrap: true,
               overflow: TextOverflow.ellipsis,
-              style: TextStyle(fontSize: 18)),
+              style: const TextStyle(fontSize: 18)),
           trailing: Text(widget.release.tracks.length.toString()),
           onTap: () {
             Database.saveReleases();

@@ -1,21 +1,21 @@
 # Summary
 
-Date : 2020-07-19 03:47:03
+Date : 2020-07-21 02:15:47
 
 Directory f:\Projects\in_search_of_the_lost_chord
 
-Total : 52 files,  1562 codes, 79 comments, 228 blanks, all 1869 lines
+Total : 55 files,  1822 codes, 77 comments, 270 blanks, all 2169 lines
 
 [details](details.md)
 
 ## Languages
 | language | files | code | comment | blank | total |
 | :--- | ---: | ---: | ---: | ---: | ---: |
-| Dart | 33 | 1,173 | 6 | 170 | 1,349 |
+| Dart | 36 | 1,432 | 4 | 212 | 1,648 |
 | JSON | 2 | 145 | 0 | 2 | 147 |
 | XML | 7 | 102 | 24 | 8 | 134 |
 | Groovy | 3 | 92 | 3 | 21 | 116 |
-| YAML | 1 | 15 | 45 | 14 | 74 |
+| YAML | 1 | 16 | 45 | 14 | 75 |
 | Markdown | 2 | 13 | 0 | 9 | 22 |
 | Swift | 1 | 12 | 0 | 2 | 14 |
 | Properties | 2 | 9 | 1 | 2 | 12 |
@@ -24,7 +24,7 @@ Total : 52 files,  1562 codes, 79 comments, 228 blanks, all 1869 lines
 ## Directories
 | path | files | code | comment | blank | total |
 | :--- | ---: | ---: | ---: | ---: | ---: |
-| . | 52 | 1,562 | 79 | 228 | 1,869 |
+| . | 55 | 1,822 | 77 | 270 | 2,169 |
 | android | 10 | 142 | 26 | 29 | 197 |
 | android\app | 6 | 94 | 25 | 18 | 137 |
 | android\app\src | 5 | 41 | 22 | 6 | 69 |
@@ -42,14 +42,14 @@ Total : 52 files,  1562 codes, 79 comments, 228 blanks, all 1869 lines
 | ios\Runner\Assets.xcassets\AppIcon.appiconset | 1 | 122 | 0 | 1 | 123 |
 | ios\Runner\Assets.xcassets\LaunchImage.imageset | 2 | 26 | 0 | 3 | 29 |
 | ios\Runner\Base.lproj | 2 | 61 | 2 | 2 | 65 |
-| lib | 33 | 1,173 | 6 | 170 | 1,349 |
-| lib\bloc | 6 | 144 | 0 | 50 | 194 |
-| lib\dataManagement | 1 | 18 | 0 | 4 | 22 |
-| lib\models | 11 | 226 | 0 | 34 | 260 |
-| lib\models\misc | 6 | 85 | 0 | 18 | 103 |
+| lib | 36 | 1,432 | 4 | 212 | 1,648 |
+| lib\bloc | 7 | 156 | 0 | 57 | 213 |
+| lib\dataManagement | 3 | 59 | 0 | 14 | 73 |
+| lib\models | 12 | 331 | 0 | 53 | 384 |
+| lib\models\misc | 6 | 97 | 0 | 22 | 119 |
 | lib\models\utils | 2 | 91 | 0 | 6 | 97 |
-| lib\widgets | 14 | 764 | 6 | 78 | 848 |
-| lib\widgets\lesser | 12 | 655 | 6 | 64 | 725 |
-| lib\widgets\lesser\modifiers | 1 | 39 | 0 | 5 | 44 |
+| lib\widgets | 13 | 858 | 4 | 83 | 945 |
+| lib\widgets\lesser | 11 | 744 | 4 | 69 | 817 |
+| lib\widgets\lesser\modifiers | 1 | 38 | 0 | 5 | 43 |
 
 [details](details.md)

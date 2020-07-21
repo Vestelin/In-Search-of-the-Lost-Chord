@@ -40,7 +40,8 @@ class _SearchState extends State<Search>
   bool get wantKeepAlive => true;
 
   Widget getCenteredErrorText() {
-    return Center(child: Text("Sorry, something with searching went wrong"));
+    return const Center(
+        child: const Text("Sorry, something with searching went wrong"));
   }
 
   Widget getCenteredText(String text) {
@@ -54,7 +55,7 @@ class _SearchState extends State<Search>
   Widget build(BuildContext context) {
     super.build(context);
     return SingleChildScrollView(
-      physics: NeverScrollableScrollPhysics(),
+      physics: const NeverScrollableScrollPhysics(),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[

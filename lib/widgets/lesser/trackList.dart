@@ -50,7 +50,7 @@ class _TrackListState extends State<TrackList> {
                           child: AddTrackDialog(),
                           bloc: AddingTrackBloc(trackListBloc: bloc)),
                     ),
-                child: Icon(Icons.add)),
+                child: const Icon(Icons.add)),
           )
         ],
       ),
@@ -60,12 +60,18 @@ class _TrackListState extends State<TrackList> {
         builder: (context, snapshot) {
           List<Track> tracksData = snapshot.data;
           if (tracksData == null) return Container();
+          const double _countOfPixelsToPreserveStateOfHundredTracks = 100000;
           return ListView.builder(
-              itemCount: tracksData.length,
-              itemBuilder: (context, index) => BlocProvider(
-                  bloc: TrackBloc(tracksData[index]),
-                  child: TrackTile(tracksData[index],
-                      key: ValueKey(tracksData[index]))));
+            cacheExtent: _countOfPixelsToPreserveStateOfHundredTracks,
+            itemCount: tracksData.length,
+            itemBuilder: (context, index) => BlocProvider(
+              bloc: TrackBloc(tracksData[index]),
+              child: TrackTile(
+                tracksData[index],
+                key: ValueKey(tracksData[index]),
+              ),
+            ),
+          );
         },
       ),
     );

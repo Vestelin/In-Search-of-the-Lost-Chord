@@ -1,10 +1,10 @@
 # Details
 
-Date : 2020-07-19 03:47:03
+Date : 2020-07-21 02:15:47
 
 Directory f:\Projects\in_search_of_the_lost_chord
 
-Total : 52 files,  1562 codes, 79 comments, 228 blanks, all 1869 lines
+Total : 55 files,  1822 codes, 77 comments, 270 blanks, all 2169 lines
 
 [summary](results.md)
 
@@ -32,36 +32,39 @@ Total : 52 files,  1562 codes, 79 comments, 228 blanks, all 1869 lines
 | [lib/bloc/addingTrackBloc.dart](/lib/bloc/addingTrackBloc.dart) | Dart | 26 | 0 | 9 | 35 |
 | [lib/bloc/bloc.dart](/lib/bloc/bloc.dart) | Dart | 3 | 0 | 0 | 3 |
 | [lib/bloc/blocProvider.dart](/lib/bloc/blocProvider.dart) | Dart | 29 | 0 | 7 | 36 |
+| [lib/bloc/historyBloc.dart](/lib/bloc/historyBloc.dart) | Dart | 22 | 0 | 10 | 32 |
 | [lib/bloc/searchBloc.dart](/lib/bloc/searchBloc.dart) | Dart | 26 | 0 | 8 | 34 |
-| [lib/bloc/trackBloc.dart](/lib/bloc/trackBloc.dart) | Dart | 30 | 0 | 13 | 43 |
-| [lib/bloc/trackListBloc.dart](/lib/bloc/trackListBloc.dart) | Dart | 30 | 0 | 13 | 43 |
-| [lib/dataManagement/database.dart](/lib/dataManagement/database.dart) | Dart | 18 | 0 | 4 | 22 |
-| [lib/main.dart](/lib/main.dart) | Dart | 21 | 0 | 4 | 25 |
+| [lib/bloc/trackBloc.dart](/lib/bloc/trackBloc.dart) | Dart | 26 | 0 | 12 | 38 |
+| [lib/bloc/trackListBloc.dart](/lib/bloc/trackListBloc.dart) | Dart | 24 | 0 | 11 | 35 |
+| [lib/dataManagement/IDataManager.dart](/lib/dataManagement/IDataManager.dart) | Dart | 4 | 0 | 1 | 5 |
+| [lib/dataManagement/JsonToFile.dart](/lib/dataManagement/JsonToFile.dart) | Dart | 27 | 0 | 6 | 33 |
+| [lib/dataManagement/database.dart](/lib/dataManagement/database.dart) | Dart | 28 | 0 | 7 | 35 |
+| [lib/main.dart](/lib/main.dart) | Dart | 28 | 0 | 5 | 33 |
 | [lib/models/iNamed.dart](/lib/models/iNamed.dart) | Dart | 4 | 0 | 0 | 4 |
 | [lib/models/misc/cores.dart](/lib/models/misc/cores.dart) | Dart | 15 | 0 | 4 | 19 |
-| [lib/models/misc/modifier.dart](/lib/models/misc/modifier.dart) | Dart | 4 | 0 | 2 | 6 |
+| [lib/models/misc/modifier.dart](/lib/models/misc/modifier.dart) | Dart | 16 | 0 | 6 | 22 |
 | [lib/models/misc/possibleMainTabViews.dart](/lib/models/misc/possibleMainTabViews.dart) | Dart | 4 | 0 | 0 | 4 |
 | [lib/models/misc/ratingAnimatedListCore.dart](/lib/models/misc/ratingAnimatedListCore.dart) | Dart | 46 | 0 | 12 | 58 |
 | [lib/models/misc/ratingGrades.dart](/lib/models/misc/ratingGrades.dart) | Dart | 11 | 0 | 0 | 11 |
 | [lib/models/misc/releaseTypes.dart](/lib/models/misc/releaseTypes.dart) | Dart | 5 | 0 | 0 | 5 |
-| [lib/models/release.dart](/lib/models/release.dart) | Dart | 34 | 0 | 7 | 41 |
-| [lib/models/track.dart](/lib/models/track.dart) | Dart | 12 | 0 | 3 | 15 |
+| [lib/models/release.dart](/lib/models/release.dart) | Dart | 62 | 0 | 11 | 73 |
+| [lib/models/track.dart](/lib/models/track.dart) | Dart | 55 | 0 | 9 | 64 |
+| [lib/models/tracksHistory.dart](/lib/models/tracksHistory.dart) | Dart | 22 | 0 | 5 | 27 |
 | [lib/models/utils/ratingUtils.dart](/lib/models/utils/ratingUtils.dart) | Dart | 86 | 0 | 5 | 91 |
 | [lib/models/utils/stringUtils.dart](/lib/models/utils/stringUtils.dart) | Dart | 5 | 0 | 1 | 6 |
-| [lib/widgets/lesser/addAlbumWindow.dart](/lib/widgets/lesser/addAlbumWindow.dart) | Dart | 122 | 0 | 11 | 133 |
-| [lib/widgets/lesser/dialogs.dart](/lib/widgets/lesser/dialogs.dart) | Dart | 108 | 4 | 13 | 125 |
-| [lib/widgets/lesser/modifiers/toReconsider.dart](/lib/widgets/lesser/modifiers/toReconsider.dart) | Dart | 39 | 0 | 5 | 44 |
+| [lib/widgets/lesser/dialogs.dart](/lib/widgets/lesser/dialogs.dart) | Dart | 254 | 4 | 25 | 283 |
+| [lib/widgets/lesser/history.dart](/lib/widgets/lesser/history.dart) | Dart | 59 | 0 | 2 | 61 |
+| [lib/widgets/lesser/modifiers/toReconsider.dart](/lib/widgets/lesser/modifiers/toReconsider.dart) | Dart | 38 | 0 | 5 | 43 |
 | [lib/widgets/lesser/rateTile.dart](/lib/widgets/lesser/rateTile.dart) | Dart | 58 | 0 | 5 | 63 |
 | [lib/widgets/lesser/rateTrack.dart](/lib/widgets/lesser/rateTrack.dart) | Dart | 25 | 0 | 3 | 28 |
-| [lib/widgets/lesser/rateTrackDialog.dart](/lib/widgets/lesser/rateTrackDialog.dart) | Dart | 30 | 0 | 2 | 32 |
 | [lib/widgets/lesser/releaseList.dart](/lib/widgets/lesser/releaseList.dart) | Dart | 25 | 0 | 3 | 28 |
-| [lib/widgets/lesser/releaseTile.dart](/lib/widgets/lesser/releaseTile.dart) | Dart | 44 | 0 | 4 | 48 |
-| [lib/widgets/lesser/search.dart](/lib/widgets/lesser/search.dart) | Dart | 78 | 2 | 9 | 89 |
+| [lib/widgets/lesser/releaseTile.dart](/lib/widgets/lesser/releaseTile.dart) | Dart | 46 | 0 | 4 | 50 |
+| [lib/widgets/lesser/search.dart](/lib/widgets/lesser/search.dart) | Dart | 78 | 0 | 9 | 87 |
 | [lib/widgets/lesser/tabBarContainer.dart](/lib/widgets/lesser/tabBarContainer.dart) | Dart | 15 | 0 | 2 | 17 |
-| [lib/widgets/lesser/trackList.dart](/lib/widgets/lesser/trackList.dart) | Dart | 54 | 0 | 3 | 57 |
-| [lib/widgets/lesser/trackTile.dart](/lib/widgets/lesser/trackTile.dart) | Dart | 57 | 0 | 4 | 61 |
+| [lib/widgets/lesser/trackList.dart](/lib/widgets/lesser/trackList.dart) | Dart | 70 | 0 | 4 | 74 |
+| [lib/widgets/lesser/trackTile.dart](/lib/widgets/lesser/trackTile.dart) | Dart | 76 | 0 | 7 | 83 |
 | [lib/widgets/mainPageTabs.dart](/lib/widgets/mainPageTabs.dart) | Dart | 74 | 0 | 9 | 83 |
-| [lib/widgets/tracksView.dart](/lib/widgets/tracksView.dart) | Dart | 35 | 0 | 5 | 40 |
-| [pubspec.yaml](/pubspec.yaml) | YAML | 15 | 45 | 14 | 74 |
+| [lib/widgets/tracksView.dart](/lib/widgets/tracksView.dart) | Dart | 40 | 0 | 5 | 45 |
+| [pubspec.yaml](/pubspec.yaml) | YAML | 16 | 45 | 14 | 75 |
 
 [summary](results.md)

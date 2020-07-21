@@ -57,7 +57,7 @@ class _TrackTileState extends State<TrackTile> {
                 title: Text(data.name,
                     softWrap: true,
                     overflow: TextOverflow.ellipsis,
-                    style: TextStyle(fontSize: 18)),
+                    style: const TextStyle(fontSize: 18)),
                 subtitle: RatingUtils.convertRatingToTextColour(data.rating),
                 trailing: ToReconsider(),
                 onTap: () {
