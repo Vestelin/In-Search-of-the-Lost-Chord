@@ -26,6 +26,10 @@ class Release extends INamed {
     resetTracksRating();
   }
 
+  void deleteTrack(Track track) {
+    tracks.remove(track);
+  }
+
   Release(name, {int numberOfTracks: 0}) : super(name: name) {
     historyOfRatings = List<TracksHistory>();
     tracks = List<Track>();

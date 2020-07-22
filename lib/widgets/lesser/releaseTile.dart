@@ -20,9 +20,9 @@ class _ReleaseTileState extends State<ReleaseTile> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(border: Border.all()),
-      child: Ink(
-        color: Colors.grey[800],
+      decoration: BoxDecoration(border: Border.all(), color: Colors.grey[800]),
+      child: Material(
+        color: Colors.transparent,
         child: ListTile(
           title: Text(widget.release.name,
               softWrap: true,

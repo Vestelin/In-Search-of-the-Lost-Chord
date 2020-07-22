@@ -17,7 +17,7 @@ class ExistingTrackRateTile extends RateTile {
   ExistingTrackRateTile(grade) : super(grade);
   @override
   Widget build(BuildContext context) {
-    final bloc = BlocProvider.of<TrackBloc>(context);
+    final TrackBloc bloc = BlocProvider.of<TrackBloc>(context);
     return Card(
         child: ListTile(
       title: Center(
@@ -38,7 +38,7 @@ class NewTrackRateTile extends RateTile {
   NewTrackRateTile(grade) : super(grade);
   @override
   Widget build(BuildContext context) {
-    final bloc = BlocProvider.of<AddingTrackBloc>(context);
+    final AddingTrackBloc bloc = BlocProvider.of<AddingTrackBloc>(context);
     return StreamBuilder<RatingGrades>(
         stream: bloc.stream,
         builder: (context, snapshot) {

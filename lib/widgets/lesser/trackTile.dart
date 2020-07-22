@@ -44,9 +44,10 @@ class _TrackTileState extends State<TrackTile> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(border: Border.all(width: 0.3)),
-      child: Ink(
-        color: Colors.grey[800],
+      decoration: BoxDecoration(
+          border: Border.all(width: 0.3), color: Colors.grey[800]),
+      child: Material(
+        color: Colors.transparent,
         child: StreamBuilder<Track>(
             stream: bloc.trackStream,
             initialData: bloc.track,

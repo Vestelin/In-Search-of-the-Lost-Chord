@@ -20,7 +20,6 @@ class RatingAnimatedListCore<T extends INamed> {
     listState.insertItem(index);
   }
 
-
   void addItem(T ratingItem) {
     if (_insertNewItemAsFirstElement) {
       _addItemToBothLists(ratingItem);
@@ -34,7 +33,7 @@ class RatingAnimatedListCore<T extends INamed> {
   Widget buildItem(int index, Animation animation) {
     var properRatingWidget = getProperRatingWidget(presentedList[index]);
     return SlideTransition(
-      position: Tween<Offset>(begin: Offset(1, 0), end: Offset.zero)
+      position: Tween<Offset>(begin: Offset(1, 0), end: Offset(0, 0))
           .animate(animation),
       child: properRatingWidget,
     );
@@ -51,7 +50,5 @@ class RatingAnimatedListCore<T extends INamed> {
     };
     listState.removeItem(index, bbuilder, duration: Duration());
     presentedList.removeAt(index);
-
-
   }
 }

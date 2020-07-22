@@ -18,6 +18,11 @@ class TrackListBloc implements Bloc {
 
   Stream<List<Track>> get stream => controller.stream;
 
+  void deleteTrack(Track track) {
+    _release.deleteTrack(track);
+    controller.sink.add(tracks);
+  }
+
   void addTrack(track) {
     _release.addTrack(track);
     controller.sink.add(tracks);

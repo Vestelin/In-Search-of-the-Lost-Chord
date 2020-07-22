@@ -64,11 +64,23 @@ class _TrackListState extends State<TrackList> {
           return ListView.builder(
             cacheExtent: _countOfPixelsToPreserveStateOfHundredTracks,
             itemCount: tracksData.length,
-            itemBuilder: (context, index) => BlocProvider(
-              bloc: TrackBloc(tracksData[index]),
-              child: TrackTile(
-                tracksData[index],
-                key: ValueKey(tracksData[index]),
+            itemBuilder: (context, index) => Dismissible(
+              background: Container(color: Colors.black),
+              onDismissed: (direction) {
+                bloc.deleteTrack(tracksData[index]);
+                Scaffold.of(context).showSnackBar(SnackBar(
+                  backgroundColor: Colors.grey[500],
+                  duration: Duration(milliseconds: 700),
+                  content: Text("You deleted ${tracksData[index].name}."),
+                ));
+              },
+              key: ValueKey(tracksData[index]),
+              child: BlocProvider(
+                bloc: TrackBloc(tracksData[index]),
+                child: TrackTile(
+                  tracksData[index],
+                  key: ValueKey(tracksData[index]),
+                ),
               ),
             ),
           );
