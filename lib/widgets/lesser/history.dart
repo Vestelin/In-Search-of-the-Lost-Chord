@@ -35,7 +35,8 @@ class History extends StatelessWidget {
                 itemCount: data.length,
                 itemBuilder: (BuildContext context, int index) {
                   var currentHistory = data[index];
-                  return Card(
+                  return Container(
+                    decoration: BoxDecoration(border: Border.all()),
                     child: ListTile(
                       title: Text(currentHistory.dateOfSaving.toString(),
                           softWrap: true,

@@ -12,7 +12,7 @@ class Database {
         List<Release>();
   }
 
-  static void saveReleases() async {
+  static Future<void> saveReleases() async {
     dataManager.save(releases);
   }
 

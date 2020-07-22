@@ -137,7 +137,7 @@ class RateTrackDialog extends StatelessWidget {
       shouldDispose: false,
       bloc: _bloc,
       child: SizedBox(
-        height: 100,
+        height: 220,
         width: 200,
         child: Column(
           children: <Widget>[

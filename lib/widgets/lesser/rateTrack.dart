@@ -15,11 +15,16 @@ class _RateTrackState extends State<RateTrack> {
   Widget build(BuildContext context) {
     return Container(
       child: SizedBox(
-        height: 60,
-        child: ListView(
-          physics: BouncingScrollPhysics(),
-          itemExtent: 60,
-          children: widget.rateTiles,
+        height: 180,
+        child: NotificationListener<OverscrollIndicatorNotification>(
+          onNotification: (OverscrollIndicatorNotification overscroll) {
+            overscroll.disallowGlow();
+            return false;
+          },
+          child: ListView(
+            itemExtent: 60,
+            children: widget.rateTiles,
+          ),
         ),
       ),
     );

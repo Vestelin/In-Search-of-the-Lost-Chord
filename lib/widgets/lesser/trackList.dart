@@ -79,7 +79,7 @@ class _TrackListState extends State<TrackList> {
                 bloc: TrackBloc(tracksData[index]),
                 child: TrackTile(
                   tracksData[index],
-                  key: ValueKey(tracksData[index]),
+                  //key: ValueKey(tracksData[index]),
                 ),
               ),
             ),

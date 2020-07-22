@@ -44,12 +44,20 @@ class _MainPageTabsState extends State<MainPageTabs> {
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: const Icon(Icons.library_music),
-            title: const Text("Releases"),
+            icon: const Icon(Icons.library_music, size: 20),
+            activeIcon: const Icon(
+              Icons.library_music,
+            ),
+            title: const Text("Releases",
+                style: const TextStyle(color: Colors.grey)),
           ),
           BottomNavigationBarItem(
-            icon: const Icon(Icons.search),
-            title: const Text("Search"),
+            icon: const Icon(Icons.search, size: 20),
+            activeIcon: const Icon(
+              Icons.search,
+            ),
+            title: const Text("Search",
+                style: const TextStyle(color: Colors.grey)),
           )
         ],
         currentIndex: widget.manager.selected,

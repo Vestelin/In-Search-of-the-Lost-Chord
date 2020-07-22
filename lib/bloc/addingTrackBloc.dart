@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:in_search_of_the_lost_chord/bloc/bloc.dart';
 import 'package:in_search_of_the_lost_chord/bloc/trackListBloc.dart';
+import 'package:in_search_of_the_lost_chord/dataManagement/database.dart';
 import 'package:in_search_of_the_lost_chord/models/misc/ratingGrades.dart';
 import 'package:in_search_of_the_lost_chord/models/track.dart';
 
@@ -25,6 +26,7 @@ class AddingTrackBloc extends Bloc {
   void finalizeAdding() {
     Track track = Track(name, rating: currentGrade);
     trackListBloc.addTrack(track);
+    Database.saveReleases();
   }
 
   @override

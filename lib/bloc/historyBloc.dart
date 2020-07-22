@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:in_search_of_the_lost_chord/dataManagement/database.dart';
 import 'package:in_search_of_the_lost_chord/models/release.dart';
 import 'package:in_search_of_the_lost_chord/models/tracksHistory.dart';
 
@@ -22,6 +23,7 @@ class HistoryBloc extends Bloc {
   void addHistory() {
     release.historyTracks();
     _controller.sink.add(historyList);
+    Database.saveReleases();
   }
 
   @override

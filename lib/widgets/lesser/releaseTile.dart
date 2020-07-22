@@ -30,7 +30,6 @@ class _ReleaseTileState extends State<ReleaseTile> {
               style: const TextStyle(fontSize: 18)),
           trailing: Text(widget.release.tracks.length.toString()),
           onTap: () {
-            Database.saveReleases();
             Navigator.push(
                 context,
                 MaterialPageRoute(
