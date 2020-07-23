@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:in_search_of_the_lost_chord/dataManagement/database.dart';
 import 'package:in_search_of_the_lost_chord/models/misc/cores.dart';
 import 'package:in_search_of_the_lost_chord/models/release.dart';
 
@@ -21,7 +20,7 @@ class _ReleaseTileState extends State<ReleaseTile> {
   Widget build(BuildContext context) {
     return Card(
       color: Colors.grey[800],
-      margin: EdgeInsets.only(top: 1),
+      margin: const EdgeInsets.only(top: 1),
       //decoration: BoxDecoration(border: Border.all(), color: Colors.grey[800]),
       child: Material(
         color: Colors.transparent,

@@ -70,7 +70,7 @@ class _TrackListState extends State<TrackList> {
                 bloc.deleteTrack(tracksData[index]);
                 Scaffold.of(context).showSnackBar(SnackBar(
                   backgroundColor: Colors.grey[500],
-                  duration: Duration(milliseconds: 700),
+                  duration: const Duration(milliseconds: 700),
                   content: Text("You deleted ${tracksData[index].name}."),
                 ));
               },

@@ -47,7 +47,7 @@ class _SearchState extends State<Search>
   Widget getCenteredText(String text) {
     return Padding(
       child: Text(text),
-      padding: EdgeInsets.only(top: 100),
+      padding: const EdgeInsets.only(top: 100),
     );
   }
 
@@ -59,24 +59,26 @@ class _SearchState extends State<Search>
       children: <Widget>[
         TextField(
           onChanged: (text) => bloc.sinkReleasesByKeyword(text),
-          decoration: InputDecoration(
-              contentPadding: const EdgeInsets.symmetric(horizontal: 18)),
+          style: const TextStyle(
+            fontSize: 18,
+          ),
+          decoration: const InputDecoration(
+            contentPadding: const EdgeInsets.all(18),
+          ),
         ),
         Expanded(
-          child: Container(
-            child: StreamBuilder<List<Release>>(
-              stream: bloc.searchStream,
-              builder: (context, snapshot) {
-                final releases = snapshot.data;
-                if (releases == null) return Container();
-                if (releases.isEmpty) {
-                  return getCenteredText("There're no such releases");
-                }
-                List<Release> foundReleases = snapshot.data;
-                var listView = getListViewOfFoundReleases(foundReleases);
-                return listView;
-              },
-            ),
+          child: StreamBuilder<List<Release>>(
+            stream: bloc.searchStream,
+            builder: (context, snapshot) {
+              final releases = snapshot.data;
+              if (releases == null) return Container();
+              if (releases.isEmpty) {
+                return getCenteredText("There're no such releases");
+              }
+              List<Release> foundReleases = snapshot.data;
+              var listView = getListViewOfFoundReleases(foundReleases);
+              return listView;
+            },
           ),
         )
       ],

@@ -71,7 +71,7 @@ class _AddTrackDialogState<Track> extends State<AddTrackDialog<Track>> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      contentPadding: EdgeInsets.fromLTRB(20, 20, 20, 0),
+      contentPadding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
@@ -83,7 +83,7 @@ class _AddTrackDialogState<Track> extends State<AddTrackDialog<Track>> {
               fontSize: 18,
             ),
             decoration: const InputDecoration(
-                labelText: "Name", labelStyle: TextStyle(fontSize: 16)),
+                labelText: "Name", labelStyle: const TextStyle(fontSize: 16)),
           ),
           Container(
             height: 15,

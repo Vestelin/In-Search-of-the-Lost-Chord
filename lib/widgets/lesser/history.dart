@@ -10,10 +10,10 @@ class History extends StatelessWidget {
     final HistoryBloc bloc = BlocProvider.of<HistoryBloc>(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text("History"),
+        title: const Text("History"),
         actions: <Widget>[
           FlatButton(
-            child: Icon(Icons.add),
+            child: const Icon(Icons.add),
             onPressed: () => bloc.addHistory(),
           )
         ],
@@ -23,25 +23,29 @@ class History extends StatelessWidget {
           initialData: bloc.historyList,
           builder: (context, snapshot) {
             if (snapshot.hasError)
-              return Center(
-                child: Text("Error occured"),
+              return const Center(
+                child: const Text("Error occured"),
               );
             var data = snapshot.data;
             if (data == null)
-              return Center(
-                child: Text("There is no history"),
+              return const Center(
+                child: const Text("There is no history"),
               );
             return ListView.builder(
                 itemCount: data.length,
                 itemBuilder: (BuildContext context, int index) {
                   var currentHistory = data[index];
                   return Card(
-                    margin: EdgeInsets.only(top: 1),
+                    margin: const EdgeInsets.only(top: 1),
                     child: ListTile(
-                      title: Text(currentHistory.dateOfSaving.toString(),
+                      title: Text(currentHistory.dateOfSaving.substring(0, 10),
                           softWrap: true,
                           overflow: TextOverflow.ellipsis,
-                          style: TextStyle(fontSize: 18)),
+                          style: const TextStyle(fontSize: 18)),
+                      trailing: Text(currentHistory.dateOfSaving.substring(11),
+                          softWrap: true,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(fontSize: 18)),
                       onTap: () {
                         bloc.currentHistory = currentHistory;
                         Navigator.push(
