@@ -70,6 +70,7 @@ class _MainPageTabsState extends State<MainPageTabs> {
         },
         child: BlocProvider<SearchBloc>(
             child: PageView(
+                physics: NeverScrollableScrollPhysics(),
                 onPageChanged: setSelectedToChosen,
                 controller: controller,
                 children: widget.manager.mainPageWidgets),

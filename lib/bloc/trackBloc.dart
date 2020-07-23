@@ -19,7 +19,7 @@ class TrackBloc implements Bloc {
 
   Stream<Track> get trackStream => rateController.stream;
 
-  void rateTrack(RatingGrades newRating) {
+  void rateTrack(RatingGrades newRating) async {
     track.rate(newRating);
     rateController.sink.add(track);
     Database.saveReleases();

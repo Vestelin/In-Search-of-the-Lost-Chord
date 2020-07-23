@@ -19,8 +19,10 @@ class ReleaseTile extends StatefulWidget {
 class _ReleaseTileState extends State<ReleaseTile> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(border: Border.all(), color: Colors.grey[800]),
+    return Card(
+      color: Colors.grey[800],
+      margin: EdgeInsets.only(top: 1),
+      //decoration: BoxDecoration(border: Border.all(), color: Colors.grey[800]),
       child: Material(
         color: Colors.transparent,
         child: ListTile(

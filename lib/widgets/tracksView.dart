@@ -29,9 +29,11 @@ class _TracksViewState extends State<TracksView> {
           child: BlocProvider<HistoryBloc>(
             bloc: HistoryBloc(widget.release),
             child: TabBarView(
+                physics: const NeverScrollableScrollPhysics(),
                 children: [TrackList(widget.release.tracks), History()]),
           ),
         ),
+        //   extendBody: true,
         bottomNavigationBar: TabBar(
           tabs: <Widget>[
             const TabBarContainer(const Icon(Icons.queue_music), "Tracks"),

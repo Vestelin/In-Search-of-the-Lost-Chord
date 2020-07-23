@@ -19,7 +19,7 @@ class _SearchState extends State<Search>
       KeyboardVisibilityNotification();
   Widget getListViewOfFoundReleases(List<Release> foundReleases) {
     return ListView.builder(
-        physics: NeverScrollableScrollPhysics(),
+        //physics: NeverScrollableScrollPhysics(),
         itemCount: foundReleases.length,
         itemBuilder: (context, index) =>
             ReleaseTile.noKey(foundReleases[index]));
@@ -54,18 +54,16 @@ class _SearchState extends State<Search>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return SingleChildScrollView(
-      physics: const NeverScrollableScrollPhysics(),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          TextField(
-            onChanged: (text) => bloc.sinkReleasesByKeyword(text),
-            decoration: InputDecoration(
-                contentPadding: const EdgeInsets.symmetric(horizontal: 18)),
-          ),
-          SizedBox(
-            height: 500,
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[
+        TextField(
+          onChanged: (text) => bloc.sinkReleasesByKeyword(text),
+          decoration: InputDecoration(
+              contentPadding: const EdgeInsets.symmetric(horizontal: 18)),
+        ),
+        Expanded(
+          child: Container(
             child: StreamBuilder<List<Release>>(
               stream: bloc.searchStream,
               builder: (context, snapshot) {
@@ -79,9 +77,9 @@ class _SearchState extends State<Search>
                 return listView;
               },
             ),
-          )
-        ],
-      ),
+          ),
+        )
+      ],
     );
   }
 }
