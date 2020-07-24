@@ -144,7 +144,9 @@ class RateTrackDialog extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: Center(
-                child: RateTrack(RatingUtils.getExistingTrackRateTiles()),
+                child: RateTrack(
+                  RatingUtils.getExistingTrackRateTiles(),
+                ),
               ),
             )
           ],

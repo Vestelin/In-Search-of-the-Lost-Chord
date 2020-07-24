@@ -3,6 +3,7 @@ import 'package:in_search_of_the_lost_chord/bloc/blocProvider.dart';
 import 'package:in_search_of_the_lost_chord/bloc/trackBloc.dart';
 import 'package:in_search_of_the_lost_chord/models/track.dart';
 import 'package:in_search_of_the_lost_chord/models/utils/ratingUtils.dart';
+import 'package:in_search_of_the_lost_chord/widgets/scrollControllerProvider.dart';
 
 import 'modifiers/toReconsider.dart';
 import 'dialogs.dart';
@@ -61,10 +62,12 @@ class _TrackTileState extends State<TrackTile> {
                     style: const TextStyle(fontSize: 18)),
                 subtitle: RatingUtils.convertRatingToTextColour(data.rating),
                 trailing: ToReconsider(),
-                onTap: () {
+                onTap: () async {
                   showDialog(
                     context: context,
-                    builder: (context) => Dialog(child: RateTrackDialog(bloc)),
+                    builder: (context) => Dialog(
+                      child: RateTrackDialog(bloc),
+                    ),
                   );
                 },
                 onLongPress: () {

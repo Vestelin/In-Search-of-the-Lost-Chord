@@ -27,7 +27,6 @@ class RatingAnimatedListCore<T extends INamed> {
     } else {
       _addItemToBothLists(ratingItem, index: presentedList.length);
     }
-    Database.saveReleases();
   }
 
   void remove(T ratingItem) {}
