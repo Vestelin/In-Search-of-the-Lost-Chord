@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 
 class ScrollControllerProvider extends InheritedWidget {
   final ScrollController controller;
-  ScrollControllerProvider(this.controller, {Widget child})
-      : super(child: child);
+  final int index;
+  ScrollControllerProvider({Widget child, this.index: -1})
+      : controller = ScrollController(),
+        super(child: child);
 
   @override
   bool updateShouldNotify(InheritedWidget oldWidget) {

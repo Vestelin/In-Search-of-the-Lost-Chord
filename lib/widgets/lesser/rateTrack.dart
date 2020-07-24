@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:in_search_of_the_lost_chord/models/misc/ratingGrades.dart';
 import 'package:in_search_of_the_lost_chord/widgets/lesser/rateTile.dart';
 import 'package:in_search_of_the_lost_chord/widgets/scrollControllerProvider.dart';
 
@@ -15,11 +16,16 @@ import 'package:in_search_of_the_lost_chord/widgets/scrollControllerProvider.dar
 */
 class RateTrack extends StatelessWidget {
   final List<RateTile> rateTiles;
-  RateTrack(this.rateTiles);
+  final bool scrollToCurrentRating;
+  RateTrack(this.rateTiles, this.scrollToCurrentRating);
   @override
   Widget build(BuildContext context) {
-    final ScrollControllerProvider controllerProvider =
-        ScrollControllerProvider.of(context);
+    ScrollControllerProvider controllerProvider;
+    if (scrollToCurrentRating) {
+      controllerProvider = ScrollControllerProvider.of(context);
+      WidgetsBinding.instance.addPostFrameCallback(
+          (_) => scrollToProperRateTile(controllerProvider));
+    }
     return Container(
       child: SizedBox(
         height: 180,
@@ -31,11 +37,25 @@ class RateTrack extends StatelessWidget {
           child: ListView(
             itemExtent: 60,
             children: rateTiles,
-            controller: controllerProvider.controller,
+            controller: controllerProvider?.controller ?? ScrollController(),
           ),
         ),
       ),
     );
+  }
+}
+
+Future<void> scrollToProperRateTile(ScrollControllerProvider provider) async {
+  const int extentOfItemInList = 60;
+  if (provider.index != -1) {
+    ScrollController controller = provider.controller;
+    controller.jumpTo(((provider.index > 0
+                ? provider.index == RatingGrades.values.length - 1
+                    ? provider.index - 2
+                    : provider.index - 1
+                : provider.index) *
+            extentOfItemInList)
+        .toDouble());
   }
 }
 

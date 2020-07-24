@@ -66,7 +66,9 @@ class _TrackTileState extends State<TrackTile> {
                   showDialog(
                     context: context,
                     builder: (context) => Dialog(
-                      child: RateTrackDialog(bloc),
+                      child: ScrollControllerProvider(
+                          index: bloc.track.rating.index,
+                          child: RateTrackDialog(bloc)),
                     ),
                   );
                 },

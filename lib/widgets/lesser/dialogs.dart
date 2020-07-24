@@ -94,7 +94,7 @@ class _AddTrackDialogState<Track> extends State<AddTrackDialog<Track>> {
               builder: (context, snapshot) {
                 var grade = snapshot.data;
                 if (grade == null) return Container();
-                return RateTrack(RatingUtils.getNewTrackRateTiles());
+                return RateTrack(RatingUtils.getNewTrackRateTiles(), false);
               })
         ],
       ),
@@ -144,9 +144,7 @@ class RateTrackDialog extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: Center(
-                child: RateTrack(
-                  RatingUtils.getExistingTrackRateTiles(),
-                ),
+                child: RateTrack(RatingUtils.getExistingTrackRateTiles(), true),
               ),
             )
           ],
