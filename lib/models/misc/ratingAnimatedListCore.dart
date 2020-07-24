@@ -16,16 +16,19 @@ class RatingAnimatedListCore<T extends INamed> {
   AnimatedListState get listState => _listKey.currentState;
   GlobalKey get listKey => _listKey;
 
-  void _addItemToBothLists(T ratingItem, {int index: 0}) {
+  void _addItemToBothLists(T ratingItem, {int index: 0, bool animate}) {
     presentedList.insert(index, ratingItem);
-    listState.insertItem(index);
+    animate
+        ? listState.insertItem(index)
+        : listState.insertItem(index, duration: Duration.zero);
   }
 
-  void addItem(T ratingItem) {
+  void addItem(T ratingItem, {bool animate}) {
     if (_insertNewItemAsFirstElement) {
-      _addItemToBothLists(ratingItem);
+      _addItemToBothLists(ratingItem, animate: animate);
     } else {
-      _addItemToBothLists(ratingItem, index: presentedList.length);
+      _addItemToBothLists(ratingItem,
+          index: presentedList.length, animate: animate);
     }
   }
 

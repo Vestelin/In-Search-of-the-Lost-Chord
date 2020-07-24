@@ -173,6 +173,8 @@ class _AddAlbumWindowState extends State<AddAlbumWindow> {
   String name;
   int numberOfTracks;
 
+  Release _releaseToAdd;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -249,20 +251,20 @@ class _AddAlbumWindowState extends State<AddAlbumWindow> {
   }
 
   void _addReleaseAndPushToTracksView(BuildContext context) {
-    Release releaseToAdd = _createReleaseFromGivenValues();
-    _addReleaseAndRemoveDialog(context);
+    _addReleaseAndRemoveDialog(context, animate: false);
     Navigator.push(context,
-        MaterialPageRoute(builder: (context) => TracksView(releaseToAdd)));
+        MaterialPageRoute(builder: (context) => TracksView(_releaseToAdd)));
   }
 
-  void _addReleaseAndRemoveDialog(BuildContext context) {
+  void _addReleaseAndRemoveDialog(BuildContext context, {bool animate: true}) {
+    _addRelease(animate: animate);
     Navigator.pop(context);
-    _addRelease();
   }
 
-  void _addRelease({Release release}) {
-    final Release releaseToAdd = release ?? _createReleaseFromGivenValues();
-    Cores.releaseListCore.addItem(releaseToAdd);
+  void _addRelease({Release release, bool animate: true}) {
+    _releaseToAdd = _createReleaseFromGivenValues();
+    final Release releaseToAdd = release ?? _releaseToAdd;
+    Cores.releaseListCore.addItem(releaseToAdd, animate: animate);
   }
 
   Release _createReleaseFromGivenValues() {
