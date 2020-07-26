@@ -7,8 +7,6 @@ import 'lesser/releaseList.dart';
 import 'lesser/search.dart';
 
 class MainPageTabs extends StatefulWidget {
-  final MainPageManager manager = MainPageManager();
-
   @override
   State<StatefulWidget> createState() {
     return _MainPageTabsState();
@@ -18,9 +16,6 @@ class MainPageTabs extends StatefulWidget {
 PageController controller = PageController();
 
 class _MainPageTabsState extends State<MainPageTabs> {
-  void setSelectedToChosen(int index) =>
-      setState(() => widget.manager.selected = index);
-
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -49,14 +44,4 @@ class _MainPageTabsState extends State<MainPageTabs> {
       ),
     );
   }
-}
-
-class MainPageManager {
-  int selected;
-
-  MainPageManager() {
-    selected = 0;
-  }
-
-  final List<Widget> mainPageWidgets = [ReleaseList(), Search()];
 }
