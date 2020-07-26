@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:in_search_of_the_lost_chord/dataManagement/database.dart';
 import 'package:in_search_of_the_lost_chord/models/iNamed.dart';
 
 class RatingAnimatedListCore<T extends INamed> {

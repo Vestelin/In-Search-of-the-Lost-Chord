@@ -18,6 +18,7 @@ class _ReleaseListState extends State<ReleaseList> {
   @override
   Widget build(BuildContext context) {
     return AnimatedList(
+      physics: const AlwaysScrollableScrollPhysics(),
       key: core.listKey,
       itemBuilder: (context, index, animation) =>
           core.buildItem(index, animation),

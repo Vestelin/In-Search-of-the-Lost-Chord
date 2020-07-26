@@ -7,7 +7,7 @@ import 'dialogs.dart';
 
 class ReleaseTile extends StatefulWidget {
   final Release release;
-  ReleaseTile(this.release, Key key) : super(key: key);
+  ReleaseTile(this.release, {Key key}) : super(key: key);
   ReleaseTile.noKey(this.release);
   @override
   State<StatefulWidget> createState() {
@@ -24,6 +24,12 @@ class _ReleaseTileState extends State<ReleaseTile> {
       //decoration: BoxDecoration(border: Border.all(), color: Colors.grey[800]),
       child: Material(
         color: Colors.transparent,
+        /* child: GestureDetector(
+          onHorizontalDragEnd: (_) => showDialog(
+              context: context,
+              builder: (context) => RemoveItemDialog<Release>(
+                  item: widget.release,
+                  removeFunction: Cores.releaseListCore.removeItem)), */
         child: ListTile(
           title: Text(widget.release.name,
               softWrap: true,
@@ -44,6 +50,7 @@ class _ReleaseTileState extends State<ReleaseTile> {
           },
         ),
       ),
+      //),
     );
   }
 }

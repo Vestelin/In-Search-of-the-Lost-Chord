@@ -25,6 +25,7 @@ abstract class NameManipulationDialog<T> extends StatelessWidget {
       content: TextField(
         controller: nameController,
         textInputAction: TextInputAction.done,
+        autofocus: true,
         style: const TextStyle(
           fontSize: 18,
         ),
@@ -280,5 +281,29 @@ class _AddAlbumWindowState extends State<AddAlbumWindow> {
     return numberofTracksInString != null && numberofTracksInString.trim() != ""
         ? int.tryParse(numberofTracksInString)
         : 0;
+  }
+}
+
+class RemoveItemDialog<T extends INamed> extends StatelessWidget {
+  final void Function(T) removeFunction;
+  final T item;
+  RemoveItemDialog({this.item, this.removeFunction});
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      contentPadding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+      content: Text("Are you sure, you want do delete ${item.name}?",
+          style: const TextStyle(fontSize: 16)),
+      actions: <Widget>[
+        FlatButton(
+            onPressed: () {
+              removeFunction(item);
+              Navigator.pop(context);
+            },
+            child: const Text("Yes")),
+        FlatButton(
+            onPressed: () => Navigator.pop(context), child: const Text("No"))
+      ],
+    );
   }
 }

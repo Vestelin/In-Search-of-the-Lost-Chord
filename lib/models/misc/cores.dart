@@ -10,7 +10,7 @@ class Cores {
 
   static initializeCores() {
     releaseListCore = RatingAnimatedListCore<Release>(
-        (item) => ReleaseTile(item, ObjectKey(item)),
+        (item) => ReleaseTile(item, key: ObjectKey(item)),
         GlobalKey<AnimatedListState>(),
         Database.releases,
         true);
