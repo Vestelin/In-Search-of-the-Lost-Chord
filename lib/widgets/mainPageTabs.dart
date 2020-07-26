@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:in_search_of_the_lost_chord/bloc/blocProvider.dart';
 import 'package:in_search_of_the_lost_chord/bloc/searchBloc.dart';
+import 'package:in_search_of_the_lost_chord/widgets/lesser/tabBarContainer.dart';
 import 'lesser/dialogs.dart';
 import 'lesser/releaseList.dart';
 import 'lesser/search.dart';
@@ -22,59 +23,29 @@ class _MainPageTabsState extends State<MainPageTabs> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Center(child: const Text("In Search of the Lost Chord")),
-        actions: <Widget>[
-          SizedBox(
-            width: 60,
-            child: FlatButton(
-                onPressed: () {
-                  showDialog(
-                    context: context,
-                    builder: (context) => Dialog(
-                      child: AddAlbumWindow(),
-                    ),
-                  );
-                },
-                child: const Icon(Icons.add)),
-          )
-        ],
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: const Icon(Icons.library_music, size: 20),
-            activeIcon: const Icon(
-              Icons.library_music,
+    return DefaultTabController(
+      length: 2,
+      initialIndex: 0,
+      child: Scaffold(
+        body: GestureDetector(
+          onTap: () {
+            FocusScopeNode currentFocus = FocusScope.of(context);
+            if (!currentFocus.hasPrimaryFocus) currentFocus.unfocus();
+          },
+          child: BlocProvider<SearchBloc>(
+            bloc: SearchBloc(),
+            child: TabBarView(
+              physics: const NeverScrollableScrollPhysics(),
+              children: [ReleaseList(), Search()],
             ),
-            title: const Text("Releases",
-                style: const TextStyle(color: Colors.grey)),
           ),
-          BottomNavigationBarItem(
-            icon: const Icon(Icons.search, size: 20),
-            activeIcon: const Icon(
-              Icons.search,
-            ),
-            title: const Text("Search",
-                style: const TextStyle(color: Colors.grey)),
-          )
-        ],
-        currentIndex: widget.manager.selected,
-        onTap: (index) => controller.jumpToPage(index),
-      ),
-      body: GestureDetector(
-        onTap: () {
-          FocusScopeNode currentFocus = FocusScope.of(context);
-          if (!currentFocus.hasPrimaryFocus) currentFocus.unfocus();
-        },
-        child: BlocProvider<SearchBloc>(
-            child: PageView(
-                physics: const NeverScrollableScrollPhysics(),
-                onPageChanged: setSelectedToChosen,
-                controller: controller,
-                children: widget.manager.mainPageWidgets),
-            bloc: SearchBloc()),
+        ),
+        bottomNavigationBar: TabBar(
+          tabs: <Widget>[
+            const TabBarContainer(const Icon(Icons.library_music), "Releases"),
+            const TabBarContainer(const Icon(Icons.search), "Search"),
+          ],
+        ),
       ),
     );
   }
