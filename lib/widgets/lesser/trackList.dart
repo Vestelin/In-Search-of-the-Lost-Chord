@@ -67,12 +67,12 @@ class _TrackListState extends State<TrackList> {
             itemBuilder: (context, index) => Dismissible(
               background: Container(color: Colors.black),
               onDismissed: (direction) {
-                bloc.deleteTrack(tracksData[index]);
                 Scaffold.of(context).showSnackBar(SnackBar(
                   backgroundColor: Colors.grey[500],
                   duration: const Duration(milliseconds: 700),
                   content: Text("You deleted ${tracksData[index].name}."),
                 ));
+                bloc.deleteTrack(tracksData[index]);
               },
               key: ValueKey(tracksData[index]),
               child: BlocProvider(
