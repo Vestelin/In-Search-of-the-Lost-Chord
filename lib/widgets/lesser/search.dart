@@ -55,9 +55,7 @@ class _SearchState extends State<Search>
   Widget build(BuildContext context) {
     super.build(context);
     return Scaffold(
-      appBar: AppBar(
-          title:
-              const Center(child: const Text("In Search of the Lost Chord"))),
+      appBar: AppBar(title: const Text("In Search of the Lost Chord")),
       body: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[

@@ -21,7 +21,7 @@ class _ReleaseListState extends State<ReleaseList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Center(child: const Text("In Search of the Lost Chord")),
+        title: const Text("In Search of the Lost Chord"),
         actions: <Widget>[
           SizedBox(
             width: 60,
