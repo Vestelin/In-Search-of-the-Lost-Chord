@@ -22,7 +22,7 @@ class Database {
     if (keyword != null)
       result = keyword.trim() != ""
           ? Database.releases
-              .where((e) => e.name.toLowerCase().startsWith(keyword))
+              .where((e) => e.name.toLowerCase().contains(keyword))
               .toList()
           : List<Release>();
     return Future.value(result);
