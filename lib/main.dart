@@ -25,6 +25,8 @@ class MyApp extends StatelessWidget {
           accentColor: Colors.grey,
           textTheme: TextTheme(bodyText2: const TextStyle(fontSize: 18))),
       home: MainPageTabs(),
+
+      ///uuu
     );
   }
 }
