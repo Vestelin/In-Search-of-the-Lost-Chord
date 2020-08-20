@@ -3,17 +3,6 @@ import 'package:in_search_of_the_lost_chord/models/misc/ratingGrades.dart';
 import 'package:in_search_of_the_lost_chord/widgets/trackListRelated/rateTile.dart';
 import 'package:in_search_of_the_lost_chord/widgets/trackListRelated/scrollControllerProvider.dart';
 
-/* class RateTrack extends StatefulWidget {
-  final List<RateTile> rateTiles;
-  RateTrack(
-    this.rateTiles,
-  );
-  @override
-  State<StatefulWidget> createState() {
-    return _RateTrackState();
-  }
-}
-*/
 class RateTrack extends StatelessWidget {
   final List<RateTile> rateTiles;
   final bool scrollToCurrentRating;

@@ -21,20 +21,13 @@ class _ReleaseTileState extends State<ReleaseTile> {
     return Card(
       color: Colors.grey[800],
       margin: const EdgeInsets.only(top: 1),
-      //decoration: BoxDecoration(border: Border.all(), color: Colors.grey[800]),
       child: Material(
         color: Colors.transparent,
-        /* child: GestureDetector(
-          onHorizontalDragEnd: (_) => showDialog(
-              context: context,
-              builder: (context) => RemoveItemDialog<Release>(
-                  item: widget.release,
-                  removeFunction: Cores.releaseListCore.removeItem)), */
         child: ListTile(
           title: Text(widget.release.name,
               softWrap: true,
               overflow: TextOverflow.ellipsis,
-              style: const TextStyle(fontSize: 18)),
+              style: Theme.of(context).textTheme.bodyText2),
           trailing: Text(widget.release.tracks.length.toString()),
           onTap: () {
             Navigator.push(

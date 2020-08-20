@@ -3,7 +3,7 @@ import 'package:in_search_of_the_lost_chord/bloc/blocProvider.dart';
 import 'package:in_search_of_the_lost_chord/bloc/trackBloc.dart';
 import 'package:in_search_of_the_lost_chord/models/misc/modifier.dart';
 import 'package:in_search_of_the_lost_chord/models/track.dart';
-import 'package:in_search_of_the_lost_chord/models/utils/ratingUtils.dart';
+import 'package:in_search_of_the_lost_chord/utils/ratingUtils.dart';
 
 class ToReconsider extends StatefulWidget {
   @override

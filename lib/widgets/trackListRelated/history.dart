@@ -28,8 +28,9 @@ class History extends StatelessWidget {
               );
             var data = snapshot.data;
             if (data == null)
-              return const Center(
-                child: const Text("There is no history"),
+              return Center(
+                child: Text("There is no history",
+                    style: Theme.of(context).textTheme.bodyText2),
               );
             return ListView.builder(
                 itemCount: data.length,
@@ -41,11 +42,11 @@ class History extends StatelessWidget {
                       title: Text(currentHistory.dateOfSaving.substring(0, 10),
                           softWrap: true,
                           overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(fontSize: 18)),
+                          style: Theme.of(context).textTheme.bodyText2),
                       trailing: Text(currentHistory.dateOfSaving.substring(11),
                           softWrap: true,
                           overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(fontSize: 18)),
+                          style: Theme.of(context).textTheme.bodyText2),
                       onTap: () {
                         bloc.currentHistory = currentHistory;
                         Navigator.push(

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:in_search_of_the_lost_chord/bloc/blocProvider.dart';
 import 'package:in_search_of_the_lost_chord/bloc/trackBloc.dart';
 import 'package:in_search_of_the_lost_chord/models/track.dart';
-import 'package:in_search_of_the_lost_chord/models/utils/ratingUtils.dart';
+import 'package:in_search_of_the_lost_chord/utils/ratingUtils.dart';
 import 'package:in_search_of_the_lost_chord/widgets/trackListRelated/scrollControllerProvider.dart';
 
 import '../lesser/modifiers/toReconsider.dart';
@@ -59,7 +59,7 @@ class _TrackTileState extends State<TrackTile> {
                 title: Text(data.name,
                     softWrap: true,
                     overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(fontSize: 18)),
+                    style: Theme.of(context).textTheme.bodyText2),
                 subtitle: RatingUtils.convertRatingToTextColour(data.rating),
                 trailing: ToReconsider(),
                 onTap: () async {

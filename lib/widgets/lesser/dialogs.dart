@@ -7,7 +7,7 @@ import 'package:in_search_of_the_lost_chord/models/misc/cores.dart';
 import 'package:in_search_of_the_lost_chord/models/misc/ratingAnimatedListCore.dart';
 import 'package:in_search_of_the_lost_chord/models/misc/ratingGrades.dart';
 import 'package:in_search_of_the_lost_chord/models/release.dart';
-import 'package:in_search_of_the_lost_chord/models/utils/ratingUtils.dart';
+import 'package:in_search_of_the_lost_chord/utils/ratingUtils.dart';
 import 'package:in_search_of_the_lost_chord/widgets/trackListRelated/rateTrack.dart';
 
 import '../trackListRelated/tracksView.dart';
@@ -80,9 +80,7 @@ class _AddTrackDialogState<Track> extends State<AddTrackDialog<Track>> {
             autofocus: true,
             controller: nameController,
             textInputAction: TextInputAction.done,
-            style: const TextStyle(
-              fontSize: 18,
-            ),
+            style: Theme.of(context).textTheme.bodyText2,
             decoration: const InputDecoration(
                 labelText: "Name", labelStyle: const TextStyle(fontSize: 16)),
           ),
