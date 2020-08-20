@@ -8,10 +8,7 @@ import 'models/release.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
-  Database.dataManager = JsonToFile<
-      List<Release>>(); //await JsonToFile.asyncFactory<List<Release>>()
-  //as JsonToFile<List<Release>>;
+  Database.dataManager = JsonToFile<List<Release>>();
   await Database.loadReleases();
   Cores.initializeCores();
   runApp(MyApp());
@@ -23,10 +20,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'In Search of the Lost Chord',
       theme: ThemeData(
-        brightness: Brightness.dark,
-        primarySwatch: Colors.grey,
-        accentColor: Colors.grey,
-      ),
+          brightness: Brightness.dark,
+          primarySwatch: Colors.grey,
+          accentColor: Colors.grey,
+          textTheme: TextTheme(bodyText2: const TextStyle(fontSize: 18))),
       home: MainPageTabs(),
     );
   }
