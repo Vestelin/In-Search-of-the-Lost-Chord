@@ -3,10 +3,10 @@ import 'package:in_search_of_the_lost_chord/bloc/blocProvider.dart';
 import 'package:in_search_of_the_lost_chord/bloc/trackBloc.dart';
 import 'package:in_search_of_the_lost_chord/models/track.dart';
 import 'package:in_search_of_the_lost_chord/models/utils/ratingUtils.dart';
-import 'package:in_search_of_the_lost_chord/widgets/lesser/scrollControllerProvider.dart';
+import 'package:in_search_of_the_lost_chord/widgets/trackListRelated/scrollControllerProvider.dart';
 
-import 'modifiers/toReconsider.dart';
-import 'dialogs.dart';
+import '../lesser/modifiers/toReconsider.dart';
+import '../lesser/dialogs.dart';
 
 class HistoryTrackTile extends StatelessWidget {
   final Track track;

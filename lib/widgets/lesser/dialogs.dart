@@ -8,9 +8,9 @@ import 'package:in_search_of_the_lost_chord/models/misc/ratingAnimatedListCore.d
 import 'package:in_search_of_the_lost_chord/models/misc/ratingGrades.dart';
 import 'package:in_search_of_the_lost_chord/models/release.dart';
 import 'package:in_search_of_the_lost_chord/models/utils/ratingUtils.dart';
-import 'package:in_search_of_the_lost_chord/widgets/lesser/rateTrack.dart';
+import 'package:in_search_of_the_lost_chord/widgets/trackListRelated/rateTrack.dart';
 
-import '../tracksView.dart';
+import '../trackListRelated/tracksView.dart';
 
 abstract class NameManipulationDialog<T> extends StatelessWidget {
   final Function(String) onClick;

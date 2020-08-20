@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:in_search_of_the_lost_chord/bloc/blocProvider.dart';
 import 'package:in_search_of_the_lost_chord/bloc/searchBloc.dart';
 import 'package:in_search_of_the_lost_chord/models/release.dart';
-import 'package:in_search_of_the_lost_chord/widgets/lesser/releaseTile.dart';
+import 'package:in_search_of_the_lost_chord/widgets/releaseListRelated/releaseTile.dart';
 import 'package:keyboard_visibility/keyboard_visibility.dart';
 
 class Search extends StatefulWidget {

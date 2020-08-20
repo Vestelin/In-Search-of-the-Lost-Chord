@@ -3,9 +3,9 @@ import 'package:in_search_of_the_lost_chord/bloc/blocProvider.dart';
 import 'package:in_search_of_the_lost_chord/bloc/historyBloc.dart';
 import 'package:in_search_of_the_lost_chord/bloc/trackListBloc.dart';
 import 'package:in_search_of_the_lost_chord/models/release.dart';
-import 'package:in_search_of_the_lost_chord/widgets/lesser/history.dart';
+import 'package:in_search_of_the_lost_chord/widgets/trackListRelated/history.dart';
 import 'package:in_search_of_the_lost_chord/widgets/lesser/tabBarContainer.dart';
-import 'lesser/trackList.dart';
+import 'trackList.dart';
 
 class TracksView extends StatefulWidget {
   final Release release;

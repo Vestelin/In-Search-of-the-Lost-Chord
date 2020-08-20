@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:in_search_of_the_lost_chord/models/misc/cores.dart';
 import 'package:in_search_of_the_lost_chord/models/release.dart';
 
-import '../tracksView.dart';
-import 'dialogs.dart';
+import '../trackListRelated/tracksView.dart';
+import '../lesser/dialogs.dart';
 
 class ReleaseTile extends StatefulWidget {
   final Release release;

@@ -3,7 +3,7 @@ import 'package:in_search_of_the_lost_chord/models/misc/cores.dart';
 import 'package:in_search_of_the_lost_chord/models/misc/ratingAnimatedListCore.dart';
 import 'package:in_search_of_the_lost_chord/models/release.dart';
 
-import 'dialogs.dart';
+import '../lesser/dialogs.dart';
 
 class ReleaseList extends StatefulWidget {
   @override

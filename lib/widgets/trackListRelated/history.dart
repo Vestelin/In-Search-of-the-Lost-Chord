@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:in_search_of_the_lost_chord/bloc/blocProvider.dart';
 import 'package:in_search_of_the_lost_chord/bloc/historyBloc.dart';
 import 'package:in_search_of_the_lost_chord/models/tracksHistory.dart';
-import 'package:in_search_of_the_lost_chord/widgets/lesser/trackList.dart';
+import 'package:in_search_of_the_lost_chord/widgets/trackListRelated/trackList.dart';
 
 class History extends StatelessWidget {
   @override

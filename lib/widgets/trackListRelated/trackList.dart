@@ -6,7 +6,7 @@ import 'package:in_search_of_the_lost_chord/bloc/trackListBloc.dart';
 import 'package:in_search_of_the_lost_chord/models/track.dart';
 import 'package:in_search_of_the_lost_chord/models/tracksHistory.dart';
 import 'package:in_search_of_the_lost_chord/widgets/lesser/dialogs.dart';
-import 'package:in_search_of_the_lost_chord/widgets/lesser/trackTile.dart';
+import 'package:in_search_of_the_lost_chord/widgets/trackListRelated/trackTile.dart';
 
 class HistoryTrackList extends StatelessWidget {
   final TracksHistory history;
@@ -67,6 +67,7 @@ class _TrackListState extends State<TrackList> {
             itemBuilder: (context, index) => Dismissible(
               background: Container(color: Colors.black),
               onDismissed: (direction) {
+                Scaffold.of(context).hideCurrentSnackBar();
                 Scaffold.of(context).showSnackBar(SnackBar(
                   backgroundColor: Colors.grey[500],
                   duration: const Duration(milliseconds: 700),
@@ -79,7 +80,6 @@ class _TrackListState extends State<TrackList> {
                 bloc: TrackBloc(tracksData[index]),
                 child: TrackTile(
                   tracksData[index],
-                  //key: ValueKey(tracksData[index]),
                 ),
               ),
             ),

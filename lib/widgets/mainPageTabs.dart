@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:in_search_of_the_lost_chord/bloc/blocProvider.dart';
 import 'package:in_search_of_the_lost_chord/bloc/searchBloc.dart';
 import 'package:in_search_of_the_lost_chord/widgets/lesser/tabBarContainer.dart';
-import 'lesser/releaseList.dart';
-import 'lesser/search.dart';
+import 'releaseListRelated/releaseList.dart';
+import 'releaseListRelated/search.dart';
 
 class MainPageTabs extends StatefulWidget {
   @override
