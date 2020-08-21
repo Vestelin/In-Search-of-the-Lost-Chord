@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:in_search_of_the_lost_chord/widgets/mainPageTabs.dart';
+import 'package:in_search_of_the_lost_chord/widgets/statistics.dart';
 
 import 'dataManagement/JsonToFile.dart';
 import 'dataManagement/database.dart';
@@ -18,15 +19,45 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'In Search of the Lost Chord',
-      theme: ThemeData(
-          brightness: Brightness.dark,
-          primarySwatch: Colors.grey,
-          accentColor: Colors.grey,
-          textTheme: TextTheme(bodyText2: const TextStyle(fontSize: 18))),
-      home: MainPageTabs(),
+        title: 'In Search of the Lost Chord',
+        theme: ThemeData(
+            brightness: Brightness.dark,
+            primarySwatch: Colors.grey,
+            accentColor: Colors.grey,
+            textTheme: TextTheme(bodyText2: const TextStyle(fontSize: 18))),
+        home: StackOfStatisticsAndReleaseList() //MainPageTabs(),
+        );
+  }
+}
 
-      ///uuu
+class StackOfStatisticsAndReleaseList extends StatefulWidget {
+  const StackOfStatisticsAndReleaseList({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  _StackOfStatisticsAndReleaseListState createState() =>
+      _StackOfStatisticsAndReleaseListState();
+}
+
+class _StackOfStatisticsAndReleaseListState
+    extends State<StackOfStatisticsAndReleaseList>
+    with SingleTickerProviderStateMixin {
+  AnimationController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        Statistics(),
+        Transform(
+          child: SafeArea(child: MainPageTabs()),
+          transform: Matrix4.identity()
+            ..translate(MediaQuery.of(context).size.width / 1.6,
+                MediaQuery.of(context).size.height / 8)
+            ..scale(0.5),
+        )
+      ],
     );
   }
 }
