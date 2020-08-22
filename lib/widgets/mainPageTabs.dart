@@ -19,19 +19,21 @@ class _MainPageTabsState extends State<MainPageTabs> {
       length: 2,
       initialIndex: 0,
       child: Scaffold(
-        body: GestureDetector(
+        body:
+            /* GestureDetector(
           onTap: () {
             FocusScopeNode currentFocus = FocusScope.of(context);
             if (!currentFocus.hasPrimaryFocus) currentFocus.unfocus();
           },
-          child: BlocProvider<SearchBloc>(
-            bloc: SearchBloc(),
-            child: TabBarView(
-              physics: const NeverScrollableScrollPhysics(),
-              children: [ReleaseList(), Search()],
-            ),
+          child: */
+            BlocProvider<SearchBloc>(
+          bloc: SearchBloc(),
+          child: TabBarView(
+            physics: const NeverScrollableScrollPhysics(),
+            children: [ReleaseList(), Search()],
           ),
         ),
+        //),
         bottomNavigationBar: TabBar(
           tabs: <Widget>[
             const TabBarContainer(const Icon(Icons.library_music), "Releases"),

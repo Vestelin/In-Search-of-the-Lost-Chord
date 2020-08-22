@@ -46,18 +46,37 @@ class _StackOfStatisticsAndReleaseListState
   AnimationController controller;
 
   @override
+  void initState() {
+    super.initState();
+    controller =
+        AnimationController(vsync: this, duration: Duration(milliseconds: 300));
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Statistics(),
-        Transform(
-          child: SafeArea(child: MainPageTabs()),
-          transform: Matrix4.identity()
-            ..translate(MediaQuery.of(context).size.width / 1.6,
-                MediaQuery.of(context).size.height / 8)
-            ..scale(0.5),
-        )
-      ],
+    return GestureDetector(
+      onTap: () =>
+          controller.isDismissed ? controller.forward() : controller.reverse(),
+      child: AnimatedBuilder(
+          animation: controller,
+          builder: (context, _) {
+            double scale = 1 - (0.5 * controller.value);
+            double translateHeight =
+                (MediaQuery.of(context).size.height * 0.125 * controller.value);
+            double translateWidth =
+                (MediaQuery.of(context).size.width * 0.625 * controller.value);
+            return Stack(
+              children: [
+                Statistics(),
+                Transform(
+                  child: SafeArea(child: MainPageTabs()),
+                  transform: Matrix4.identity()
+                    ..translate(translateWidth, translateHeight)
+                    ..scale(scale),
+                )
+              ],
+            );
+          }),
     );
   }
 }
