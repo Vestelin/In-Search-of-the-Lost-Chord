@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:in_search_of_the_lost_chord/stackAnimationProvider.dart';
 import 'package:in_search_of_the_lost_chord/widgets/mainPageTabs.dart';
 import 'package:in_search_of_the_lost_chord/widgets/statistics.dart';
 
@@ -25,7 +26,8 @@ class MyApp extends StatelessWidget {
             primarySwatch: Colors.grey,
             accentColor: Colors.grey,
             textTheme: TextTheme(bodyText2: const TextStyle(fontSize: 18))),
-        home: StackOfStatisticsAndReleaseList() //MainPageTabs(),
+        home: StackAnimationProvider(
+            child: StackOfStatisticsAndReleaseList()) //MainPageTabs(),
         );
   }
 }
@@ -41,22 +43,24 @@ class StackOfStatisticsAndReleaseList extends StatefulWidget {
 }
 
 class _StackOfStatisticsAndReleaseListState
-    extends State<StackOfStatisticsAndReleaseList>
-    with SingleTickerProviderStateMixin {
+    extends State<StackOfStatisticsAndReleaseList> {
   AnimationController controller;
 
   @override
   void initState() {
     super.initState();
-    controller =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 300));
+    controller = StackAnimationProvider.ofState(context).controller;
   }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () =>
-          controller.isDismissed ? controller.forward() : controller.reverse(),
+      onTap: () {
+        if (!controller.isDismissed) {
+          StackAnimationProvider.ofState(context).shouldIgnoreGesture = false;
+          controller.reverse();
+        }
+      },
       child: AnimatedBuilder(
           animation: controller,
           builder: (context, _) {
@@ -69,7 +73,11 @@ class _StackOfStatisticsAndReleaseListState
               children: [
                 Statistics(),
                 Transform(
-                  child: SafeArea(child: MainPageTabs()),
+                  child: SafeArea(
+                      child: IgnorePointer(
+                          ignoring: StackAnimationProvider.ofState(context)
+                              .shouldIgnoreGesture,
+                          child: MainPageTabs())),
                   transform: Matrix4.identity()
                     ..translate(translateWidth, translateHeight)
                     ..scale(scale),
