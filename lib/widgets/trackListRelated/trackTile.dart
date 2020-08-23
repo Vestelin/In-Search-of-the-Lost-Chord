@@ -10,7 +10,7 @@ import '../lesser/dialogs.dart';
 
 class HistoryTrackTile extends StatelessWidget {
   final Track track;
-  HistoryTrackTile(this.track);
+  const HistoryTrackTile(this.track);
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class HistoryTrackTile extends StatelessWidget {
 
 class TrackTile extends StatefulWidget {
   final Track track;
-  TrackTile(this.track, {key}) : super(key: key);
+  const TrackTile(this.track, {key}) : super(key: key);
   @override
   State<StatefulWidget> createState() {
     return _TrackTileState();

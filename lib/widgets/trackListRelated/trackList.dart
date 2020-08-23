@@ -28,7 +28,7 @@ class HistoryTrackList extends StatelessWidget {
 
 class TrackList extends StatefulWidget {
   final List<Track> tracks;
-  TrackList(this.tracks);
+  const TrackList(this.tracks);
   @override
   _TrackListState createState() => _TrackListState();
 }
@@ -47,7 +47,7 @@ class _TrackListState extends State<TrackList> {
                 onPressed: () => showDialog(
                       context: context,
                       builder: (context) => BlocProvider<AddingTrackBloc>(
-                          child: AddTrackDialog(),
+                          child: const AddTrackDialog(),
                           bloc: AddingTrackBloc(trackListBloc: bloc)),
                     ),
                 child: const Icon(Icons.add)),
@@ -60,7 +60,7 @@ class _TrackListState extends State<TrackList> {
         builder: (context, snapshot) {
           List<Track> tracksData = snapshot.data;
           if (tracksData == null) return Container();
-          const double _countOfPixelsToPreserveStateOfHundredTracks = 100000;
+          const double _countOfPixelsToPreserveStateOfHundredTracks = 4000;
           return ListView.builder(
             cacheExtent: _countOfPixelsToPreserveStateOfHundredTracks,
             itemCount: tracksData.length,

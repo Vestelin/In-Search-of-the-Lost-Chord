@@ -24,7 +24,7 @@ class _ReleaseListState extends State<ReleaseList> {
       appBar: AppBar(
         title: GestureDetector(
             onTap: () {
-              StackAnimationProvider.ofState(context).shouldIgnoreGesture =
+              StackAnimationProvider.ofState(context).ignoreGesture.value =
                   true;
               StackAnimationProvider.ofState(context).controller.forward();
             },

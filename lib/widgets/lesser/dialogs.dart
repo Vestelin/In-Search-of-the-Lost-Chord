@@ -51,7 +51,7 @@ abstract class NameManipulationDialog<T> extends StatelessWidget {
 } */
 
 class AddTrackDialog<Track> extends StatefulWidget {
-  AddTrackDialog();
+  const AddTrackDialog();
 
   @override
   _AddTrackDialogState<Track> createState() => _AddTrackDialogState<Track>();

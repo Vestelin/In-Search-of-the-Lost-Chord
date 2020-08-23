@@ -6,6 +6,7 @@ import 'releaseListRelated/releaseList.dart';
 import 'releaseListRelated/search.dart';
 
 class MainPageTabs extends StatefulWidget {
+  const MainPageTabs();
   @override
   State<StatefulWidget> createState() {
     return _MainPageTabsState();

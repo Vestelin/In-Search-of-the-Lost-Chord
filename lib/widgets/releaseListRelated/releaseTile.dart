@@ -7,8 +7,8 @@ import '../lesser/dialogs.dart';
 
 class ReleaseTile extends StatefulWidget {
   final Release release;
-  ReleaseTile(this.release, {Key key}) : super(key: key);
-  ReleaseTile.noKey(this.release);
+  const ReleaseTile(this.release, {Key key}) : super(key: key);
+  const ReleaseTile.noKey(this.release);
   @override
   State<StatefulWidget> createState() {
     return _ReleaseTileState();
@@ -28,7 +28,8 @@ class _ReleaseTileState extends State<ReleaseTile> {
               softWrap: true,
               overflow: TextOverflow.ellipsis,
               style: Theme.of(context).textTheme.bodyText2),
-          trailing: Text(widget.release.tracks.length.toString()),
+          trailing: Text(widget.release.tracks.length.toString(),
+              style: Theme.of(context).textTheme.bodyText2),
           onTap: () {
             Navigator.push(
                 context,

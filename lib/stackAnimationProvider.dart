@@ -18,17 +18,23 @@ class StackAnimationProvider extends StatefulWidget {
 class _StackAnimationProviderState extends State<StackAnimationProvider>
     with SingleTickerProviderStateMixin {
   AnimationController controller;
-  bool shouldIgnoreGesture;
   @override
   void initState() {
     super.initState();
     controller =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 300));
-    shouldIgnoreGesture = false;
+        AnimationController(vsync: this, duration: Duration(milliseconds: 200));
   }
+
+  ValueNotifier<bool> ignoreGesture = ValueNotifier<bool>(false);
 
   @override
   Widget build(BuildContext context) {
     return widget.child;
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    controller.dispose();
   }
 }

@@ -15,12 +15,6 @@ class Statistics extends StatelessWidget {
       child: Scaffold(
         body: Container(
           color: mainColor,
-          /* decoration: BoxDecoration(
-            gradient: LinearGradient(
-                colors: [Colors.grey[700], Colors.grey[800]],
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter),
-          ), */
           child: Padding(
               padding: EdgeInsets.only(left: 12),
               child: Center(
