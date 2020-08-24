@@ -67,8 +67,9 @@ class _StackOfStatisticsAndReleaseListState
               child: ValueListenableBuilder(
             valueListenable:
                 StackAnimationProvider.ofState(context).ignoreGesture,
-            builder: (BuildContext context, bool ignore, _) => IgnorePointer(
-                ignoring: ignore, child: ReleasesWithAnimatedBuilder()),
+            child: ReleasesWithAnimatedBuilder(),
+            builder: (BuildContext context, bool ignore, Widget child) =>
+                IgnorePointer(ignoring: ignore, child: child),
           )),
         ],
       ),

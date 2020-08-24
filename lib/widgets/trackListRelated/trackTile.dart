@@ -19,7 +19,7 @@ class HistoryTrackTile extends StatelessWidget {
       title: Text(track.name,
           softWrap: true,
           overflow: TextOverflow.ellipsis,
-          style: TextStyle(fontSize: 18)),
+          style: const TextStyle(fontSize: 18)),
       subtitle: RatingUtils.convertRatingToTextColour(track.rating),
     );
   }

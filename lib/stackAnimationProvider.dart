@@ -21,8 +21,8 @@ class _StackAnimationProviderState extends State<StackAnimationProvider>
   @override
   void initState() {
     super.initState();
-    controller =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 200));
+    controller = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 200));
   }
 
   ValueNotifier<bool> ignoreGesture = ValueNotifier<bool>(false);

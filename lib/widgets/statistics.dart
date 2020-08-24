@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
 
 class Statistics extends StatelessWidget {
-  final TextStyle style = const TextStyle(
-    fontSize: 17,
-    fontWeight: FontWeight.w400,
-  );
   final double sizedBoxHeight = 12;
-  final Color iconColor = Colors.blueGrey[300];
+
   final Color mainColor = /* Color(0xFF131316); */
       Colors.black45; //Color(0xFF1E1E24); // //Color(0xFF5F5F60);
   @override
@@ -22,62 +18,25 @@ class Statistics extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Row(
-                        children: [
-                          Icon(Icons.chevron_right, color: iconColor),
-                          Text(
-                            "Added releases:\n167",
-                            style: style,
-                          )
-                        ],
+                      StatisticsRow(
+                        statText: "Total releases",
+                        data: "47",
                       ),
-                      /* SizedBox(
-                        height: sizedBoxHeight,
-                      ), */
-                      Row(
-                        children: [
-                          Icon(Icons.chevron_right, color: iconColor),
-                          Text(
-                            "Added tracks:\n742",
-                            style: style,
-                          )
-                        ],
+                      StatisticsRow(
+                        statText: "Total tracks",
+                        data: "642",
                       ),
-                      /*  SizedBox(
-                        height: sizedBoxHeight,
-                      ), */
-                      Row(
-                        children: [
-                          Icon(Icons.chevron_right, color: iconColor),
-                          Text(
-                            "Most rated:\nExcellent",
-                            style: style,
-                          )
-                        ],
+                      StatisticsRow(
+                        statText: "Most frequent rate",
+                        data: "Very Good",
                       ),
-                      /*  SizedBox(
-                        height: sizedBoxHeight,
-                      ), */
-                      Row(
-                        children: [
-                          Icon(Icons.chevron_right, color: iconColor),
-                          Text(
-                            "Album with most tracks:\nDownward Spiral",
-                            style: style,
-                          )
-                        ],
-                        /*  ),
-                      SizedBox(
-                        height: sizedBoxHeight, */
+                      StatisticsRow(
+                        statText: "Album with most tracks",
+                        data: "Mellon Collie and The Infinite Sadness",
                       ),
-                      Row(
-                        children: [
-                          Icon(Icons.chevron_right, color: iconColor),
-                          Text(
-                            "Album with most masterpieces:\nNeon Bible",
-                            style: style,
-                          )
-                        ],
+                      StatisticsRow(
+                        statText: "Album with most masterpieces",
+                        data: "Neon Bible",
                       ),
                     ],
                   ),
@@ -85,6 +44,36 @@ class Statistics extends StatelessWidget {
               )),
         ),
       ),
+    );
+  }
+}
+
+class StatisticsRow extends StatelessWidget {
+  StatisticsRow({
+    Key key,
+    @required this.statText,
+    @required this.data,
+  }) : super(key: key);
+
+  final Color iconColor = Colors.blueGrey[300];
+  final String statText;
+  //final Function dataFunction;
+  final String data;
+  final TextStyle style = const TextStyle(
+    fontSize: 17,
+    fontWeight: FontWeight.w400,
+  );
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Icon(Icons.chevron_right, color: iconColor),
+        Text(
+          "$statText:\n$data",
+          style: style,
+        )
+      ],
     );
   }
 }
