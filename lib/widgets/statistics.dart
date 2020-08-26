@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:in_search_of_the_lost_chord/bloc/blocProvider.dart';
+import 'package:in_search_of_the_lost_chord/bloc/statisticsBloc.dart';
 
 class Statistics extends StatelessWidget {
   final double sizedBoxHeight = 12;
 
   final Color mainColor = /* Color(0xFF131316); */
       Colors.black45; //Color(0xFF1E1E24); // //Color(0xFF5F5F60);
+
   @override
   Widget build(BuildContext context) {
+    StatisticsBloc bloc = BlocProvider.of<StatisticsBloc>(context);
+    WidgetsBinding.instance.addPostFrameCallback(
+        (_) => bloc.addReleasesCountToStreamIncrementally());
     return SafeArea(
       child: Scaffold(
         body: Container(
@@ -18,11 +24,23 @@ class Statistics extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      StatisticsRow(
+                      StatisticsRow<int>(
                         statText: "Total releases",
                         data: "47",
+                        stream: bloc
+                            .streamControllers[
+                                StatisticsStreamControllers.releaseCount]
+                            .stream,
                       ),
-                      StatisticsRow(
+                      StatisticsRow<int>(
+                        statText: "Total releases",
+                        data: "47",
+                        stream: bloc
+                            .streamControllers[
+                                StatisticsStreamControllers.trackCount]
+                            .stream,
+                      ),
+                      /* StatisticsRow(
                         statText: "Total tracks",
                         data: "642",
                       ),
@@ -37,7 +55,7 @@ class Statistics extends StatelessWidget {
                       StatisticsRow(
                         statText: "Album with most masterpieces",
                         data: "Neon Bible",
-                      ),
+                      ), */
                     ],
                   ),
                 ),
@@ -48,13 +66,15 @@ class Statistics extends StatelessWidget {
   }
 }
 
-class StatisticsRow extends StatelessWidget {
+class StatisticsRow<T> extends StatelessWidget {
   StatisticsRow({
     Key key,
     @required this.statText,
     @required this.data,
+    this.stream,
   }) : super(key: key);
 
+  final Stream stream;
   final Color iconColor = Colors.blueGrey[300];
   final String statText;
   //final Function dataFunction;
@@ -69,10 +89,16 @@ class StatisticsRow extends StatelessWidget {
     return Row(
       children: [
         Icon(Icons.chevron_right, color: iconColor),
-        Text(
-          "$statText:\n$data",
-          style: style,
-        )
+        StreamBuilder<T>(
+            stream: stream,
+            builder: (context, snapshot) {
+              var dataa = snapshot.data;
+              var dataToShow = dataa ?? 'No data';
+              return Text(
+                "$statText:\n$dataToShow", //$data",
+                style: style,
+              );
+            })
       ],
     );
   }

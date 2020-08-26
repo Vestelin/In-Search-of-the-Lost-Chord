@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:in_search_of_the_lost_chord/bloc/blocProvider.dart';
+import 'package:in_search_of_the_lost_chord/bloc/statisticsBloc.dart';
 import 'package:in_search_of_the_lost_chord/stackAnimationProvider.dart';
 import 'package:in_search_of_the_lost_chord/widgets/mainPageTabs.dart';
 import 'package:in_search_of_the_lost_chord/widgets/statistics.dart';
@@ -62,7 +64,10 @@ class _StackOfStatisticsAndReleaseListState
       },
       child: Stack(
         children: [
-          Statistics(),
+          BlocProvider<StatisticsBloc>(
+            bloc: StatisticsBloc(),
+            child: Statistics(),
+          ),
           SafeArea(
               child: ValueListenableBuilder(
             valueListenable:
