@@ -105,9 +105,12 @@ class StatisticsRow<T> extends StatelessWidget {
                     style: style,
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 3),
-                    child: JumpingDotsProgressIndicator(),
-                  ),
+                      padding: const EdgeInsets.only(left: 3),
+                      child: JumpingDotsProgressIndicator(
+                        dotSpacing: 0.5,
+                        color: Colors.white70,
+                        fontSize: 17,
+                      )),
                 ],
               );
             })
