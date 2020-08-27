@@ -117,7 +117,7 @@ class _JumpingDotsProgressIndicatorState
 
   @override
   void dispose() {
-    super.dispose();
     controllers.forEach((element) => element.dispose());
+    super.dispose();
   }
 }

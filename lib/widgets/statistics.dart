@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:in_search_of_the_lost_chord/bloc/blocProvider.dart';
 import 'package:in_search_of_the_lost_chord/bloc/statisticsBloc.dart';
+import 'package:in_search_of_the_lost_chord/services/statisticsService.dart';
 
 import 'lesser/jumpingDotsProgressIndicator.dart';
 
@@ -14,7 +15,7 @@ class Statistics extends StatelessWidget {
   Widget build(BuildContext context) {
     StatisticsBloc bloc = BlocProvider.of<StatisticsBloc>(context);
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      bloc.addReleasesCountToStreamIncrementally();
+      //bloc.addReleasesCountToStreamIncrementally();
       bloc.addTrackCountToStreamIncrementally();
       bloc.getReleaseWithHighestTrackAmount();
     });
@@ -92,28 +93,31 @@ class StatisticsRow<T> extends StatelessWidget {
     return Row(
       children: [
         Icon(Icons.chevron_right, color: iconColor),
-        StreamBuilder<T>(
-            stream: stream,
-            builder: (context, snapshot) {
-              var dataa = snapshot.data;
-              var dataToShow = dataa ?? 'No data';
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "$statText:", //$dataToShow", //$data",
-                    style: style,
-                  ),
-                  Padding(
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "$statText:", //$dataToShow", //$data",
+              style: style,
+            ),
+            FutureBuilder<String>(
+                future: StatisticsService.futures[2],
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState != ConnectionState.done)
+                    return Padding(
                       padding: const EdgeInsets.only(left: 3),
                       child: JumpingDotsProgressIndicator(
                         dotSpacing: 0.5,
                         color: Colors.white70,
                         fontSize: 17,
-                      )),
-                ],
-              );
-            })
+                      ),
+                    );
+                  else
+                    return Text(snapshot.data.toString(),
+                        style: TextStyle(fontSize: 16));
+                }),
+          ],
+        )
       ],
     );
   }

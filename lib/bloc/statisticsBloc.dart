@@ -37,13 +37,13 @@ class StatisticsBloc extends Bloc {
     }
   }
 
-  Future<void> addReleasesCountToStreamIncrementally() async {
+/*   Future<void> addReleasesCountToStreamIncrementally() async {
     int releasesCount = getReleasesCount();
     for (int currentValue = 0; currentValue <= releasesCount; currentValue++) {
       //await Future.delayed(Duration(milliseconds: 10));
       addToStream(StatisticsStreamControllers.releaseCount, currentValue);
     }
-  }
+  } */
 
   int _tracksCount = 0;
 
@@ -61,9 +61,9 @@ class StatisticsBloc extends Bloc {
     });
   }
 
-  int getReleasesCount() {
+/*   int getReleasesCount() {
     return 150; //Database.releases.length;
-  }
+  } */
 
   Future<void> getReleaseWithHighestTrackAmount() async {
     String name;
