@@ -1,7 +1,9 @@
 import 'dart:async';
+import 'dart:collection';
 
 import 'package:in_search_of_the_lost_chord/bloc/bloc.dart';
 import 'package:in_search_of_the_lost_chord/dataManagement/database.dart';
+import 'package:in_search_of_the_lost_chord/models/release.dart';
 
 enum StatisticsStreamControllers {
   releaseCount,
@@ -38,31 +40,46 @@ class StatisticsBloc extends Bloc {
   Future<void> addReleasesCountToStreamIncrementally() async {
     int releasesCount = getReleasesCount();
     for (int currentValue = 0; currentValue <= releasesCount; currentValue++) {
-      await Future.delayed(Duration(milliseconds: 20));
+      //await Future.delayed(Duration(milliseconds: 10));
       addToStream(StatisticsStreamControllers.releaseCount, currentValue);
     }
   }
 
-  Future<void> addReleaseCountToStreamIncrementally() async {
-    int releasesCount = getReleasesCount();
-    for (int currentValue = 0; currentValue <= releasesCount; currentValue++) {
-      await Future.delayed(Duration(milliseconds: 20));
-      addToStream(StatisticsStreamControllers.releaseCount, currentValue);
-    }
-  }
+  int _tracksCount = 0;
 
   Future<void> addTrackCountToStreamIncrementally() async {
-    int releasesCount = getTracksCount();
-    for (int currentValue = 0; currentValue <= releasesCount; currentValue++) {
-      await Future.delayed(Duration(milliseconds: 20));
-      addToStream(StatisticsStreamControllers.releaseCount, currentValue);
+    addTrackCount();
+    for (int currentValue = 0; currentValue <= _tracksCount; currentValue++) {
+      //await Future.delayed(Duration(milliseconds: 2));
+      addToStream(StatisticsStreamControllers.trackCount, currentValue);
     }
   }
 
-  int getTracksCount() {}
+  Future<void> addTrackCount() async {
+    Database.releases.forEach((element) {
+      _tracksCount += element.tracks.length;
+    });
+  }
 
   int getReleasesCount() {
     return 150; //Database.releases.length;
+  }
+
+  Future<void> getReleaseWithHighestTrackAmount() async {
+    String name;
+    int trackAmount = 0;
+    Database.releases.forEach(
+      (element) {
+        addToStream(
+            StatisticsStreamControllers.highestTrackAmount, element.name);
+        if (trackAmount < element.tracks.length) {
+          name = element.name;
+          trackAmount = element.tracks.length;
+        }
+        Future.delayed(Duration(milliseconds: 2000));
+      },
+    );
+    addToStream(StatisticsStreamControllers.highestTrackAmount, name);
   }
 
   @override

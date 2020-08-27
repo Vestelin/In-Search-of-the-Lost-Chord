@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:in_search_of_the_lost_chord/bloc/blocProvider.dart';
 import 'package:in_search_of_the_lost_chord/bloc/statisticsBloc.dart';
 
+import 'lesser/jumpingDotsProgressIndicator.dart';
+
 class Statistics extends StatelessWidget {
   final double sizedBoxHeight = 12;
 
@@ -11,8 +13,11 @@ class Statistics extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     StatisticsBloc bloc = BlocProvider.of<StatisticsBloc>(context);
-    WidgetsBinding.instance.addPostFrameCallback(
-        (_) => bloc.addReleasesCountToStreamIncrementally());
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      bloc.addReleasesCountToStreamIncrementally();
+      bloc.addTrackCountToStreamIncrementally();
+      bloc.getReleaseWithHighestTrackAmount();
+    });
     return SafeArea(
       child: Scaffold(
         body: Container(
@@ -23,7 +28,9 @@ class Statistics extends StatelessWidget {
                 child: Container(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      //JumpingDotsProgressIndicator()
                       StatisticsRow<int>(
                         statText: "Total releases",
                         data: "47",
@@ -33,16 +40,12 @@ class Statistics extends StatelessWidget {
                             .stream,
                       ),
                       StatisticsRow<int>(
-                        statText: "Total releases",
+                        statText: "Total tracks",
                         data: "47",
                         stream: bloc
                             .streamControllers[
                                 StatisticsStreamControllers.trackCount]
                             .stream,
-                      ),
-                      /* StatisticsRow(
-                        statText: "Total tracks",
-                        data: "642",
                       ),
                       StatisticsRow(
                         statText: "Most frequent rate",
@@ -55,7 +58,7 @@ class Statistics extends StatelessWidget {
                       StatisticsRow(
                         statText: "Album with most masterpieces",
                         data: "Neon Bible",
-                      ), */
+                      ),
                     ],
                   ),
                 ),
@@ -94,9 +97,18 @@ class StatisticsRow<T> extends StatelessWidget {
             builder: (context, snapshot) {
               var dataa = snapshot.data;
               var dataToShow = dataa ?? 'No data';
-              return Text(
-                "$statText:\n$dataToShow", //$data",
-                style: style,
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "$statText:", //$dataToShow", //$data",
+                    style: style,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 3),
+                    child: JumpingDotsProgressIndicator(),
+                  ),
+                ],
               );
             })
       ],
