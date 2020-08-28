@@ -10,15 +10,20 @@ class Statistics extends StatelessWidget {
 
   final Color mainColor = /* Color(0xFF131316); */
       Colors.black45; //Color(0xFF1E1E24); // //Color(0xFF5F5F60);
+  final JumpingDotsProgressIndicator indicator = JumpingDotsProgressIndicator(
+    dotSpacing: 0.5,
+    color: Colors.white70,
+    fontSize: 17,
+  );
 
   @override
   Widget build(BuildContext context) {
-    StatisticsBloc bloc = BlocProvider.of<StatisticsBloc>(context);
+    /*  StatisticsBloc bloc = BlocProvider.of<StatisticsBloc>(context);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       //bloc.addReleasesCountToStreamIncrementally();
       bloc.addTrackCountToStreamIncrementally();
       bloc.getReleaseWithHighestTrackAmount();
-    });
+    }); */
     return SafeArea(
       child: Scaffold(
         body: Container(
@@ -34,31 +39,28 @@ class Statistics extends StatelessWidget {
                       //JumpingDotsProgressIndicator()
                       StatisticsRow<int>(
                         statText: "Total releases",
-                        data: "47",
-                        stream: bloc
-                            .streamControllers[
-                                StatisticsStreamControllers.releaseCount]
-                            .stream,
+                        future: StatisticsService.futures[0],
+                        indicator: indicator,
                       ),
                       StatisticsRow<int>(
                         statText: "Total tracks",
-                        data: "47",
-                        stream: bloc
-                            .streamControllers[
-                                StatisticsStreamControllers.trackCount]
-                            .stream,
+                        future: StatisticsService.futures[1],
+                        indicator: indicator,
                       ),
-                      StatisticsRow(
+                      StatisticsRow<String>(
                         statText: "Most frequent rate",
-                        data: "Very Good",
+                        future: StatisticsService.futures[2],
+                        indicator: indicator,
                       ),
-                      StatisticsRow(
-                        statText: "Album with most tracks",
-                        data: "Mellon Collie and The Infinite Sadness",
+                      StatisticsRow<String>(
+                        statText: "Highest track amount",
+                        future: StatisticsService.futures[3],
+                        indicator: indicator,
                       ),
-                      StatisticsRow(
-                        statText: "Album with most masterpieces",
-                        data: "Neon Bible",
+                      StatisticsRow<String>(
+                        statText: "Highest history amount",
+                        future: StatisticsService.futures[4],
+                        indicator: indicator,
                       ),
                     ],
                   ),
@@ -74,15 +76,14 @@ class StatisticsRow<T> extends StatelessWidget {
   StatisticsRow({
     Key key,
     @required this.statText,
-    @required this.data,
-    this.stream,
+    @required this.future,
+    @required this.indicator,
   }) : super(key: key);
 
-  final Stream stream;
+  final Future<T> future;
+  final Widget indicator;
   final Color iconColor = Colors.blueGrey[300];
   final String statText;
-  //final Function dataFunction;
-  final String data;
   final TextStyle style = const TextStyle(
     fontSize: 17,
     fontWeight: FontWeight.w400,
@@ -97,20 +98,16 @@ class StatisticsRow<T> extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "$statText:", //$dataToShow", //$data",
+              "$statText:",
               style: style,
             ),
-            FutureBuilder<String>(
-                future: StatisticsService.futures[2],
+            FutureBuilder<T>(
+                future: future,
                 builder: (context, snapshot) {
                   if (snapshot.connectionState != ConnectionState.done)
                     return Padding(
                       padding: const EdgeInsets.only(left: 3),
-                      child: JumpingDotsProgressIndicator(
-                        dotSpacing: 0.5,
-                        color: Colors.white70,
-                        fontSize: 17,
-                      ),
+                      child: indicator,
                     );
                   else
                     return Text(snapshot.data.toString(),
