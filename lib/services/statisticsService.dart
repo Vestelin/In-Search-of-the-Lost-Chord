@@ -15,11 +15,6 @@ class StatisticsService {
   ]);
 
   static void resetFutures() {
-    /* futures.value[0] = getReleasesCount();
-    futures.value[1] = getTracksAmount();
-    futures.value[2] = getReleaseWithBestMstrPercentage();
-    futures.value[3] = getReleaseWithHighestTrackAmount();
-    futures.value[4] = getReleaseWithHighestHistoryAmount(); */
     futures.value = [
       StatisticsService.getReleasesCount(),
       StatisticsService.getTracksAmount(),
@@ -31,7 +26,7 @@ class StatisticsService {
 
   static Future<int> getReleasesCount() async {
     int releaseAmount = Database.releases.length;
-    await Future.delayed(Duration(milliseconds: 4000));
+    await Future.delayed(Duration(milliseconds: 1000));
     return Future.value(releaseAmount);
   }
 
@@ -39,7 +34,7 @@ class StatisticsService {
     int trackAmount = 0;
     Database.releases
         .forEach((element) => trackAmount += element.tracks.length);
-    await Future.delayed(Duration(milliseconds: 6000));
+    await Future.delayed(Duration(milliseconds: 1200));
     return Future.value(trackAmount);
   }
 
@@ -74,7 +69,7 @@ class StatisticsService {
     });
     String properText = formatAndValidateText(releaseName,
         'No masterpiece found', 14, '...', [percentage.toString(), '%']);
-    await Future.delayed(Duration(milliseconds: 8000));
+    await Future.delayed(Duration(milliseconds: 1400));
     return Future.value(properText);
   }
 
@@ -91,8 +86,8 @@ class StatisticsService {
       },
     );
     String properText = formatAndValidateText(releaseName, 'No tracks found',
-        14, '...', [highestTrackAmount.toString()]);
-    await Future.delayed(Duration(milliseconds: 10000));
+        26, '...', [highestTrackAmount.toString()]);
+    await Future.delayed(Duration(milliseconds: 1600));
     return Future.value(properText);
   }
 
@@ -102,15 +97,15 @@ class StatisticsService {
     Database.releases.forEach(
       (element) {
         int currentHistoryAmount = element.historyOfRatings.length;
-        if (element.tracks.length > highestHistoryAmount) {
+        if (element.historyOfRatings.length > highestHistoryAmount) {
           releaseName = element.name;
           highestHistoryAmount = currentHistoryAmount;
         }
       },
     );
     String properText = formatAndValidateText(releaseName, 'No tracks found',
-        14, '...', [highestHistoryAmount.toString()]);
-    await Future.delayed(Duration(milliseconds: 12000));
+        26, '...', [highestHistoryAmount.toString()]);
+    await Future.delayed(Duration(milliseconds: 2000));
     return Future.value(properText);
   }
 }

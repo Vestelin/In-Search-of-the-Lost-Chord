@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:in_search_of_the_lost_chord/bloc/blocProvider.dart';
-import 'package:in_search_of_the_lost_chord/bloc/statisticsBloc.dart';
 import 'package:in_search_of_the_lost_chord/services/statisticsService.dart';
 
 import 'lesser/jumpingDotsProgressIndicator.dart';
@@ -8,8 +6,7 @@ import 'lesser/jumpingDotsProgressIndicator.dart';
 class Statistics extends StatelessWidget {
   final double sizedBoxHeight = 12;
 
-  final Color mainColor = /* Color(0xFF131316); */
-      Colors.black45; //Color(0xFF1E1E24); // //Color(0xFF5F5F60);
+  final Color mainColor = Colors.black45;
   final JumpingDotsProgressIndicator indicator = JumpingDotsProgressIndicator(
     dotSpacing: 0.5,
     color: Colors.white70,
