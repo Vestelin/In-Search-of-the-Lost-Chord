@@ -1,17 +1,33 @@
 import 'dart:async';
 import 'dart:core';
 
+import 'package:flutter/material.dart';
 import 'package:in_search_of_the_lost_chord/dataManagement/database.dart';
 import 'package:in_search_of_the_lost_chord/models/misc/ratingGrades.dart';
 
 class StatisticsService {
-  static List<Future> futures = [
+  static ValueNotifier<List<Future>> futures = ValueNotifier<List<Future>>([
     StatisticsService.getReleasesCount(),
     StatisticsService.getTracksAmount(),
     StatisticsService.getReleaseWithBestMstrPercentage(),
     StatisticsService.getReleaseWithHighestTrackAmount(),
     StatisticsService.getReleaseWithHighestHistoryAmount(),
-  ];
+  ]);
+
+  static void resetFutures() {
+    /* futures.value[0] = getReleasesCount();
+    futures.value[1] = getTracksAmount();
+    futures.value[2] = getReleaseWithBestMstrPercentage();
+    futures.value[3] = getReleaseWithHighestTrackAmount();
+    futures.value[4] = getReleaseWithHighestHistoryAmount(); */
+    futures.value = [
+      StatisticsService.getReleasesCount(),
+      StatisticsService.getTracksAmount(),
+      StatisticsService.getReleaseWithBestMstrPercentage(),
+      StatisticsService.getReleaseWithHighestTrackAmount(),
+      StatisticsService.getReleaseWithHighestHistoryAmount(),
+    ];
+  }
 
   static Future<int> getReleasesCount() async {
     int releaseAmount = Database.releases.length;
