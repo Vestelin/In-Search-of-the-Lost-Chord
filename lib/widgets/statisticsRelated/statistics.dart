@@ -65,7 +65,7 @@ class Statistics extends StatelessWidget {
                           indicator: indicator,
                         ),
                         StatisticsRow<String>(
-                          statText: "Highest masterpiece percentage",
+                          statText: "Unfinished rating",
                           future: futures[4],
                           indicator: indicator,
                         ),

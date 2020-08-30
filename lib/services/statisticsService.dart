@@ -22,7 +22,7 @@ class StatisticsService {
       getTracksAmount(),
       getReleaseWithHighestTrackAmount(),
       getReleaseWithHighestHistoryAmount(),
-      getReleaseWithBestMstrPercentage(),
+      getUnfinishedRating(),
     ];
   }
 
@@ -56,7 +56,7 @@ class StatisticsService {
       },
     );
     String properText = formatAndValidateText(releaseName, 'No tracks found',
-        26, '...', [highestTrackAmount.toString()]);
+        14, '...', [' - ', highestTrackAmount.toString()]);
     await Future.delayed(Duration(milliseconds: countDuration(positionOnList)));
     return Future.value(properText);
   }
@@ -74,32 +74,26 @@ class StatisticsService {
         }
       },
     );
-    String properText = formatAndValidateText(releaseName, 'No tracks found',
-        26, '...', [highestHistoryAmount.toString()]);
+    String properText = formatAndValidateText(releaseName, 'No history found',
+        26, '...', [' - ', highestHistoryAmount.toString()]);
     await Future.delayed(Duration(milliseconds: countDuration(positionOnList)));
     return Future.value(properText);
   }
 
-  Future<String> getReleaseWithBestMstrPercentage() async {
+  Future<String> getUnfinishedRating() async {
     int positionOnList = 5;
     String releaseName;
-    int percentage = 0;
 
-    Database.releases.forEach((element) {
-      int masterpieceAmount = 0;
-      element.tracks.forEach((element) {
-        if (element.rating == RatingGrades.masterpiece) masterpieceAmount++;
-      });
-      int currentPercentage = (masterpieceAmount *
-          100 ~/
-          (element.tracks.length > 0 ? element.tracks.length : -1));
-      if (currentPercentage > percentage) {
-        releaseName = element.name;
-        percentage = currentPercentage;
-      }
-    });
-    String properText = formatAndValidateText(releaseName,
-        'No masterpiece found', 14, '...', [percentage.toString(), '%']);
+    Database.releases.forEach(
+      (element) {
+        if (element.tracks
+            .any((element) => element.rating != RatingGrades.notRated)) {
+          releaseName = element.name;
+        }
+      },
+    );
+    String properText = formatAndValidateText(
+        releaseName, 'No unfinished ratings found', 26, '...', ['']);
     await Future.delayed(Duration(milliseconds: countDuration(positionOnList)));
     return Future.value(properText);
   }
@@ -111,7 +105,7 @@ class StatisticsService {
       if (textToFormat.length > signLimit)
         textToFormat =
             textToFormat.replaceRange(signLimit, null, replaceOnOverSignLimit);
-      properText = textToFormat + ' - ' + suffix.join();
+      properText = textToFormat + suffix.join();
     } else
       properText = textIfNull;
     return properText;
