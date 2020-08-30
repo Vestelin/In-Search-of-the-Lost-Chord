@@ -5,6 +5,7 @@ import 'package:in_search_of_the_lost_chord/bloc/trackBloc.dart';
 import 'package:in_search_of_the_lost_chord/bloc/trackListBloc.dart';
 import 'package:in_search_of_the_lost_chord/models/track.dart';
 import 'package:in_search_of_the_lost_chord/models/tracksHistory.dart';
+import 'package:in_search_of_the_lost_chord/widgets/lesser/deleteSnackBar.dart';
 import 'package:in_search_of_the_lost_chord/widgets/lesser/dialogs.dart';
 import 'package:in_search_of_the_lost_chord/widgets/trackListRelated/trackTile.dart';
 
@@ -68,11 +69,12 @@ class _TrackListState extends State<TrackList> {
               background: Container(color: Colors.black),
               onDismissed: (direction) {
                 Scaffold.of(context).hideCurrentSnackBar();
-                Scaffold.of(context).showSnackBar(SnackBar(
-                  backgroundColor: Colors.grey[500],
-                  duration: const Duration(milliseconds: 700),
-                  content: Text("You deleted ${tracksData[index].name}."),
-                ));
+                Scaffold.of(context).showSnackBar(DeleteSnackBar(
+                    name: tracksData[index].name,
+                    onPressed: () {
+                      Scaffold.of(context).hideCurrentSnackBar();
+                      bloc.addTrack(bloc.lastDeletedTrack, index: index);
+                    }));
                 bloc.deleteTrack(tracksData[index]);
               },
               key: ValueKey(tracksData[index]),

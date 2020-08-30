@@ -31,8 +31,6 @@ class RatingAnimatedListCore<T extends INamed> {
     }
   }
 
-  void remove(T ratingItem) {}
-
   Widget buildItem(int index, Animation animation) {
     var properRatingWidget = getProperRatingWidget(presentedList[index]);
     return SlideTransition(
@@ -44,14 +42,14 @@ class RatingAnimatedListCore<T extends INamed> {
 
   void removeItem(T item) {
     int index = presentedList.indexOf(item);
-    AnimatedListRemovedItemBuilder bbuilder = (context, animation) {
+    AnimatedListRemovedItemBuilder builder = (context, animation) {
       var properRatingWidget = getProperRatingWidget(presentedList[index]);
       return SlideTransition(
           position: Tween<Offset>(begin: Offset(0, 0), end: Offset(1, 0))
               .animate(animation),
           child: properRatingWidget);
     };
-    listState.removeItem(index, bbuilder, duration: Duration());
+    listState.removeItem(index, builder, duration: Duration());
     presentedList.removeAt(index);
   }
 }

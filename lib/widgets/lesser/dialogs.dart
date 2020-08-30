@@ -295,8 +295,9 @@ class RemoveItemDialog<T extends INamed> extends StatelessWidget {
       actions: <Widget>[
         FlatButton(
             onPressed: () {
-              removeFunction(item);
               Navigator.pop(context);
+              Navigator.pop(context);
+              removeFunction(item);
             },
             child: const Text("Yes")),
         FlatButton(

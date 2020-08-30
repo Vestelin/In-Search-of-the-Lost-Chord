@@ -12,6 +12,10 @@ class Release extends INamed {
     tracks.add(track);
   }
 
+  void addTrackAtIndex(Track track, int index) {
+    tracks.insert(index, track);
+  }
+
   void resetTracksRating() {
     tracks.forEach((element) => element.rate(RatingGrades.notRated));
   }

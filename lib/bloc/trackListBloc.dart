@@ -7,6 +7,7 @@ import 'bloc.dart';
 
 class TrackListBloc implements Bloc {
   final Release _release;
+  Track lastDeletedTrack;
 
   TrackListBloc(this._release);
 
@@ -20,13 +21,16 @@ class TrackListBloc implements Bloc {
   Stream<List<Track>> get stream => controller.stream;
 
   void deleteTrack(Track track) {
+    lastDeletedTrack = track;
     _release.deleteTrack(track);
     controller.sink.add(tracks);
     Database.saveReleases();
   }
 
-  void addTrack(track) {
-    _release.addTrack(track);
+  void addTrack(Track track, {int index}) {
+    index == null
+        ? _release.addTrack(track)
+        : _release.addTrackAtIndex(track, index);
     controller.sink.add(tracks);
     Database.saveReleases();
   }

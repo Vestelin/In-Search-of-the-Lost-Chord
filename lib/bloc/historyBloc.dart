@@ -10,6 +10,7 @@ class HistoryBloc extends Bloc {
   final Release release;
   TracksHistory currentHistory;
   List<TracksHistory> get historyList => release.historyOfRatings;
+  TracksHistory lastDeletedHistory;
 
   HistoryBloc(this.release);
 
@@ -22,6 +23,19 @@ class HistoryBloc extends Bloc {
 
   void addHistory() {
     release.historyTracks();
+    _controller.sink.add(historyList);
+    Database.saveReleases();
+  }
+
+  void deleteHistory(TracksHistory history) {
+    lastDeletedHistory = history;
+    historyList.remove(history);
+    _controller.sink.add(historyList);
+    Database.saveReleases();
+  }
+
+  void insertHistory(TracksHistory history, {int index}) {
+    historyList.insert(index, history);
     _controller.sink.add(historyList);
     Database.saveReleases();
   }

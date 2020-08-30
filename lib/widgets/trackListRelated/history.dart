@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:in_search_of_the_lost_chord/bloc/blocProvider.dart';
 import 'package:in_search_of_the_lost_chord/bloc/historyBloc.dart';
 import 'package:in_search_of_the_lost_chord/models/tracksHistory.dart';
+import 'package:in_search_of_the_lost_chord/widgets/lesser/deleteSnackBar.dart';
 import 'package:in_search_of_the_lost_chord/widgets/trackListRelated/trackList.dart';
 
 class History extends StatelessWidget {
@@ -36,27 +37,46 @@ class History extends StatelessWidget {
                 itemCount: data.length,
                 itemBuilder: (BuildContext context, int index) {
                   var currentHistory = data[index];
-                  return Card(
-                    margin: const EdgeInsets.only(top: 1),
-                    child: ListTile(
-                      title: Text(currentHistory.dateOfSaving.substring(0, 10),
-                          softWrap: true,
-                          overflow: TextOverflow.ellipsis,
-                          style: Theme.of(context).textTheme.bodyText2),
-                      trailing: Text(currentHistory.dateOfSaving.substring(11),
-                          softWrap: true,
-                          overflow: TextOverflow.ellipsis,
-                          style: Theme.of(context).textTheme.bodyText2),
-                      onTap: () {
-                        bloc.currentHistory = currentHistory;
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                HistoryTrackList(currentHistory),
-                          ),
-                        );
-                      },
+                  return Dismissible(
+                    key: ValueKey(currentHistory),
+                    onDismissed: (direction) {
+                      Scaffold.of(context).hideCurrentSnackBar();
+                      bloc.deleteHistory(currentHistory);
+                      Scaffold.of(context).showSnackBar(
+                        DeleteSnackBar(
+                          name: 'history',
+                          onPressed: () {
+                            Scaffold.of(context).hideCurrentSnackBar();
+                            bloc.insertHistory(bloc.lastDeletedHistory,
+                                index: index);
+                          },
+                        ),
+                      );
+                    },
+                    child: Card(
+                      margin: const EdgeInsets.only(top: 1),
+                      child: ListTile(
+                        title: Text(
+                            currentHistory.dateOfSaving.substring(0, 10),
+                            softWrap: true,
+                            overflow: TextOverflow.ellipsis,
+                            style: Theme.of(context).textTheme.bodyText2),
+                        trailing: Text(
+                            currentHistory.dateOfSaving.substring(11),
+                            softWrap: true,
+                            overflow: TextOverflow.ellipsis,
+                            style: Theme.of(context).textTheme.bodyText2),
+                        onTap: () {
+                          bloc.currentHistory = currentHistory;
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  HistoryTrackList(currentHistory),
+                            ),
+                          );
+                        },
+                      ),
                     ),
                   );
                 });
