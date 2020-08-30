@@ -9,18 +9,18 @@ class StatisticsService {
   static ValueNotifier<List<Future>> futures = ValueNotifier<List<Future>>([
     StatisticsService.getReleasesCount(),
     StatisticsService.getTracksAmount(),
-    StatisticsService.getReleaseWithBestMstrPercentage(),
     StatisticsService.getReleaseWithHighestTrackAmount(),
     StatisticsService.getReleaseWithHighestHistoryAmount(),
+    StatisticsService.getReleaseWithBestMstrPercentage(),
   ]);
 
   static void resetFutures() {
     futures.value = [
       StatisticsService.getReleasesCount(),
       StatisticsService.getTracksAmount(),
-      StatisticsService.getReleaseWithBestMstrPercentage(),
       StatisticsService.getReleaseWithHighestTrackAmount(),
       StatisticsService.getReleaseWithHighestHistoryAmount(),
+      StatisticsService.getReleaseWithBestMstrPercentage(),
     ];
   }
 
@@ -36,41 +36,6 @@ class StatisticsService {
         .forEach((element) => trackAmount += element.tracks.length);
     await Future.delayed(Duration(milliseconds: 1200));
     return Future.value(trackAmount);
-  }
-
-  static String formatAndValidateText(String textToFormat, String textIfNull,
-      int signLimit, String replaceOnOverSignLimit, List<String> suffix) {
-    String properText;
-    if (textToFormat != null) {
-      if (textToFormat.length > signLimit)
-        textToFormat =
-            textToFormat.replaceRange(signLimit, null, replaceOnOverSignLimit);
-      properText = textToFormat + ' - ' + suffix.join();
-    } else
-      properText = textIfNull;
-    return properText;
-  }
-
-  static Future<String> getReleaseWithBestMstrPercentage() async {
-    String releaseName;
-    int percentage = 0;
-
-    Database.releases.forEach((element) {
-      int masterpieceAmount = 0;
-      element.tracks.forEach((element) {
-        if (element.rating == RatingGrades.masterpiece) masterpieceAmount++;
-      });
-      int currentPercentage =
-          (masterpieceAmount * 100 ~/ element.tracks.length);
-      if (currentPercentage > percentage) {
-        releaseName = element.name;
-        percentage = currentPercentage;
-      }
-    });
-    String properText = formatAndValidateText(releaseName,
-        'No masterpiece found', 14, '...', [percentage.toString(), '%']);
-    await Future.delayed(Duration(milliseconds: 1400));
-    return Future.value(properText);
   }
 
   static Future<String> getReleaseWithHighestTrackAmount() async {
@@ -105,7 +70,42 @@ class StatisticsService {
     );
     String properText = formatAndValidateText(releaseName, 'No tracks found',
         26, '...', [highestHistoryAmount.toString()]);
+    await Future.delayed(Duration(milliseconds: 1800));
+    return Future.value(properText);
+  }
+
+  static Future<String> getReleaseWithBestMstrPercentage() async {
+    String releaseName;
+    int percentage = 0;
+
+    Database.releases.forEach((element) {
+      int masterpieceAmount = 0;
+      element.tracks.forEach((element) {
+        if (element.rating == RatingGrades.masterpiece) masterpieceAmount++;
+      });
+      int currentPercentage =
+          (masterpieceAmount * 100 ~/ element.tracks.length);
+      if (currentPercentage > percentage) {
+        releaseName = element.name;
+        percentage = currentPercentage;
+      }
+    });
+    String properText = formatAndValidateText(releaseName,
+        'No masterpiece found', 14, '...', [percentage.toString(), '%']);
     await Future.delayed(Duration(milliseconds: 2000));
     return Future.value(properText);
+  }
+
+  static String formatAndValidateText(String textToFormat, String textIfNull,
+      int signLimit, String replaceOnOverSignLimit, List<String> suffix) {
+    String properText;
+    if (textToFormat != null) {
+      if (textToFormat.length > signLimit)
+        textToFormat =
+            textToFormat.replaceRange(signLimit, null, replaceOnOverSignLimit);
+      properText = textToFormat + ' - ' + suffix.join();
+    } else
+      properText = textIfNull;
+    return properText;
   }
 }
