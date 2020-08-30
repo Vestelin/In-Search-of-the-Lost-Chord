@@ -6,6 +6,7 @@ import 'package:in_search_of_the_lost_chord/widgets/releaseListRelated/releaseTi
 import 'package:keyboard_visibility/keyboard_visibility.dart';
 
 class Search extends StatefulWidget {
+  const Search();
   @override
   State<StatefulWidget> createState() {
     return _SearchState();

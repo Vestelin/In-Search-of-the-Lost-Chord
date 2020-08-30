@@ -6,39 +6,44 @@ import 'package:in_search_of_the_lost_chord/dataManagement/database.dart';
 import 'package:in_search_of_the_lost_chord/models/misc/ratingGrades.dart';
 
 class StatisticsService {
-  static ValueNotifier<List<Future>> futures = ValueNotifier<List<Future>>([
-    StatisticsService.getReleasesCount(),
-    StatisticsService.getTracksAmount(),
-    StatisticsService.getReleaseWithHighestTrackAmount(),
-    StatisticsService.getReleaseWithHighestHistoryAmount(),
-    StatisticsService.getReleaseWithBestMstrPercentage(),
-  ]);
+  ValueNotifier<List<Future>> futures;
 
-  static void resetFutures() {
+  static const int _milisecondsForFirst = 1000;
+  static const double _milisecondsModifierForNextOnes = 0.2;
+
+  StatisticsService() {
+    futures = ValueNotifier<List<Future>>([]);
+    setFutures();
+  }
+
+  void setFutures() {
     futures.value = [
-      StatisticsService.getReleasesCount(),
-      StatisticsService.getTracksAmount(),
-      StatisticsService.getReleaseWithHighestTrackAmount(),
-      StatisticsService.getReleaseWithHighestHistoryAmount(),
-      StatisticsService.getReleaseWithBestMstrPercentage(),
+      getReleasesCount(),
+      getTracksAmount(),
+      getReleaseWithHighestTrackAmount(),
+      getReleaseWithHighestHistoryAmount(),
+      getReleaseWithBestMstrPercentage(),
     ];
   }
 
-  static Future<int> getReleasesCount() async {
+  Future<int> getReleasesCount() async {
+    int positionOnList = 1;
     int releaseAmount = Database.releases.length;
-    await Future.delayed(Duration(milliseconds: 1000));
+    await Future.delayed(Duration(milliseconds: countDuration(positionOnList)));
     return Future.value(releaseAmount);
   }
 
-  static Future<int> getTracksAmount() async {
+  Future<int> getTracksAmount() async {
+    int positionOnList = 2;
     int trackAmount = 0;
     Database.releases
         .forEach((element) => trackAmount += element.tracks.length);
-    await Future.delayed(Duration(milliseconds: 1200));
+    await Future.delayed(Duration(milliseconds: countDuration(positionOnList)));
     return Future.value(trackAmount);
   }
 
-  static Future<String> getReleaseWithHighestTrackAmount() async {
+  Future<String> getReleaseWithHighestTrackAmount() async {
+    int positionOnList = 3;
     String releaseName;
     int highestTrackAmount = 0;
     Database.releases.forEach(
@@ -52,11 +57,12 @@ class StatisticsService {
     );
     String properText = formatAndValidateText(releaseName, 'No tracks found',
         26, '...', [highestTrackAmount.toString()]);
-    await Future.delayed(Duration(milliseconds: 1600));
+    await Future.delayed(Duration(milliseconds: countDuration(positionOnList)));
     return Future.value(properText);
   }
 
-  static Future<String> getReleaseWithHighestHistoryAmount() async {
+  Future<String> getReleaseWithHighestHistoryAmount() async {
+    int positionOnList = 4;
     String releaseName;
     int highestHistoryAmount = 0;
     Database.releases.forEach(
@@ -70,11 +76,12 @@ class StatisticsService {
     );
     String properText = formatAndValidateText(releaseName, 'No tracks found',
         26, '...', [highestHistoryAmount.toString()]);
-    await Future.delayed(Duration(milliseconds: 1800));
+    await Future.delayed(Duration(milliseconds: countDuration(positionOnList)));
     return Future.value(properText);
   }
 
-  static Future<String> getReleaseWithBestMstrPercentage() async {
+  Future<String> getReleaseWithBestMstrPercentage() async {
+    int positionOnList = 5;
     String releaseName;
     int percentage = 0;
 
@@ -83,8 +90,9 @@ class StatisticsService {
       element.tracks.forEach((element) {
         if (element.rating == RatingGrades.masterpiece) masterpieceAmount++;
       });
-      int currentPercentage =
-          (masterpieceAmount * 100 ~/ element.tracks.length);
+      int currentPercentage = (masterpieceAmount *
+          100 ~/
+          (element.tracks.length > 0 ? element.tracks.length : -1));
       if (currentPercentage > percentage) {
         releaseName = element.name;
         percentage = currentPercentage;
@@ -92,11 +100,11 @@ class StatisticsService {
     });
     String properText = formatAndValidateText(releaseName,
         'No masterpiece found', 14, '...', [percentage.toString(), '%']);
-    await Future.delayed(Duration(milliseconds: 2000));
+    await Future.delayed(Duration(milliseconds: countDuration(positionOnList)));
     return Future.value(properText);
   }
 
-  static String formatAndValidateText(String textToFormat, String textIfNull,
+  String formatAndValidateText(String textToFormat, String textIfNull,
       int signLimit, String replaceOnOverSignLimit, List<String> suffix) {
     String properText;
     if (textToFormat != null) {
@@ -107,5 +115,14 @@ class StatisticsService {
     } else
       properText = textIfNull;
     return properText;
+  }
+
+  int countDuration(int positionOnList) {
+    int time = _milisecondsForFirst +
+        (_milisecondsForFirst *
+                _milisecondsModifierForNextOnes *
+                positionOnList)
+            .toInt();
+    return time;
   }
 }

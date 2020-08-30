@@ -20,21 +20,13 @@ class _ReleasesState extends State<Releases> {
       length: 2,
       initialIndex: 0,
       child: Scaffold(
-        body:
-            /* GestureDetector(
-          onTap: () {
-            FocusScopeNode currentFocus = FocusScope.of(context);
-            if (!currentFocus.hasPrimaryFocus) currentFocus.unfocus();
-          },
-          child: */
-            BlocProvider<SearchBloc>(
+        body: BlocProvider<SearchBloc>(
           bloc: SearchBloc(),
           child: TabBarView(
             physics: const NeverScrollableScrollPhysics(),
-            children: [ReleaseList(), Search()],
+            children: [ReleaseList(), const Search()],
           ),
         ),
-        //),
         bottomNavigationBar: TabBar(
           tabs: <Widget>[
             const TabBarContainer(const Icon(Icons.library_music), "Releases"),
