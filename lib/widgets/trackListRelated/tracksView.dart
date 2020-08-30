@@ -10,7 +10,7 @@ import 'trackList.dart';
 class TracksView extends StatefulWidget {
   final Release release;
 
-  TracksView(this.release);
+  const TracksView(this.release);
 
   @override
   State<StatefulWidget> createState() {

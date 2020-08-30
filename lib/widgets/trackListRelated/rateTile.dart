@@ -9,12 +9,12 @@ enum RateTileType { ratingAlreadyExisting, ratingAtCreation }
 
 abstract class RateTile extends StatelessWidget {
   final RatingGrades grade;
-  RateTile(this.grade);
+  const RateTile(this.grade);
   static const double _bottomPaddingValue = 6.0;
 }
 
 class ExistingTrackRateTile extends RateTile {
-  ExistingTrackRateTile(grade) : super(grade);
+  const ExistingTrackRateTile(grade) : super(grade);
   @override
   Widget build(BuildContext context) {
     final TrackBloc bloc = BlocProvider.of<TrackBloc>(context);
@@ -35,7 +35,7 @@ class ExistingTrackRateTile extends RateTile {
 }
 
 class NewTrackRateTile extends RateTile {
-  NewTrackRateTile(grade) : super(grade);
+  const NewTrackRateTile(grade) : super(grade);
   @override
   Widget build(BuildContext context) {
     final AddingTrackBloc bloc = BlocProvider.of<AddingTrackBloc>(context);

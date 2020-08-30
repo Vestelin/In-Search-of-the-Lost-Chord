@@ -3,6 +3,7 @@ import 'package:in_search_of_the_lost_chord/models/misc/cores.dart';
 import 'package:in_search_of_the_lost_chord/models/misc/ratingAnimatedListCore.dart';
 import 'package:in_search_of_the_lost_chord/models/release.dart';
 
+import '../mainPageRelated/stackAnimationProvider.dart';
 import '../lesser/dialogs.dart';
 
 class ReleaseList extends StatefulWidget {
@@ -21,7 +22,13 @@ class _ReleaseListState extends State<ReleaseList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("In Search of the Lost Chord"),
+        title: GestureDetector(
+            onTap: () {
+              StackAnimationProvider.ofState(context).ignoreGesture.value =
+                  true;
+              StackAnimationProvider.ofState(context).controller.forward();
+            },
+            child: const Text("In Search of the Lost Chord")),
         actions: <Widget>[
           SizedBox(
             width: 60,
