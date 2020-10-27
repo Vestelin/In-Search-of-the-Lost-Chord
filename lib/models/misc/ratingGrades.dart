@@ -1,11 +1,10 @@
 enum RatingGrades {
   notRated,
+  awful,
   poor,
-  fair,
-  quiteGood,
+  fine,
   good,
-  moreThanGood,
   veryGood,
-  excellent,
-  masterpiece
+  great,
+  perfect
 }

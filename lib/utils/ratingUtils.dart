@@ -10,29 +10,29 @@ class RatingUtils {
       case RatingGrades.notRated:
         title = "Not rated";
         break;
+      case RatingGrades.awful:
+        title = "Awful";
+        break;
       case RatingGrades.poor:
         title = "Poor";
         break;
-      case RatingGrades.fair:
-        title = "Fair";
-        break;
-      case RatingGrades.quiteGood:
-        title = "Quite good";
+      case RatingGrades.fine:
+        title = "Fine";
         break;
       case RatingGrades.good:
         title = "Good";
         break;
-      case RatingGrades.moreThanGood:
-        title = "More than good";
-        break;
       case RatingGrades.veryGood:
         title = "Very good";
         break;
-      case RatingGrades.excellent:
-        title = "Excellent";
+      case RatingGrades.great:
+        title = "Great";
         break;
-      case RatingGrades.masterpiece:
-        title = "Masterpiece";
+      case RatingGrades.perfect:
+        title = "Perfect";
+        break;
+      default:
+        title = "Not set";
         break;
     }
     return Text(
@@ -48,29 +48,29 @@ class RatingUtils {
       case RatingGrades.notRated:
         colour = Colors.grey;
         break;
-      case RatingGrades.poor:
+      case RatingGrades.awful:
         colour = Colors.red;
         break;
-      case RatingGrades.fair:
+      case RatingGrades.poor:
         colour = Colors.orange;
         break;
-      case RatingGrades.quiteGood:
-        colour = Colors.yellow;
-        break;
-      case RatingGrades.good:
+      case RatingGrades.fine:
         colour = Colors.green[400];
         break;
-      case RatingGrades.moreThanGood:
+      case RatingGrades.good:
         colour = Colors.green[600];
         break;
       case RatingGrades.veryGood:
         colour = Colors.green[800];
         break;
-      case RatingGrades.excellent:
-        colour = Colors.blue;
+      case RatingGrades.great:
+        colour = Colors.blue[600];
         break;
-      case RatingGrades.masterpiece:
+      case RatingGrades.perfect:
         colour = Colors.purple;
+        break;
+      default:
+        colour = Colors.grey;
         break;
     }
     return colour;

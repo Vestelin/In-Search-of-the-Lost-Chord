@@ -69,12 +69,12 @@ class Release extends INamed {
     name = "test";
     historyOfRatings = List<TracksHistory>();
     tracks = [
-      Track("One of These Days", rating: RatingGrades.masterpiece),
-      Track("a Pillow of Winds", rating: RatingGrades.excellent),
-      Track("Fearless", rating: RatingGrades.fair),
-      Track("San Tropez", rating: RatingGrades.moreThanGood),
+      Track("One of These Days", rating: RatingGrades.perfect),
+      Track("a Pillow of Winds", rating: RatingGrades.great),
+      Track("Fearless", rating: RatingGrades.poor),
+      Track("San Tropez", rating: RatingGrades.awful),
       Track("Seamus", rating: RatingGrades.veryGood),
-      Track("Echoes", rating: RatingGrades.masterpiece)
+      Track("Echoes", rating: RatingGrades.perfect)
     ];
   }
 }

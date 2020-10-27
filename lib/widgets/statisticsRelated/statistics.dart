@@ -27,7 +27,7 @@ class Statistics extends StatelessWidget {
           child: NotificationListener<OverscrollIndicatorNotification>(
             onNotification: (OverscrollIndicatorNotification overscroll) {
               overscroll.disallowGlow();
-              return false;
+              return false; //
             },
             child: SingleChildScrollView(
               physics: const AlwaysScrollableScrollPhysics(),

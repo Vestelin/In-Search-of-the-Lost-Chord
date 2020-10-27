@@ -21,7 +21,9 @@ class Track extends INamed {
   Track.fromJson(Map<String, dynamic> json) {
     name = json['name'];
     int ratingIndex = json['rating'] as int;
-    rating = RatingGrades.values[ratingIndex];
+    rating = ratingIndex < RatingGrades.values.length
+        ? RatingGrades.values[ratingIndex]
+        : RatingGrades.values[0];
     List<dynamic> modifiersDecoded = json['modifiers'];
     Map<TrackModifier, bool> convertedToMap = {
       TrackModifier.toReconsider: false
