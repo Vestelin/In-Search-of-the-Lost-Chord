@@ -3,7 +3,6 @@ import 'package:in_search_of_the_lost_chord/bloc/blocProvider.dart';
 import 'package:in_search_of_the_lost_chord/bloc/searchBloc.dart';
 import 'package:in_search_of_the_lost_chord/models/release.dart';
 import 'package:in_search_of_the_lost_chord/widgets/releaseListRelated/releaseTile.dart';
-import 'package:keyboard_visibility/keyboard_visibility.dart';
 
 class Search extends StatefulWidget {
   const Search();
@@ -16,8 +15,7 @@ class Search extends StatefulWidget {
 class _SearchState extends State<Search>
     with AutomaticKeepAliveClientMixin<Search> {
   SearchBloc bloc;
-  final KeyboardVisibilityNotification _keyboardVisibilityNotification =
-      KeyboardVisibilityNotification();
+
   Widget getListViewOfFoundReleases(List<Release> foundReleases) {
     return ListView.builder(
         //physics: NeverScrollableScrollPhysics(),
@@ -30,11 +28,6 @@ class _SearchState extends State<Search>
   void initState() {
     super.initState();
     bloc = BlocProvider.of<SearchBloc>(context);
-    _keyboardVisibilityNotification.addNewListener(onHide: () {
-      FocusScopeNode currentFocus = FocusScope.of(context);
-
-      if (!currentFocus.hasPrimaryFocus) currentFocus.unfocus();
-    });
   }
 
   @override
