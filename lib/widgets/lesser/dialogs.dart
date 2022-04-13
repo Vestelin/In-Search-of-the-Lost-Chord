@@ -73,29 +73,31 @@ class _AddTrackDialogState<Track> extends State<AddTrackDialog<Track>> {
   Widget build(BuildContext context) {
     return AlertDialog(
       contentPadding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
-      content: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          TextField(
-            autofocus: true,
-            controller: nameController,
-            textInputAction: TextInputAction.done,
-            style: Theme.of(context).textTheme.bodyText2,
-            decoration: const InputDecoration(
-                labelText: "Name", labelStyle: const TextStyle(fontSize: 16)),
-          ),
-          Container(
-            height: 15,
-          ),
-          StreamBuilder<RatingGrades>(
-              stream: bloc.stream,
-              initialData: RatingGrades.notRated,
-              builder: (context, snapshot) {
-                var grade = snapshot.data;
-                if (grade == null) return Container();
-                return RateTrack(RatingUtils.getNewTrackRateTiles(), false);
-              })
-        ],
+      content: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            TextField(
+              autofocus: true,
+              controller: nameController,
+              textInputAction: TextInputAction.done,
+              style: Theme.of(context).textTheme.bodyText2,
+              decoration: const InputDecoration(
+                  labelText: "Name", labelStyle: const TextStyle(fontSize: 16)),
+            ),
+            Container(
+              height: 15,
+            ),
+            StreamBuilder<RatingGrades>(
+                stream: bloc.stream,
+                initialData: RatingGrades.notRated,
+                builder: (context, snapshot) {
+                  var grade = snapshot.data;
+                  if (grade == null) return Container();
+                  return RateTrack(RatingUtils.getNewTrackRateTiles(), false);
+                })
+          ],
+        ),
       ),
       actions: <Widget>[
         FlatButton(
