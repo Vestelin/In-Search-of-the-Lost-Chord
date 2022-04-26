@@ -13,7 +13,7 @@ class History extends StatelessWidget {
       appBar: AppBar(
         title: const Text("History"),
         actions: <Widget>[
-          FlatButton(
+          TextButton(
             child: const Icon(Icons.add),
             onPressed: () => bloc.addHistory(),
           )
@@ -40,13 +40,13 @@ class History extends StatelessWidget {
                   return Dismissible(
                     key: ValueKey(currentHistory),
                     onDismissed: (direction) {
-                      Scaffold.of(context).hideCurrentSnackBar();
+                      ScaffoldMessenger.of(context).hideCurrentSnackBar();
                       bloc.deleteHistory(currentHistory);
-                      Scaffold.of(context).showSnackBar(
+                      ScaffoldMessenger.of(context).showSnackBar(
                         DeleteSnackBar(
                           name: 'history',
                           onPressed: () {
-                            Scaffold.of(context).hideCurrentSnackBar();
+                            ScaffoldMessenger.of(context).hideCurrentSnackBar();
                             bloc.insertHistory(bloc.lastDeletedHistory,
                                 index: index);
                           },

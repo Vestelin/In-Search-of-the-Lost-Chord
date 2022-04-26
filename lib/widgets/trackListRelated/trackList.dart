@@ -44,7 +44,7 @@ class _TrackListState extends State<TrackList> {
         actions: <Widget>[
           Container(
             width: 60,
-            child: FlatButton(
+            child: TextButton(
                 onPressed: () => showDialog(
                       context: context,
                       builder: (context) => BlocProvider<AddingTrackBloc>(
@@ -68,11 +68,11 @@ class _TrackListState extends State<TrackList> {
             itemBuilder: (context, index) => Dismissible(
               background: Container(color: Colors.black),
               onDismissed: (direction) {
-                Scaffold.of(context).hideCurrentSnackBar();
-                Scaffold.of(context).showSnackBar(DeleteSnackBar(
+                ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                ScaffoldMessenger.of(context).showSnackBar(DeleteSnackBar(
                     name: tracksData[index].name,
                     onPressed: () {
-                      Scaffold.of(context).hideCurrentSnackBar();
+                      ScaffoldMessenger.of(context).hideCurrentSnackBar();
                       bloc.addTrack(bloc.lastDeletedTrack, index: index);
                     }));
                 bloc.deleteTrack(tracksData[index]);

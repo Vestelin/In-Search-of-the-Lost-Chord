@@ -32,7 +32,7 @@ class _ReleaseListState extends State<ReleaseList> {
         actions: <Widget>[
           SizedBox(
             width: 60,
-            child: FlatButton(
+            child: TextButton(
                 onPressed: () {
                   showDialog(
                     context: context,

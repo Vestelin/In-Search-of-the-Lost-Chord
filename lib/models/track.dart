@@ -36,7 +36,7 @@ class Track extends INamed {
   }
 
   Map<String, dynamic> toJson() {
-    List<Map<String, dynamic>> encodedModifiers = List<Map<String, dynamic>>();
+    List<Map<String, dynamic>> encodedModifiers = [];
     modifiers.forEach(
       (key, value) {
         encodedModifiers.add(

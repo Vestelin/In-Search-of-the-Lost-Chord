@@ -8,5 +8,9 @@ class DeleteSnackBar extends SnackBar {
             content: Text('You deleted $name'),
             duration: const Duration(milliseconds: 1000),
             backgroundColor: Colors.grey[500],
-            action: SnackBarAction(label: 'Restore', onPressed: onPressed));
+            action: SnackBarAction(
+              label: 'Restore',
+              onPressed: onPressed,
+              textColor: Colors.black,
+            ));
 }

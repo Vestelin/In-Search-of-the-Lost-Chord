@@ -23,17 +23,21 @@ class TracksView extends StatefulWidget {
 
 class _TracksViewState extends State<TracksView> {
   ShakeDetector detector;
+  bool _isOpen = false;
   @override
   void initState() {
     detector = ShakeDetector.waitForStart(
       onPhoneShake: () {
-        showDialog(
-          context: context,
-          builder: (context) => RemoveItemDialog(
-              item: widget.release,
-              removeFunction: (release) =>
-                  Cores.releaseListCore.removeItem(release)),
-        );
+        if (!_isOpen) {
+          _isOpen = true;
+          showDialog(
+            context: context,
+            builder: (context) => RemoveItemDialog(
+                item: widget.release,
+                removeFunction: (release) =>
+                    Cores.releaseListCore.removeItem(release)),
+          ).then((_) => _isOpen = false);
+        }
       },
       shakeSlopTimeMS: 5000,
     );

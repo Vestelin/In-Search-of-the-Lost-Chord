@@ -5,7 +5,7 @@ import 'iNamed.dart';
 import 'track.dart';
 
 class Release extends INamed {
-  List<Track> tracks = List<Track>();
+  List<Track> tracks = [];
   List<TracksHistory> historyOfRatings;
 
   void addTrack(Track track) {
@@ -35,8 +35,8 @@ class Release extends INamed {
   }
 
   Release(name, {int numberOfTracks: 0}) : super(name: name) {
-    historyOfRatings = List<TracksHistory>();
-    tracks = List<Track>();
+    historyOfRatings = [];
+    tracks = [];
     if (numberOfTracks > 0) {
       for (int i = 1; i <= numberOfTracks; i++) {
         Track trackWithIndexAsName = Track("Track " + (i).toString());
@@ -67,7 +67,7 @@ class Release extends INamed {
 
   Release.test() {
     name = "test";
-    historyOfRatings = List<TracksHistory>();
+    historyOfRatings = [];
     tracks = [
       Track("One of These Days", rating: RatingGrades.perfect),
       Track("a Pillow of Winds", rating: RatingGrades.great),

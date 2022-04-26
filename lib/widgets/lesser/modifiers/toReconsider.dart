@@ -32,7 +32,7 @@ class _ToReconsiderState extends State<ToReconsider> {
             var data = snapshot.data;
             var hasToReconsider = data?.modifiers[TrackModifier.toReconsider];
             return Container(
-                child: Icon(Icons.help,
+                child: Icon(Icons.help_center,
                     color: hasToReconsider
                         ? RatingUtils.getColorByRating(data.rating)
                         : Colors.grey[700]));

@@ -33,7 +33,7 @@ abstract class NameManipulationDialog<T> extends StatelessWidget {
             labelText: "Name", labelStyle: TextStyle(fontSize: 16)),
       ),
       actions: <Widget>[
-        FlatButton(
+        TextButton(
           child: const Text("Done"),
           onPressed: () {
             onClick(nameController.text);
@@ -88,19 +88,22 @@ class _AddTrackDialogState<Track> extends State<AddTrackDialog<Track>> {
             Container(
               height: 15,
             ),
-            StreamBuilder<RatingGrades>(
-                stream: bloc.stream,
-                initialData: RatingGrades.notRated,
-                builder: (context, snapshot) {
-                  var grade = snapshot.data;
-                  if (grade == null) return Container();
-                  return RateTrack(RatingUtils.getNewTrackRateTiles(), false);
-                })
+            Container(
+              width: 300,
+              child: StreamBuilder<RatingGrades>(
+                  stream: bloc.stream,
+                  initialData: RatingGrades.notRated,
+                  builder: (context, snapshot) {
+                    var grade = snapshot.data;
+                    if (grade == null) return Container();
+                    return RateTrack(RatingUtils.getNewTrackRateTiles(), false);
+                  }),
+            )
           ],
         ),
       ),
       actions: <Widget>[
-        FlatButton(
+        TextButton(
           child: const Text("Done"),
           onPressed: () {
             String trimmedTypedName = nameController.text.trim();
@@ -226,18 +229,18 @@ class _AddAlbumWindowState extends State<AddAlbumWindow> {
                 ),
               ),
               ButtonBar(children: [
-                FlatButton(
+                TextButton(
                   child: const Text(
                     "Cancel",
                   ),
                   onPressed: () => Navigator.pop(context),
                 ),
-                FlatButton(
+                TextButton(
                     child: const Text("Create and Go"),
                     onPressed: () {
                       _addReleaseAndPushToTracksView(context);
                     }),
-                FlatButton(
+                TextButton(
                   child: const Text("Create"),
                   onPressed: () {
                     _addReleaseAndRemoveDialog(context);
@@ -295,14 +298,14 @@ class RemoveItemDialog<T extends INamed> extends StatelessWidget {
       content: Text("Are you sure, you want do delete ${item.name}?",
           style: const TextStyle(fontSize: 16)),
       actions: <Widget>[
-        FlatButton(
+        TextButton(
             onPressed: () {
               Navigator.pop(context);
               Navigator.pop(context);
               removeFunction(item);
             },
             child: const Text("Yes")),
-        FlatButton(
+        TextButton(
             onPressed: () => Navigator.pop(context), child: const Text("No"))
       ],
     );

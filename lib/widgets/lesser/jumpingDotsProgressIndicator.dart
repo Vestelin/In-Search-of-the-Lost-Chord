@@ -48,9 +48,9 @@ class JumpingDotsProgressIndicator extends StatefulWidget {
 
 class _JumpingDotsProgressIndicatorState
     extends State<JumpingDotsProgressIndicator> with TickerProviderStateMixin {
-  final List<AnimationController> controllers = List<AnimationController>();
-  final List<Animation<double>> animations = List<Animation<double>>();
-  final List<Widget> widgets = List<Widget>();
+  final List<AnimationController> controllers = [];
+  final List<Animation<double>> animations = [];
+  final List<Widget> widgets = [];
 
   @override
   void initState() {

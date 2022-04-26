@@ -20,7 +20,7 @@ class RateTrack extends StatelessWidget {
         height: 180,
         child: NotificationListener<OverscrollIndicatorNotification>(
           onNotification: (OverscrollIndicatorNotification overscroll) {
-            overscroll.disallowGlow();
+            overscroll.disallowIndicator();
             return false;
           },
           child: ListView(

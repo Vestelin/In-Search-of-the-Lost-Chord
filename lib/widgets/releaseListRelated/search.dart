@@ -45,39 +45,50 @@ class _SearchState extends State<Search>
     );
   }
 
+  void unfocus() {
+    var currentFocus = FocusScope.of(context);
+
+    if (!currentFocus.hasPrimaryFocus) {
+      currentFocus.unfocus();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return Scaffold(
-      appBar: AppBar(title: const Text("In Search of the Lost Chord")),
-      body: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          TextField(
-            onChanged: (text) => bloc.sinkReleasesByKeyword(text),
-            style: const TextStyle(
-              fontSize: 18,
+    return GestureDetector(
+      onTap: unfocus,
+      child: Scaffold(
+        appBar: AppBar(title: const Text("In Search of the Lost Chord")),
+        body: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            TextField(
+              onChanged: (text) => bloc.sinkReleasesByKeyword(text),
+              style: const TextStyle(
+                fontSize: 18,
+              ),
+              decoration: const InputDecoration(
+                contentPadding: const EdgeInsets.all(18),
+              ),
             ),
-            decoration: const InputDecoration(
-              contentPadding: const EdgeInsets.all(18),
-            ),
-          ),
-          Expanded(
-            child: StreamBuilder<List<Release>>(
-              stream: bloc.searchStream,
-              builder: (context, snapshot) {
-                final releases = snapshot.data;
-                if (releases == null) return Container();
-                if (releases.isEmpty) {
-                  return getCenteredText("There're no such releases");
-                }
-                List<Release> foundReleases = snapshot.data;
-                var listView = getListViewOfFoundReleases(foundReleases);
-                return listView;
-              },
-            ),
-          )
-        ],
+            Expanded(
+              child: StreamBuilder<List<Release>>(
+                stream: bloc.searchStream,
+                builder: (context, snapshot) {
+                  final releases = snapshot.data;
+                  if (releases == null) return Container();
+                  if (releases.isEmpty) {
+                    return getCenteredText("There're no such releases");
+                  }
+                  List<Release> foundReleases = snapshot.data;
+                  var listView = getListViewOfFoundReleases(foundReleases);
+                  return listView;
+                },
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

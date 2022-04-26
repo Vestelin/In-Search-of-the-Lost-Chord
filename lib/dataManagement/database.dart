@@ -8,8 +8,7 @@ class Database {
 
   static Future<void> loadReleases() async {
     List<dynamic> decodedData = await dataManager.load();
-    releases = decodedData?.map((e) => Release.fromJson(e))?.toList() ??
-        List<Release>();
+    releases = decodedData?.map((e) => Release.fromJson(e))?.toList() ?? [];
   }
 
   static Future<void> saveReleases() async {
@@ -24,7 +23,7 @@ class Database {
           ? Database.releases
               .where((e) => e.name.toLowerCase().contains(keyword))
               .toList()
-          : List<Release>();
+          : [];
     return Future.value(result);
   }
 

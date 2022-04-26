@@ -11,7 +11,7 @@ class MainPage extends StatelessWidget {
       theme: ThemeData(
           brightness: Brightness.dark,
           primarySwatch: Colors.grey,
-          accentColor: Colors.grey,
+          indicatorColor: Colors.grey,
           textTheme: TextTheme(bodyText2: const TextStyle(fontSize: 18))),
       home: StackAnimationProvider(child: StackOfStatisticsAndReleaseList()),
     );
